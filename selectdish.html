@@ -34,18 +34,21 @@
   		<br>
   		<div>
   		<form class="form-inline">
-  			<div class="form-group  ">
+  			<div class="form-group">
 		  		<div class="px-3">
 		  			<label for="guest">People </label>
 	  			</div>
-	  		
-				<select id="totalGuest">
-					<option name="totalGuest">3</option>
+	  		</div>
+
+	  		<div class="form-group">
+				<select id="guest">
+					<option name="guest">3</option>
 					<option >4</option>
 					<option >5</option>
 					<option >6</option>
 				</select>
 			</div>
+			
 		</form>
 		</div>
 		<br>
@@ -98,32 +101,76 @@
 
   	<h4 class="left">Find a Dish</h4>
 
-	  	<form class="form-inline">
-	  
-			  <input type="text" class="form-control px-2" id="keywords" placeholder="Enter key words" >
-			  <div class="dropdown px-2">
+		<form class="form-inline">
+		<div class="input-group">
+		    <div class="form-group">
+		        <div>
+		            <input type="text" class="form-control px-2" id="keywords" placeholder="Enter key words" >
+			  
+		        </div>          
+		    </div>
+		    <div class="form-group">
+		        <div class="px-3">  
+		        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">All     
+		          <span class="caret"></span></button>
+				  <ul class="dropdown-menu">
+				    <li><a href="#">Main Course</a></li>
+				    <li><a href="#">Side Dish</a></li>
+				    <li><a href="#">Dessert</a></li>
+				    <li><a href="#">Appetizer</a></li>
+				  </ul>
+		        </div>
+		    </div>
+		     <div class="form-group">
+		     	<div>
+		     		<button type="button" class="btn btn-warning">Search</button>
+		     	</div>
+		     	
+		     </div>
 
-			  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">All
-			  
-			  <span class="caret"></span></button>
-			  <ul class="dropdown-menu">
-			    <li><a href="#">Main Course</a></li>
-			    <li><a href="#">Side Dish</a></li>
-			    <li><a href="#">Dessert</a></li>
-			    <li><a href="#">Appetizer</a></li>
-			  </ul>
-			  </div>
-			  
-			  <button type="button" class="btn btn-warning">Search</button>
-			
-		</form>
+
+		 </div>
+</form>
 	  
 	<br>
 
 	<div class="row center">
 		<div class="col-md-3">
 		<div class="card">
-			  <img class="card-img-top" src="images/icecream.jpg" alt="Card image cap">
+			  <img class="card-img-top img-fluid" src="images/icecream.jpg" alt="Card image cap">
+				  <div class="card-body">
+					    <a href="#" class="btn btn-default center">Ice Cream</a>
+				  </div>
+			</div>
+			</div>
+		<div class="col-md-3">
+			<div class="card">
+			  <img class="card-img-top" src="images/meatballs.jpg" alt="Card image cap">
+				  <div class="card-body">
+					    <a href="#" class="btn btn-default">Meatballs</a>
+				  </div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="card">
+			  <img class="card-img-top" src="images/sourdough.jpg" alt="Card image cap">
+				  <div class="card-body">
+					    <a href="#" class="btn btn-default">Sourdough</a>
+				  </div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card">
+			  <img class="card-img-top" src="images/toast.jpg" alt="Card image cap">
+				  <div class="card-body">
+					    <a href="#" class="btn btn-default">Toast</a>
+				  </div>
+			</div>
+		</div>
+		<div class="col-md-3">
+		<div class="card">
+			  <img class="card-img-top img-fluid" src="images/icecream.jpg" alt="Card image cap">
 				  <div class="card-body">
 					    <a href="#" class="btn btn-default center">Ice Cream</a>
 				  </div>
