@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Select Dish</title>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<style type="text/css">
+		.gray{
+			background-color: #e9ecef;
+		}
+		.left{
+			text-align: left;
+		}
+		.center{
+			text-align: center;
+		}
+		.border{
+			border-color:#e9ecef; 
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="jumbotron center">
+		<h1>Dinner Planner</h1>
+  	</div>
+
+
+<div class="containter">
+
+  <div class="row border">
+  <div class="col-md-2 border">
+
+  		<h4 class="left px-3">My Dinner</h4>
+  		<br>
+  		<div>
+  		<form class="form-inline">
+  			<div class="form-group  ">
+		  		<div class="px-3">
+		  			<label for="guest">People </label>
+	  			</div>
+	  		
+				<select id="totalGuest">
+					<option name="totalGuest">3</option>
+					<option >4</option>
+					<option >5</option>
+					<option >6</option>
+				</select>
+			</div>
+		</form>
+		</div>
+		<br>
+		<form class="form-inline gray">
+			<div class="px-3">Dish Name</div>
+			<div class="px-3">Cost</div>
+		</form>
+		<br>
+		<div>
+
+			<ul class="list-unstyled">
+				 <li>
+				  	<form class="form-inline center">
+						<div class="px-3">Bakwan</div>
+						<div class="px-3">70SEK</div>
+					</form>
+				</li>
+				<li>
+				  	<form class="form-inline center">
+						<div class="px-3">Bakwan</div>
+						<div class="px-3">70SEK</div>
+					</form>
+				</li>
+				<li>
+				  	<form class="form-inline center">
+						<div class="px-3">Bakwan</div>
+						<div class="px-3">70SEK</div>
+					</form>
+				</li>
+				  
+				
+			</ul>
+		</div>
+
+		<div>
+			<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
+
+		</div>
+	</div>
+  		
+  
+
+  <div class="col-md-10 px-3 border">
+
+  	<h4 class="left">Find a Dish</h4>
+
+	  	<form class="form-inline">
+	  
+			  <input type="text" class="form-control px-2" id="keywords" placeholder="Enter key words" >
+			  <div class="dropdown px-2">
+
+			  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">All
+			  
+			  <span class="caret"></span></button>
+			  <ul class="dropdown-menu">
+			    <li><a href="#">Main Course</a></li>
+			    <li><a href="#">Side Dish</a></li>
+			    <li><a href="#">Dessert</a></li>
+			    <li><a href="#">Appetizer</a></li>
+			  </ul>
+			  </div>
+			  
+			  <button type="button" class="btn btn-warning">Search</button>
+			
+		</form>
+	  
+	<br>
+
+	<div class="row center">
+		<div class="col-md-3">
+		<div class="card">
+			  <img class="card-img-top" src="images/icecream.jpg" alt="Card image cap">
+				  <div class="card-body">
+					    <a href="#" class="btn btn-default center">Ice Cream</a>
+				  </div>
+			</div>
+			</div>
+		<div class="col-md-3">
+			<div class="card">
+			  <img class="card-img-top" src="images/meatballs.jpg" alt="Card image cap">
+				  <div class="card-body">
+					    <a href="#" class="btn btn-default">Meatballs</a>
+				  </div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="card">
+			  <img class="card-img-top" src="images/sourdough.jpg" alt="Card image cap">
+				  <div class="card-body">
+					    <a href="#" class="btn btn-default">Sourdough</a>
+				  </div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card">
+			  <img class="card-img-top" src="images/toast.jpg" alt="Card image cap">
+				  <div class="card-body">
+					    <a href="#" class="btn btn-default">Toast</a>
+				  </div>
+			</div>
+		</div>
+	</div>
+
+	
+ </div>
+
+ </div>
+
+</div>
+
+</div> 
+  
+
+ <script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

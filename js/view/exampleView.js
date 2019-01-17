@@ -34,6 +34,7 @@ var ExampleView = function (container, model) {
 	 * 
 	 */
 	var numberOfGuests = container.find("#numberOfGuests");
+		model.setNumberOfGuests(100);
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we 
@@ -52,7 +53,7 @@ var ExampleView = function (container, model) {
 	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
-	numberOfGuests.html("Hello World");
+	numberOfGuests.html(model.getNumberOfGuests());
 	console.log(model.getNumberOfGuests());
 	
 }
