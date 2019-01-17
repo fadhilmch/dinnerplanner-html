@@ -80,7 +80,9 @@ var DinnerModel = function() {
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
 		//TODO Lab 1 
-		menu.push(dishes.filter(dish => {
+		menu = menu.filter(dish => {
+			dish.type != type
+		}).push(dishes.filter(dish => {
 			return dish.id === id;
 		})[0]);
 	}
@@ -377,5 +379,3 @@ var DinnerModel = function() {
 	];
 
 }
-
-module.exports = {DinnerModel};
