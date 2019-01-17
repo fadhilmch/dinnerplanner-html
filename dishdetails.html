@@ -29,13 +29,13 @@
 <div class="containter">
 	<div class="row">
   	
-	  	<div class="col-md-2 border">
+	  	<div class="col-md-2 border center">
 
   		<h4 class="left px-3">My Dinner</h4>
   		<br>
   		<div>
   		<form class="form-inline">
-  			<div class="form-group  ">
+  			<div class="form-group">
 		  		<div class="px-3">
 		  			<label for="guest">People </label>
 	  			</div>
@@ -48,41 +48,47 @@
 				</select>
 			</div>
 		</form>
+
 		</div>
 		<br>
-		<form class="form-inline gray">
-			<div class="px-3">Dish Name</div>
-			<div class="px-3">Cost</div>
-		</form>
-		<br>
-		<div>
+	
+		
+		<div>	
 
-			<ul class="list-unstyled">
-				 <li>
-				  	<form class="form-inline center">
-						<div class="px-3">Bakwan</div>
-						<div class="px-3">70SEK</div>
-					</form>
-				</li>
-				<li>
-				  	<form class="form-inline center">
-						<div class="px-3">Bakwan</div>
-						<div class="px-3">70SEK</div>
-					</form>
-				</li>
-				<li>
-				  	<form class="form-inline center">
-						<div class="px-3">Bakwan</div>
-						<div class="px-3">70SEK</div>
-					</form>
-				</li>
-				  
-				
-			</ul>
+			<table class="table">	
+
+				<thead class="gray">
+					<tr>
+					      <td>Dish Name</td>
+					      <td>Cost</td>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+					      <td>Olive Oil</td>
+					      <td>10 SEK</td>
+					</tr>
+					<tr>
+					      <td>Olive Oil</td>
+					      <td>10 SEK</td>
+					</tr>
+					<tr>
+					      <td>Olive Oil</td>
+					      <td>10 SEK</td>
+					</tr>
+					<tr>
+					      <td>Olive Oil</td>
+					      <td>10 SEK</td>
+					</tr>
+				</tbody>	 
+			
+				</table>
+			
 		</div>
 
 		<div>
-			<button type="button" class="btn btn-md btn-primary" disabled="disabled">Confirm Dinner</button>
+			<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
 
 		</div>
 	</div>
@@ -92,7 +98,8 @@
 			<div class="col-md-4">
 				<div class="px-2">
 					<div class="card" style="width: 16rem;">
-					<h5>Nama Makanan</h5>
+					<h4>Dish Name</h4>
+					<br>
 					  <img class="card-img-top" src="images/toast.jpg" alt="Card image cap">
 						  <div class="card-body">
 					  		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>  </div>
@@ -102,7 +109,8 @@
 			</div>
 			<div class="col-md-8">
 				<div class="border">
-				<h5 class="left">Ingredients for 3 People</h5>
+				<h4 class="left">Ingredients for [x] People</h4>
+				<br>
 				<table class="table">
 					 
 					  <tbody>
