@@ -54,7 +54,7 @@ var DinnerModel = function() {
 		})
 		.reduce((acc, cur) => {
 			return acc + cur;
-		});
+		},0);
 		
 
 		/*
@@ -128,6 +128,15 @@ var DinnerModel = function() {
 				return dishes[key];
 			}
 		}
+	}
+
+	this.getDishType = function () {
+		var dishType = new Array();
+		dishes.forEach(dish => {
+			if(dishType.indexOf(dish.type) === -1)
+				dishType.push(dish.type);
+		})
+		return dishType;
 	}
 
 

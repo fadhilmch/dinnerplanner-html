@@ -12,7 +12,7 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */ 
-var HomeView = function (container, model) {
+var SelectView = function (container, model) {
 	
 	/**
 	 * We use the @method find() on @var {jQuery object} container to look for various elements 
@@ -34,8 +34,31 @@ var HomeView = function (container, model) {
 	 * 
 	 */
 
-  // var numberOfGuests = container.find("#numberOfGuests");
+  // Select option for guests number
+  var numberOfGuests = container.find("#guest");
+  for (var i = 1; i < 10; i++){
+    numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
+  }
 
+  // Dropdown Select for Dishes Type
+  var dishType = container.find('#dishType');
+  var arrDishes = model.getDishType();
+  arrDishes.splice(0,0,'all');
+  arrDishes = arrDishes.map(dish => {
+      return dish.replace(
+          /\w\S*/g,
+          function(txt) {
+              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          }
+      );
+  });
+
+  for(var i = 0; i < arrDishes.length; i++){
+    dishType.append(`<li><a href="#">${arrDishes[i]}</a></li>`);
+  }
+
+
+  console.log(arrDishes);
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we 
@@ -47,7 +70,8 @@ var HomeView = function (container, model) {
 	 * this button and do something with it (see Lab 2).
 	 * 
 	 */
-
+	this.plusButton = container.find("#plusGuest");
+	this.minusButton = container.find("#minusGuest");
 	
 	/**
 	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
@@ -55,6 +79,13 @@ var HomeView = function (container, model) {
 	 */
 	
 	// numberOfGuests.html(model.getNumberOfGuests());
+	console.log(model.getNumberOfGuests());
+	console.log(model.getFullMenu());
+	console.log(model.getSelectedDish("main dish"));
+	console.log(model.getAllIngredients());
+	console.log(model.getTotalMenuPrice());
+	console.log(model.removeDishFromMenu(1));
+
 
 
 	
