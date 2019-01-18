@@ -80,11 +80,16 @@ var DinnerModel = function() {
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
 		//TODO Lab 1 
+		dishType = this.getDish(id).type;
 		menu = menu.filter(dish => {
-			return dish.type != type
-		}).push(dishes.filter(dish => {
-			return dish.id === id;
-		})[0]);
+			return dish.type !== dishType;
+		})
+		
+		dishes.forEach(dish => {
+			if (dish.id === id)
+				menu.push(dish);
+				console.log(dish);
+		})
 	}
 
 	//Removes dish from menu
