@@ -12,7 +12,7 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */ 
-var ExampleView = function (container, model) {
+var HomeView = function (container, model) {
 	
 	/**
 	 * We use the @method find() on @var {jQuery object} container to look for various elements 
@@ -34,7 +34,8 @@ var ExampleView = function (container, model) {
 	 * 
 	 */
 
-	// var numberOfGuests = container.find("#numberOfGuests");
+  // var numberOfGuests = container.find("#numberOfGuests");
+  
 		/*Adding number of user*/
 		model.setNumberOfGuests(100);
 		

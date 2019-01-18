@@ -88,7 +88,6 @@ var DinnerModel = function() {
 		dishes.forEach(dish => {
 			if (dish.id === id)
 				menu.push(dish);
-				console.log(dish);
 		})
 	}
 
