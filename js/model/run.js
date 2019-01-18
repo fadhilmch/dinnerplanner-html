@@ -1,4 +1,4 @@
-const DinnerModel = require('./dinnerModel').DinnerModel;
+const DinnerModel = require('./dinnerModel');
 const model = new DinnerModel();
 
 // Set Number of guests
@@ -12,11 +12,14 @@ model.addDishToMenu(1);
 model.addDishToMenu(2);
 model.addDishToMenu(103);
 
+
 // get selected dish
 var selectedDish = model.getSelectedDish('starter');
 
 // get full menu
 var fullMenu = model.getFullMenu();
+
+console.log(fullMenu);
 
 // get all ingredient
 var allIngredients = model.getAllIngredients();
@@ -27,4 +30,4 @@ var totalMenuPrice = model.getTotalMenuPrice();
 // remove dish from menu
 var updateMenu = model.removeDishFromMenu(1);
 
-console.log(updateMenu);
+// console.log(updateMenu);

@@ -81,7 +81,7 @@ var DinnerModel = function() {
 	this.addDishToMenu = function(id) {
 		//TODO Lab 1 
 		menu = menu.filter(dish => {
-			dish.type != type
+			return dish.type != type
 		}).push(dishes.filter(dish => {
 			return dish.id === id;
 		})[0]);
