@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>Dish Details</title>
-	 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+	 <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<style type="text/css">
 		.gray{
 			background-color: #e9ecef;
@@ -17,103 +19,125 @@
 		.border{
 			border-color:#e9ecef; 
 		}
+		.fitImage{
+			width: 100%;
+			height: auto;
+		}
+		.margin{
+			margin: 7px;
+		}
+		
 	</style>
 </head>
 <body>
 
 <body>
-	
-	<div class="jumbotron center">
-  		<h1>Dinner Planner</h1>
+	<div>
+	<nav class="nav gray">
+		<div class="navbar-header mx-auto">
+			<div class="jumbotron center"> <h1>Dinner Planner</h1></div>
+		  		
+		  	
+  		</div>
+  	</nav>
   	</div>
-<div class="containter">
+
+  	<div class="container">
+
 	<div class="row">
-  	
-	  	<div class="col-md-2 border center">
+	  	<div class="col-md-2" style="padding-top: 10px">
+	  	<!-- <nav class="navbar navbar-expand-lg navbar-light"> -->
+		  	<div>
+	  		<h4 class="left">My Dinner</h4>
+	  		<div>
+	  		<form class="form-inline center">
+	  			<div class="form-group">
+			  		<div>
+			  			<label for="guest">People </label>
+		  			</div>
+		  		</div>
 
-  		<h4 class="left px-3">My Dinner</h4>
-  		<br>
-  		<div>
-  		<form class="form-inline">
-  			<div class="form-group">
-		  		<div class="px-3">
-		  			<label for="guest">People </label>
-	  			</div>
-	  		</div>
+		  		<div class="form-group">
+					<select id="guest">
+						<option name="guest">3</option>
+						<option >4</option>
+						<option >5</option>
+						<option >6</option>
+					</select>
+				</div>
 
-	  		<div class="form-group">
-				<select id="guest">
-					<option name="guest">3</option>
-					<option >4</option>
-					<option >5</option>
-					<option >6</option>
-				</select>
+			</form>
+
+			</div>
+		
+		
+			
+			<div>	
+				<div class="table-responsive">
+				<table class="table">	
+
+					<thead class="gray">
+						<tr>
+						      <td>Dish Name</td>
+						      <td>Cost</td>
+						</tr>
+					</thead>
+
+					<tbody class="text-danger">
+						<tr>
+						      <td>Olive Oil</td>
+						      <td>10 SEK</td>
+						</tr>
+						<tr>
+						      <td>Olive Oil</td>
+						      <td>10 SEK</td>
+						</tr>
+						<tr>
+						      <td>Olive Oil</td>
+						      <td>10 SEK</td>
+						</tr>
+						<tr>
+						      <td>Olive Oil</td>
+						      <td>10 SEK</td>
+						</tr>
+					</tbody>	 
+				
+					</table>
+					</div>
+				
 			</div>
 
-		</form>
+			<div>
+				<button type="button" class=" btn btn-outline-secondary" disabled="disabled">Confirm Dinner</button>
 
-		</div>
-		<br>
-	
-		
-		<div>	
+			</div>
+			</div>
+	<!-- </nav> -->
 
-			<table class="table">	
-
-				<thead class="gray">
-					<tr>
-					      <td>Dish Name</td>
-					      <td>Cost</td>
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr>
-					      <td>Olive Oil</td>
-					      <td>10 SEK</td>
-					</tr>
-					<tr>
-					      <td>Olive Oil</td>
-					      <td>10 SEK</td>
-					</tr>
-					<tr>
-					      <td>Olive Oil</td>
-					      <td>10 SEK</td>
-					</tr>
-					<tr>
-					      <td>Olive Oil</td>
-					      <td>10 SEK</td>
-					</tr>
-				</tbody>	 
-			
-				</table>
-			
-		</div>
-
-		<div>
-			<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
-
-		</div>
 	</div>
 		
 		<div class="col-md-10 ">
 			<div class="row">
-			<div class="col-md-4">
-				<div class="px-2">
-					<div class="card" style="width: 16rem;">
-					<h4>Dish Name</h4>
-					<br>
-					  <img class="card-img-top" src="images/toast.jpg" alt="Card image cap">
-						  <div class="card-body">
+			<div class="col-md-4" style="padding-bottom: 30px" >
+				<div style="padding-top: 10px">
+					<div>
+					<h4>TOAST</h4>
+					
+					  	<img class="fitImage" alt="Responsive image"" src="images/toast.jpg">
+						<div>
 					  		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>  </div>
 					  		<a href="#" class="btn btn-warning">Back to Search</a>
-		</div>
-	</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-8">
-				<div class="border">
-				<h4 class="left">Ingredients for [x] People</h4>
+
+
+			<div class="col-md-8" style="padding-bottom: 30px">
+				<div style="background-color: #FFFFE0">
+				<div  style="padding-top: 10px">
+				<h5 class="left">INGREDIENTS FOR 3 PEOPLE</h5>
 				<br>
+				<div class="table-responsive">
 				<table class="table">
 					 
 					  <tbody>
@@ -155,14 +179,16 @@
 					    </tr>
 					  </tbody>
 				</table>
+				</div>
 				<br>
-				<a href="#" class="btn btn-warning left">Add to menu</a>
+				<a href="#" class="btn btn-warning left" style="margin:10px">Add to Menu</a>
 				</div>
 			 </div>
-			</div>
+			 </div>
+			
 			<br>
 			<div>
-			<h4>Preparation</h4>
+			<h4 style="margin: 5px">PREPARATION</h4>
 			<br>
 				<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
