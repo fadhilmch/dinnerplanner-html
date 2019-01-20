@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Dinner Overview
+	</title>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<style type="text/css">
+   	.center{
+   		text-align: center;
+   	}
+   	.left{
+   		text-align: left;
+   	}
+   	.right{
+   		text-align: right;
+   	}
+   </style>
+</head>
+<body>
+		<div class="jumbotron center">
+			<h1>Dinner Planner</h1>
+	  	</div>
+
+  		<!-- <form class="form-inline center">
+  			<div class="form-group">
+		  		<h3 class="left">My Dinner: 3 People</h3>
+	  		</div>
+
+	  		<div class="form-group">
+				<button type="button" class="btn btn-md btn-warning right" id="btnEditDinner">Go Back and Edit Dinner
+  				</button>
+			</div>
+			
+		</form> -->
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<form class="form-inline center">
+			  			<div class="form-group">
+					  		<h3 class="navbar-left">My Dinner: 3 People</h3>
+				  		</div>
+
+				  		<div class="form-group">
+							<button type="button" class="btn btn-md btn-warning navbar-right" id="btnEditDinner">Go Back and Edit Dinner
+			  				</button>
+						</div>
+						
+					</form> 
+
+				</div>
+			</div>
+		</nav>
+
+		<br>
+		<br>
+
+		<div class="container center">
+
+			<div class="row">
+			<div class="col-md-8 center">
+					<div class="row center">
+
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail">
+							<img src="images/icecream.jpg" alt="...">
+							<div class="caption">
+								<h5>Ice Cream</h5>
+
+							</div>
+						</div>
+						<div class="caption">
+							<h5 class="text-danger">100 SEK</h5>
+						</div>
+					</div>
+
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail">
+							<img src="images/meatballs.jpg" alt="...">
+							<div class="caption">
+								<h5>Meatballs</h5>
+
+							</div>
+						</div>
+						<div class="caption">
+							<h5 class="text-danger">100 SEK</h5>
+						</div>
+					</div>
+
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail">
+							<img src="images/sourdough.jpg" alt="...">
+							<div class="caption">
+								<h5>Sourdough</h5>
+
+							</div>
+						</div>
+						<div class="caption">
+							<h5 class="text-danger">100 SEK</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<b>
+					Total:
+					<br>
+					<span class="text-danger" id="totalPrice">3412 SEK</span>
+				</b>
+			</div>
+
+			</div>
+			<div>
+			<button type="button"class="btn btn-md btn-warning" id="btnPrint">Print Full Recipe </button>
+			</div>
+		</div>
+
+</body>
+</html>
