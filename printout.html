@@ -11,37 +11,72 @@
    	.center{
    		text-align: center;
    	}
+   	.left{
+   		text-align: left;
+   	}
+   	.right{
+   		text-align: right;
+   	}
+   	.gray{
+			background-color: #e9ecef;
+
+		}
+	.border{
+			border-color:#e9ecef; 
+		}
+	.border-btm{
+		border-bottom-color:#e9ecef;
+	}
+	.fitImage{
+			width: 100%;
+			height: auto;
+		}
+	.flex-container{
+		  align-items: flex-end;
+
+	}
+
    </style>
 
 </head>
 <body>
-	<div class="jumbotron center">
-		<h1>Dinner Planner</h1>
-  	</div>
-
-  		<div>
-		<nav class="navbar">
+		<div>
+			<nav class="nav gray sticky-top">
+				<div class="navbar-header mx-auto">
+					<div class="jumbotron center"> <h1>Dinner Planner</h1></div>  	
+	  			</div>
+  			</nav>
+  		</div>
+			
+		<div>
+		<nav class="navbar border">
 		 	
 			  <h5 class="navbar-header" style="display: flex;" style="align-items: flex-start;">My Dinner: 3 People </h5>
 
-			  <button type="button" class="btn btn-md btn-warning navbar-right" style="display: flex;" style="align-items: flex-end;"id="btnEditDinner">Confirm Dinner
+			  <button type="button" class="btn btn-md btn-warning navbar-right" style="display: flex;"style="align-items: flex-end;"id="btnEditDinner">Go Back and Edit Dinner
   				</button>
 			
 		</nav>
-		</div>
+		</div>	
+					
 
   	<div class="container">
   		<br>
   			<div class="row">
-	  			<div class="col-md-2">
-	  				<img src="images/meatballs.jpg">
-	  			</div>
-	  			<div class="col-md-4">
-	  				<h5>Meatballs</h5>
-	  				<p>
-	  				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-	  				</p>
-	  			</div>
+  				<div class="col-md-6" style="padding-bottom: 10px">
+  					<div class="row">
+			  			<div class="col-md-6 fitImage" style="padding-bottom: 10px">
+			  				<img src="images/meatballs.jpg">
+			  			</div>
+
+			  			<div class="col-md-6" >
+			  				<h5>Meatballs</h5>
+			  				<p>
+			  				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+			  				</p>
+		  				</div>
+	  				</div>
+	  			</div>	
 	  			<div class="col-md-6">
 	  				<h5>Preparation</h5>
 	  				<p>
@@ -49,18 +84,25 @@
 					</p>
 	  			
 	  			</div>
-  			</div>
+	  			</div>
+  			
+  			<br>
   			<br>
   			<div class="row">
-	  			<div class="col-md-2">
-	  				<img src="images/toast.jpg">
-	  			</div>
-	  			<div class="col-md-4">
-	  				<h5>Toast</h5>
-	  				<p>
-	  				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-	  				</p>
-	  			</div>
+  				<div class="col-md-6" style="padding-bottom: 10px">
+  					<div class="row">
+			  			<div class="col-md-6 fitImage" style="padding-bottom: 10px">
+			  				<img src="images/toast.jpg">
+			  			</div>
+
+			  			<div class="col-md-6">
+			  				<h5>Toast</h5>
+			  				<p>
+			  				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+			  				</p>
+		  				</div>
+	  				</div>
+	  			</div>	
 	  			<div class="col-md-6">
 	  				<h5>Preparation</h5>
 	  				<p>
@@ -68,7 +110,7 @@
 					</p>
 	  			
 	  			</div>
-  			</div>
+	  			</div>
 
   		
 
