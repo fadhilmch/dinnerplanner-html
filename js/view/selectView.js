@@ -35,7 +35,7 @@ var SelectView = function (container, model) {
 	 */
 
   // Select option for guests number
-  var numberOfGuests = container.find("#guest");
+  var numberOfGuests = container.find(".guest");
   for (var i = 1; i < 10; i++){
     numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
   }

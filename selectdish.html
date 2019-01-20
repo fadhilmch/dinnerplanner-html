@@ -100,6 +100,10 @@
 			border-bottom: 3px solid black;
 			margin: 0px -15px;
 		}
+
+		.guest {
+			width:auto !important;
+		}
 	</style>
 </head>
 
@@ -110,14 +114,59 @@
 		<h1>Dinner Planner</h1>
 	</div>
 
+	<div id='selectView'>
+			<div class='d-block d-md-none'>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<a class="navbar-brand" href="#">My Dinner</a>
+		
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+		
+					<div class="collapse navbar-collapse" id="navbarText">
+						<form class="form-inline">
+							<span class='margin-right-5px'>People </span>
+							<select class="guest form-control">
+							</select>
+						</form>
+
+
+						<table class="table">
+
+								<thead>
+									<tr class='table-active'>
+										<th>Dish Name</t>
+										<th>Cost</t>
+									</tr>
+								</thead>
+		
+								<tbody>
+									<tr>
+										<td>Olive Oil</td>
+										<td>10</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div class='total-wrapper'>
+									<span id='totalCost'></span>
+								</div>
+								<div>
+									<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
+				
+								</div>
+						
+					</div>
+			</nav>
+		</div>
+
 <!-- Body -->
-	<div id='selectView' class="full-height">
-
-
+	<div class="full-height">
 
 		<!-- Sidebar Left -->
+	
 		<div class="row full-height">
-			<div class="col-md-2 center border-right full-height no-padding">
+			<div class="col-md-2 center border-right full-height no-padding d-none d-md-block">
 				<div class='padding-15'>
 					<h4 class="left">My Dinner</h4>
 					<div>
@@ -127,7 +176,7 @@
 							</div>
 
 							<div class="form-group">
-								<select id="guest">
+								<select class="guest">
 								</select>
 							</div>
 
@@ -208,8 +257,7 @@
 						</div>
 					</div>
 
-				</div>
-
+				</div>s
 				<br>
 				<div class="row center">
 
@@ -264,6 +312,7 @@
 
 
 	</div>
+</div>
 
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
