@@ -63,9 +63,25 @@ var SelectView = function (container, model) {
 
 
 	// Total Cost
-	var totalCost = container.find('#totalCost');
+	var totalCost = container.find('.totalCost');
 	totalCost.html(`SEK 0.00`)
-  console.log(arrDishes);
+	console.log(arrDishes);
+	
+	// Menu Wrapper
+	var menuWrapper = container.find('#menu-wrapper');
+	var allDishes = model.getAllDishes();
+	allDishes.forEach(dish => {
+		menuWrapper.append(`
+			<div class="col-sm-6 col-md-3 col-lg-2">
+				<div class="menu">
+					<img src="images/${dish.image}" alt="${dish.name}">
+					<div class="caption">
+						<h5>${dish.name}</h5>
+					</div>
+				</div>
+			</div>
+		`)
+	})
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we 

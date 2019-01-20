@@ -59,8 +59,8 @@
 		}
 
 		.table-wrapper {
-
 			width: 100%;
+			margin-top:10px;
 		}
 
 		.no-padding {
@@ -72,7 +72,7 @@
 		}
 
 		h4.left {
-			padding-top: 5px;
+			padding-top: 20px;
 		}
 
 		.total-wrapper {
@@ -99,104 +99,102 @@
 			padding-right: 15px;
 			border-bottom: 3px solid black;
 			margin: 0px -15px;
+			padding-top:20px;
 		}
 
 		.guest {
-			width:auto !important;
+			width: auto !important;
+		}
+
+		.top-nav{
+			padding: 30px 0px;
+		}
+
+		.menu{
+			border: 4px solid black;
+			margin-top:20px;
+		}
+
+		.menu img {
+			width: 100%;
+			height: auto;
+		}
+
+		.menu .caption {
+			background-color: lightgray;
+			height: 100%;
+		}
+
+		.caption h5 {
+			padding: 5px;
+			margin: 0px;
+			border-top: 4px solid black;
+		}
+
+		.title {
+			text-align: center;
+			background-color: lightgray;
+		}
+
+		#dinner-nav{
+			margin-top:50px;
+		}
+
+		#body{
+			margin-top:60px;
+		}
+
+		@media (min-width: 320px) and (max-width: 480px) {
+			.main-body{
+				margin-top:90px;
+			}
+
+			.top-nav{
+				padding: 10px 0px;
+			}
+
+			h1 {
+				font-size: 30px;
+			}
+  
 		}
 	</style>
 </head>
 
 <body>
 
-<!-- Top Bar -->
-	<div class="jumbotron center">
-		<h1>Dinner Planner</h1>
+	<!-- Top Bar -->
+	<div>
+		<nav class="navbar mx-auto fixed-top title">
+					<h1 class='mx-auto'>Dinner Planner</h1>
+		</nav>
 	</div>
 
-	<div id='selectView'>
-			<div class='d-block d-md-none'>
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<a class="navbar-brand" href="#">My Dinner</a>
-		
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-		
-					<div class="collapse navbar-collapse" id="navbarText">
-						<form class="form-inline">
-							<span class='margin-right-5px'>People </span>
-							<select class="guest form-control">
-							</select>
-						</form>
+	<!-- Navbar on Mobile -->
+	<div id='selectView' class='full-height'>
+		<div class='d-block d-md-none'>
+			<nav id='dinner-nav' class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+				<a class="navbar-brand" href="#">My Dinner</a>
 
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+				 aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-						<table class="table">
-
-								<thead>
-									<tr class='table-active'>
-										<th>Dish Name</t>
-										<th>Cost</t>
-									</tr>
-								</thead>
-		
-								<tbody>
-									<tr>
-										<td>Olive Oil</td>
-										<td>10</td>
-									</tr>
-								</tbody>
-							</table>
-
-							<div class='total-wrapper'>
-									<span id='totalCost'></span>
-								</div>
-								<div>
-									<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
-				
-								</div>
-						
-					</div>
-			</nav>
-		</div>
-
-<!-- Body -->
-	<div class="full-height">
-
-		<!-- Sidebar Left -->
-	
-		<div class="row full-height">
-			<div class="col-md-2 center border-right full-height no-padding d-none d-md-block">
-				<div class='padding-15'>
-					<h4 class="left">My Dinner</h4>
-					<div>
-						<form class="form-inline">
-							<div class="form-group">
-								<span class='margin-right-5px'>People </span>
-							</div>
-
-							<div class="form-group">
-								<select class="guest">
-								</select>
-							</div>
-
-						</form>
-					</div>
-				</div>
-				<br>
-
-
-				<div class="table-wrapper">
+				<div class="collapse navbar-collapse" id="navbarText">
+					<form class="form-inline">
+						<span class='margin-right-5px'>People </span>
+						<select class="guest form-control">
+						</select>
+					</form>
 
 					<table class="table">
-
 						<thead>
 							<tr class='table-active'>
 								<th>Dish Name</t>
 								<th>Cost</t>
 							</tr>
 						</thead>
-
 						<tbody>
 							<tr>
 								<td>Olive Oil</td>
@@ -204,115 +202,112 @@
 							</tr>
 						</tbody>
 					</table>
+
+					<div class='total-wrapper'>
+						<span class='totalCost'></span>
+					</div>
+
+					<div>
+						<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
+					</div>
+
 				</div>
+			</nav>
+		</div>
 
-				<div class='total-wrapper'>
-					<span id='totalCost'></span>
-				</div>
-				<div>
-					<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
+		<!-- Body -->
 
-				</div>
-
-			</div>
-
-
-
-			<div class="col-md-10">
-
-				<div class='sub-title'>
-
-					<h4 class="sleft">Find a Dish</h4>
-
-					<div class="row">
-						<div class="col-md-3">
-							<input type="text" class="form-control full-width" id="keywords" placeholder="Enter key words">
-						</div>
-
-						<div class="col-md-2">
-							<button class="btn btn-primary full-width text-left" type="button" data-toggle="dropdown">
-								<div class='row'>
-									<span class='text-left col-11 no-padding'>All</span>
-									<span class='dropdown-toggle col-1 no-padding'></span>
+		<div id='body' class="row full-height">
+				<!-- Sidebar Left -->
+				<div class="col-md-2 center border-right full-height no-padding d-none d-md-block">
+					<div class='padding-15'>
+						<h4 class="left">My Dinner</h4>
+						<div>
+							<form class="form-inline">
+								<div class="form-group">
+									<span class='margin-right-5px'>People </span>
 								</div>
-							</button>
-
-							<ul class="dropdown-menu full-width" id='dishType'>
-							</ul>
-
+								<div class="form-group">
+									<select class="guest">
+									</select>
+								</div>
+							</form>
 						</div>
+					</div>
 
-						<!-- <div class="form-group">
+					<div class="table-wrapper">
+						<table class="table">
+							<thead>
+								<tr class='table-active'>
+									<th>Dish Name</t>
+									<th>Cost</t>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Olive Oil</td>
+									<td>10</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class='total-wrapper'>
+						<span class='totalCost'></span>
+					</div>
+					<div class='row'>
+						<button type="button" class="btn btn-md btn-warning mx-auto col-10" disabled="disabled">Confirm Dinner</button>
+					</div>
+				</div>
+
+				<!-- Body -->
+				<div class="col-md-10 main-body">
+					<div class='sub-title'>
+						<div class='row'>
+							<h4 class="sleft col-md-12">Find a Dish</h4>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<input type="text" class="form-control full-width" id="keywords" placeholder="Enter key words">
+							</div>
+
+							<div class="col-md-2">
+								<button class="btn btn-primary full-width text-left" type="button" data-toggle="dropdown">
+									<div class='row'>
+										<span class='text-left col-11 no-padding'>All</span>
+										<span class='dropdown-toggle col-1 no-padding'></span>
+									</div>
+								</button>
+
+								<ul class="dropdown-menu full-width" id='dishType'>
+								</ul>
+
+							</div>
+
+							<!-- <div class="form-group">
 							<select id="dishType">
 							</select>
 						</div> -->
 
 
 
-						<div class="col-md-1">
-							<div>
-								<button type="button" class="btn btn-warning full-width">Search</button>
-							</div>
+							<div class="col-md-1">
+								<div>
+									<button type="button" class="btn btn-warning">Search</button>
+								</div>
 
+							</div>
 						</div>
+
 					</div>
-
-				</div>s
-				<br>
-				<div class="row center">
-
-					<div class="col-sm-6 col-md-3 col-lg-2">
-						<div class="thumbnail">
-							<img src="images/icecream.jpg" alt="...">
-							<div class="caption">
-								<h5>Ice Cream</h5>
-
-							</div>
-						</div>
+					<br>
+					<div id='menu-wrapper' class="row center">
 					</div>
-
-					<div class="col-sm-6 col-md-3 col-lg-2">
-							<div class="thumbnail">
-								<img src="images/icecream.jpg" alt="...">
-								<div class="caption">
-									<h5>Ice Cream</h5>
-	
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 col-lg-2">
-								<div class="thumbnail">
-									<img src="images/icecream.jpg" alt="...">
-									<div class="caption">
-										<h5>Ice Cream</h5>
-		
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-6 col-md-3 col-lg-2">
-									<div class="thumbnail">
-										<img src="images/icecream.jpg" alt="...">
-										<div class="caption">
-											<h5>Ice Cream</h5>
-			
-										</div>
-									</div>
-								</div>
-					
-
-
 
 				</div>
 
 			</div>
-
-		</div>
-
-
 	</div>
-</div>
 
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
