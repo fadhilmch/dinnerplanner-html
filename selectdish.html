@@ -140,9 +140,8 @@
 			margin-top:50px;
 		}
 
-		#body{
-			margin-top:60px;
-		}
+
+
 
 		@media (min-width: 320px) and (max-width: 480px) {
 			.main-body{
@@ -156,6 +155,14 @@
 			h1 {
 				font-size: 30px;
 			}
+
+			.fixed {
+				position: fixed;
+				top: 0;
+				right: 0;
+				left: 0;
+				z-index: 1030;
+			}
   
 		}
 	</style>
@@ -165,7 +172,7 @@
 
 	<!-- Top Bar -->
 	<div>
-		<nav class="navbar mx-auto fixed-top title">
+		<nav class="navbar mx-auto fixed title">
 					<h1 class='mx-auto'>Dinner Planner</h1>
 		</nav>
 	</div>
