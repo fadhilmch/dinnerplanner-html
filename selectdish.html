@@ -2,8 +2,13 @@
 <html>
 
 <head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 	<title>Select Dish</title>
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
 	<style type="text/css">
 		.gray {
 			background-color: #e9ecef;
@@ -20,74 +25,190 @@
 		.border {
 			border-color: #e9ecef;
 		}
+
+		.row {
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.jumbotron {
+			border-bottom: 5px solid darkgray;
+			margin-bottom: 0px;
+		}
+
+		.border-right {
+			border-right: 3px solid black;
+		}
+
+		.full-height {
+			height: 100%;
+			min-height: 100%;
+		}
+
+		.margin-right-5px {
+			margin-right: 5px;
+		}
+
+		html {
+			height: 100%;
+		}
+
+		body {
+			min-height: 100%;
+			height: 100%;
+		}
+
+		.table-wrapper {
+
+			width: 100%;
+		}
+
+		.no-padding {
+			padding: 0px;
+		}
+
+		.padding-15 {
+			padding: 0px 15px;
+		}
+
+		h4.left {
+			padding-top: 5px;
+		}
+
+		.total-wrapper {
+			width: 100%;
+			padding: 5px 15px;
+			text-align: right;
+		}
+
+		.table {
+			margin-bottom: 0px;
+		}
+
+		.full-width {
+			width: 100% !important;
+		}
+
+		.text-left {
+			text-align: left;
+		}
+
+		.sub-title {
+			padding-bottom: 20px;
+			padding-left: 15px;
+			padding-right: 15px;
+			border-bottom: 3px solid black;
+			margin: 0px -15px;
+		}
+
+		.guest {
+			width:auto !important;
+		}
 	</style>
 </head>
 
 <body>
 
+<!-- Top Bar -->
 	<div class="jumbotron center">
 		<h1>Dinner Planner</h1>
 	</div>
 
-
-	<div id='selectView' class="containter">
-		<div class="row border">
-			<div class="col-md-2 border center">
-
-				<h4 class="left px-3">My Dinner</h4>
-				<br>
-				<div>
-					<form class="form-inline">
-						<div class="form-group">
-							<div class="px-3">
-								<label for="guest">People </label>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<select id="guest">
+	<div id='selectView'>
+			<div class='d-block d-md-none'>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<a class="navbar-brand" href="#">My Dinner</a>
+		
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+		
+					<div class="collapse navbar-collapse" id="navbarText">
+						<form class="form-inline">
+							<span class='margin-right-5px'>People </span>
+							<select class="guest form-control">
 							</select>
-						</div>
+						</form>
 
-					</form>
+
+						<table class="table">
+
+								<thead>
+									<tr class='table-active'>
+										<th>Dish Name</t>
+										<th>Cost</t>
+									</tr>
+								</thead>
+		
+								<tbody>
+									<tr>
+										<td>Olive Oil</td>
+										<td>10</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div class='total-wrapper'>
+									<span id='totalCost'></span>
+								</div>
+								<div>
+									<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
+				
+								</div>
+						
+					</div>
+			</nav>
+		</div>
+
+<!-- Body -->
+	<div class="full-height">
+
+		<!-- Sidebar Left -->
+	
+		<div class="row full-height">
+			<div class="col-md-2 center border-right full-height no-padding d-none d-md-block">
+				<div class='padding-15'>
+					<h4 class="left">My Dinner</h4>
+					<div>
+						<form class="form-inline">
+							<div class="form-group">
+								<span class='margin-right-5px'>People </span>
+							</div>
+
+							<div class="form-group">
+								<select class="guest">
+								</select>
+							</div>
+
+						</form>
+					</div>
 				</div>
 				<br>
 
 
-				<div>
+				<div class="table-wrapper">
 
 					<table class="table">
 
-						<thead class="gray">
-							<tr>
-								<td>Dish Name</td>
-								<td>Cost</td>
+						<thead>
+							<tr class='table-active'>
+								<th>Dish Name</t>
+								<th>Cost</t>
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr>
 								<td>Olive Oil</td>
-								<td>10 SEK</td>
-							</tr>
-							<tr>
-								<td>Olive Oil</td>
-								<td>10 SEK</td>
-							</tr>
-							<tr>
-								<td>Olive Oil</td>
-								<td>10 SEK</td>
-							</tr>
-							<tr>
-								<td>Olive Oil</td>
-								<td>10 SEK</td>
+								<td>10</td>
 							</tr>
 						</tbody>
-
 					</table>
-
 				</div>
 
+				<div class='total-wrapper'>
+					<span id='totalCost'></span>
+				</div>
 				<div>
 					<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
 
@@ -99,41 +220,48 @@
 
 			<div class="col-md-10">
 
-				<h4 class="left">Find a Dish</h4>
+				<div class='sub-title'>
 
-				<form class="form-inline">
-					<div class="input-group">
-						<div class="form-group">
+					<h4 class="sleft">Find a Dish</h4>
+
+					<div class="row">
+						<div class="col-md-3">
+							<input type="text" class="form-control full-width" id="keywords" placeholder="Enter key words">
+						</div>
+
+						<div class="col-md-2">
+							<button class="btn btn-primary full-width text-left" type="button" data-toggle="dropdown">
+								<div class='row'>
+									<span class='text-left col-11 no-padding'>All</span>
+									<span class='dropdown-toggle col-1 no-padding'></span>
+								</div>
+							</button>
+
+							<ul class="dropdown-menu full-width" id='dishType'>
+							</ul>
+
+						</div>
+
+						<!-- <div class="form-group">
+							<select id="dishType">
+							</select>
+						</div> -->
+
+
+
+						<div class="col-md-1">
 							<div>
-								<input type="text" class="form-control" id="keywords" placeholder="Enter key words">
-
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="px-3">
-								<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">All
-									<span class="caret"></span></button>
-
-								<ul class="dropdown-menu" id='dishType'>
-								</ul>
-								
-							</div>
-						</div>
-						<div class="form-group">
-							<div>
-								<button type="button" class="btn btn-warning">Search</button>
+								<button type="button" class="btn btn-warning full-width">Search</button>
 							</div>
 
 						</div>
-
-
 					</div>
-				</form>
 
+				</div>s
 				<br>
 				<div class="row center">
 
-					<div class="col-sm-6 col-md-2">
+					<div class="col-sm-6 col-md-3 col-lg-2">
 						<div class="thumbnail">
 							<img src="images/icecream.jpg" alt="...">
 							<div class="caption">
@@ -143,55 +271,36 @@
 						</div>
 					</div>
 
-					<div class="col-sm-6 col-md-2">
-						<div class="thumbnail">
-							<img src="images/meatballs.jpg" alt="...">
-							<div class="caption">
-								<h5>Meatballs</h5>
-
+					<div class="col-sm-6 col-md-3 col-lg-2">
+							<div class="thumbnail">
+								<img src="images/icecream.jpg" alt="...">
+								<div class="caption">
+									<h5>Ice Cream</h5>
+	
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="col-sm-6 col-md-2">
-						<div class="thumbnail">
-							<img src="images/sourdough.jpg" alt="...">
-							<div class="caption">
-								<h5>Sourdough</h5>
-
+						<div class="col-sm-6 col-md-3 col-lg-2">
+								<div class="thumbnail">
+									<img src="images/icecream.jpg" alt="...">
+									<div class="caption">
+										<h5>Ice Cream</h5>
+		
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
 
-					<div class="col-sm-6 col-md-2">
-						<div class="thumbnail">
-							<img src="images/toast.jpg" alt="...">
-							<div class="caption">
-								<h5>Toast</h5>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="col-sm-6 col-md-2">
-						<div class="thumbnail">
-							<img src="images/icecream.jpg" alt="...">
-							<div class="caption">
-								<h5>Ice Cream</h5>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="col-sm-6 col-md-2">
-						<div class="thumbnail">
-							<img src="images/meatballs.jpg" alt="...">
-							<div class="caption">
-								<h5>Meatballs</h5>
-
-							</div>
-						</div>
-					</div>
+							<div class="col-sm-6 col-md-3 col-lg-2">
+									<div class="thumbnail">
+										<img src="images/icecream.jpg" alt="...">
+										<div class="caption">
+											<h5>Ice Cream</h5>
+			
+										</div>
+									</div>
+								</div>
+					
 
 
 
@@ -201,12 +310,17 @@
 
 		</div>
 
+
 	</div>
+</div>
 
 	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	 crossorigin="anonymous"></script>
 
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>

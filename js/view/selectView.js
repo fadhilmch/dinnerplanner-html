@@ -35,7 +35,7 @@ var SelectView = function (container, model) {
 	 */
 
   // Select option for guests number
-  var numberOfGuests = container.find("#guest");
+  var numberOfGuests = container.find(".guest");
   for (var i = 1; i < 10; i++){
     numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
   }
@@ -53,11 +53,18 @@ var SelectView = function (container, model) {
       );
   });
 
-  for(var i = 0; i < arrDishes.length; i++){
-    dishType.append(`<li><a href="#">${arrDishes[i]}</a></li>`);
+  // for(var i = 0; i < arrDishes.length; i++){
+  //   dishType.append(`<option value=${arrDishes[i].toLowerCase()}>${arrDishes[i]}</option>`);
+	// }
+	
+	for(var i = 0; i < arrDishes.length; i++){
+    dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
   }
 
 
+	// Total Cost
+	var totalCost = container.find('#totalCost');
+	totalCost.html(`SEK 0.00`)
   console.log(arrDishes);
 
 	/**
