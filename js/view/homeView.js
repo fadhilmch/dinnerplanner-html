@@ -54,6 +54,9 @@ var HomeView = function (container, model) {
 	var topNav = container.find('#top-nav');
 	topNav.load('./components/title.html');
 
+	var navMobile = container.find('#nav-mobile');
+	navMobile.load('./components/nav-mobile.html');
+
 
 
 	// ===========================
