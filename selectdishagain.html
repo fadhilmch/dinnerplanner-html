@@ -139,8 +139,8 @@
 		#dinner-nav{
 			margin-top:50px;
 		}
-		
-		tbody tr{
+
+    tbody tr{
       background-color: #f2f2f2;
     }
 
@@ -179,12 +179,7 @@
 	</div>
 
 	<!-- Navbar on Mobile -->
-<<<<<<< HEAD
-	<div id='homeView' class='full-height'>
-=======
 	<div id='selectView' class='full-height'>
-		<div id='tes'></div>
->>>>>>> c336a1f5e9a3592de77fb3dd1d4e93bf595f5a31
 		<div class='d-block d-md-none'>
 			<nav id='dinner-nav' class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 				<a class="navbar-brand" href="#">My Dinner</a>
@@ -208,7 +203,11 @@
 								<th>Cost</t>
 							</tr>
 						</thead>
-						<tbody class='menu-table'>
+						<tbody>
+							<tr>
+								<td>Olive Oil</td>
+								<td>10</td>
+							</tr>
 						</tbody>
 					</table>
 
@@ -217,7 +216,7 @@
 					</div>
 
 					<div>
-						<button type="button" class="btn btn-md btn-warning btn-confirm" disabled="disabled">Confirm Dinner</button>
+						<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
 					</div>
 
 				</div>
@@ -252,7 +251,11 @@
 									<th>Cost</t>
 								</tr>
 							</thead>
-							<tbody class='menu-table'>
+							<tbody>
+								<tr>
+									<td>Olive Oil</td>
+									<td>10</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -261,7 +264,7 @@
 						<span class='totalCost'></span>
 					</div>
 					<div class='row'>
-						<button type="button" class="btn btn-md btn-warning mx-auto col-10 btn-confirm" disabled="disabled">Confirm Dinner</button>
+						<button type="button" class="btn btn-md btn-warning mx-auto col-10" disabled="disabled">Confirm Dinner</button>
 					</div>
 				</div>
 
@@ -279,7 +282,7 @@
 							<div class="col-md-2">
 								<button class="btn btn-primary full-width text-left" type="button" data-toggle="dropdown">
 									<div class='row'>
-										<span class='text-left col-11 no-padding' id='dishTypeTitle'>All</span>
+										<span class='text-left col-11 no-padding'>All</span>
 										<span class='dropdown-toggle col-1 no-padding'></span>
 									</div>
 								</button>
@@ -315,9 +318,8 @@
 	</div>
 
 	<!-- jQuery -->
-	<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	 crossorigin="anonymous"></script> -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	 crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	 crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
@@ -329,8 +331,6 @@
 	<script src="js/view/selectView.js"></script>
 	<script src="js/view/homeView.js"></script>
 	<script src="js/view/detailView.js"></script>
-	<script src="js/view/summaryView.js"></script>
-	<script src="js/view/printView.js"></script>
 </body>
 
 </html>

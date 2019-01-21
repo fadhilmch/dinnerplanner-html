@@ -1,6 +1,6 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
-	var totalGuests = 0;
+	var totalGuests = 1;
 	var menu = new Array();
  
 	//TODO Lab 1 implement the data structure that will hold number of guest
@@ -56,7 +56,7 @@ var DinnerModel = function() {
 		})
 		.reduce((acc, cur) => {
 			return acc + cur;
-		},0);
+		});
 		
 	}
 
