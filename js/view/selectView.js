@@ -148,5 +148,5 @@ var SelectView = function (container, model) {
 // 		updateSidebar();
 // 	})
 	
-// }
+}
  

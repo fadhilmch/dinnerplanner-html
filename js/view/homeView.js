@@ -34,7 +34,12 @@ var HomeView = function (container, model) {
 	 * 
 	 */
 	
-	// Dummy 
+	
+	// ===========================
+	// 						GLOBAL 
+	// ===========================
+
+	// Dummy Data
 	model.addDishToMenu(1);
 	model.addDishToMenu(100);
 
@@ -45,9 +50,16 @@ var HomeView = function (container, model) {
 	var totalPrice = model.getTotalMenuPrice();
 	var totalGuests = model.getNumberOfGuests();
 
+	// Show View Component on Page
+	var topNav = container.find('#top-nav');
+	topNav.load('./components/title.html');
+
+
+
 	// ===========================
 	// 			selectdish.html 
 	// ===========================
+
 
 	// Select option for guests number
   var numberOfGuests = container.find(".guest");
@@ -124,8 +136,6 @@ var HomeView = function (container, model) {
 		})
 	}
 	updateSidebar();
-
-
 
 	// ======> EVENT 
 
