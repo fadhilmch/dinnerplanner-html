@@ -57,6 +57,9 @@ var HomeView = function (container, model) {
 	var navMobile = container.find('#nav-mobile');
 	navMobile.load('./components/nav-mobile.html');
 
+	var sidebar = container.find('#sidebar');
+	sidebar.load('./components/sidebar.html');
+
 
 
 	// ===========================

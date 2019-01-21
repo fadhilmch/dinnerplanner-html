@@ -172,20 +172,56 @@
 <body>
 
 	<!-- Top Bar -->
-	<!-- <div>
+	<div>
 		<nav class="navbar mx-auto fixed title">
 					<h1 class='mx-auto'>Dinner Planner</h1>
 		</nav>
-	</div> -->
+	</div>
 
 	<div id='homeView' class='full-height'>
 		
-		<div id='top-nav'></div>
-
 		<!-- Navbar on Mobile -->
-		<div id='nav-mobile'></div>
+		<div class='d-block d-md-none'>
+			<nav id='dinner-nav' class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+				<a class="navbar-brand" href="#">My Dinner</a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+				 aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarText">
+					<form class="form-inline">
+						<span class='margin-right-5px'>People </span>
+						<select class="guest form-control">
+						</select>
+					</form>
+
+					<table class="table">
+						<thead>
+							<tr class='table-active'>
+								<th>Dish Name</t>
+								<th>Cost</t>
+							</tr>
+						</thead>
+						<tbody class='menu-table'>
+						</tbody>
+					</table>
+
+					<div class='total-wrapper'>
+						<span class='totalCost'></span>
+					</div>
+
+					<div>
+						<button type="button" class="btn btn-md btn-warning btn-confirm" disabled="disabled">Confirm Dinner</button>
+					</div>
+
+				</div>
+			</nav>
+		</div>
 
 		<!-- Body -->
+
 		<div id='body' class="row full-height">
 				<!-- Sidebar Left -->
 				<div class="col-md-2 center border-right full-height no-padding d-none d-md-block">
