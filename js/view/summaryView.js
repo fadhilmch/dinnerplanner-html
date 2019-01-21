@@ -12,7 +12,7 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */ 
-var DetailView = function (container, model) {
+var SummaryView = function (container, model) {
 	
 	/**
 	 * We use the @method find() on @var {jQuery object} container to look for various elements 
@@ -53,6 +53,7 @@ var DetailView = function (container, model) {
       );
   });
 
+
   // for(var i = 0; i < arrDishes.length; i++){
   //   dishType.append(`<option value=${arrDishes[i].toLowerCase()}>${arrDishes[i]}</option>`);
 	// }
@@ -63,40 +64,66 @@ var DetailView = function (container, model) {
 
 
 	// Total Cost
-	var totalCost = container.find('#totalCost');
+	var totalCost = container.find('.totalCost');
 	totalCost.html(`SEK 0.00`)
-  	console.log(arrDishes);
-
-  	var detailDish = container.find("#dish-wrapper");
-  	var getDish = model.getDish(2);
-  	console.log(getDish);
-  	detailDish.append(`<div>
-					<h4>${getDish.name}</h4>
-					
-					  	<img class="fitImage" alt="Responsive image" src="images/${getDish.image}">
-						<div>
-					  		<p>${getDish.description} </p>  </div>
-					  		<a href="#" class="btn btn-warning">Back to Search</a>
+	console.log(arrDishes);
+	
+	// Menu Wrapper
+	var menuWrapper = container.find('#menu-wrapper');
+	var allDishes = model.getAllDishes();
+	allDishes.forEach(dish => {
+		menuWrapper.append(`
+			<div class="col-sm-6 col-md-3 col-lg-2">
+				<div class="menu">
+					<img src="images/${dish.image}" alt="${dish.name}">
+					<div class="caption">
+						<h5>${dish.name}</h5>
 					</div>
-				</div>`)
+				</div>
+			</div>
+		`)
+	})
 
-  	var ingredientsDish = container.find("#ingredients-wrapper");
+	model.addDishToMenu(1);
+	model.addDishToMenu(2);
+	model.addDishToMenu(103);
 
-  	getDish.ingredients.forEach(dish => {
-  	ingredientsDish.append(`<div class="table-responsive">
-				<table class="table">
-					  <tbody> 	
-					    <tr>
-					      <th scope="row">${dish.quantity + dish.unit}</th>
-					      <td>${dish.name}</td>
-					      <td>SEK</td>
-					      <td>${dish.price}</td>
-					    </tr>
-			
-					  </tbody>
-				</table>
-				</div>`)
-  })
+	var selectedMenu = container.find("#selected-wrapper");
+	var allMenu = model.getFullMenu();
+	console.log(allMenu);
+	allMenu.forEach(dish => {
+		// $("#selected-wrapper").append(('<p>Test</p>'))
+		// selectedMenu.append('<p>Test</p>');
+
+		selectedMenu.append(`
+			<div class="col-sm-6 col-md-3">
+						<div class="img-thumbnail">
+							<img src="images/${dish.image}" alt="...">
+							<div class="caption">
+								<h6 style="padding-top: 5px">${dish.name}</h6>
+
+							</div>
+						</div>
+						<div class="caption" style="padding-top: 5px">
+							<h6 class="text-danger" style="text-align: right;"> SEK</h6>
+						</div>
+					</div>
+		`)
+	})
+
+	model.setNumberOfGuests(2);
+
+	console.log(model.getNumberOfGuests());
+	var priceAcc = container.find("#totalPrice");
+	var totalPrice = model.getTotalMenuPrice();
+	priceAcc.append(`
+		${totalPrice}`);
+
+
+
+
+
+
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we 
@@ -117,12 +144,12 @@ var DetailView = function (container, model) {
 	 */
 	
 	// numberOfGuests.html(model.getNumberOfGuests());
-	console.log(model.getNumberOfGuests());
-	console.log(model.getFullMenu());
-	console.log(model.getSelectedDish("main dish"));
-	console.log(model.getAllIngredients());
-	console.log(model.getTotalMenuPrice());
-	console.log(model.removeDishFromMenu(1));
+	// console.log(model.getNumberOfGuests());
+	// console.log(model.getFullMenu());
+	// console.log(model.getSelectedDish("main dish"));
+	// console.log(model.getAllIngredients());
+	// console.log(model.getTotalMenuPrice());
+	// console.log(model.removeDishFromMenu(1));
 
 
 

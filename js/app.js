@@ -8,6 +8,10 @@ $(function() {
 	var selectView = new SelectView($("#selectView"), model);
 
 	var detailView = new DetailView($("#detailView"), model);
+
+	var summaryView = new SummaryView($("#summaryView"), model);
+
+	var printView = new PrintView($("#printView"), model);
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
 	 * use the $('someSelector') to search for elements in the whole HTML.
