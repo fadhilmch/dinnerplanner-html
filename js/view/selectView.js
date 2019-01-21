@@ -33,16 +33,33 @@ var SelectView = function (container, model) {
 	 * in some other view gives the same ID to another element.
 	 * 
 	 */
+	
+	 // Dummy
+	model.addDishToMenu(1);
+	model.addDishToMenu(100);
+	var tes = container.find('#tes');
+	// tes.load('./components/title.html');
+	$("#tes").load("./components/title.html #insert");
+	// $("#tes").append("./components/title.html");
+
+	
+	// Get from model
+	var arrDishes = model.getDishType();
+	var allDishes = model.getAllDishes();
+	var allMenu = model.getFullMenu();
+	var totalPrice = model.getTotalMenuPrice();
+	var totalGuests = model.getNumberOfGuests();
+	
 
   // Select option for guests number
   var numberOfGuests = container.find(".guest");
   for (var i = 1; i < 10; i++){
     numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
-  }
+	}
+
 
   // Dropdown Select for Dishes Type
   var dishType = container.find('#dishType');
-  var arrDishes = model.getDishType();
   arrDishes.splice(0,0,'all');
   arrDishes = arrDishes.map(dish => {
       return dish.replace(
@@ -63,25 +80,61 @@ var SelectView = function (container, model) {
 
 
 	// Total Cost
-	var totalCost = container.find('.totalCost');
-	totalCost.html(`SEK 0.00`)
-	console.log(arrDishes);
-	
-	// Menu Wrapper
-	var menuWrapper = container.find('#menu-wrapper');
-	var allDishes = model.getAllDishes();
-	allDishes.forEach(dish => {
-		menuWrapper.append(`
-			<div class="col-sm-6 col-md-3 col-lg-2">
-				<div class="menu">
-					<img src="images/${dish.image}" alt="${dish.name}">
-					<div class="caption">
-						<h5>${dish.name}</h5>
+	var updateTotalCost = function(){
+		totalPrice = model.getTotalMenuPrice();
+		var totalCost = container.find('.totalCost');
+		totalCost.html(`SEK ${Number(totalPrice).toFixed(2)}`);
+		
+		// Menu Wrapper
+		var menuWrapper = container.find('#menu-wrapper');
+		allDishes.forEach(dish => {
+			menuWrapper.append(`
+				<div class="col-sm-6 col-md-3 col-lg-2">
+					<div class="menu">
+						<img src="images/${dish.image}" alt="${dish.name}">
+						<div class="caption">
+							<h5>${dish.name}</h5>
+						</div>
 					</div>
 				</div>
-			</div>
-		`)
-	})
+			`)
+		})
+	}
+
+	updateTotalCost();
+
+	// Confirm button
+	if(allMenu.length > 0){
+		var confirmButton = container.find('.btn-confirm');
+		confirmButton.prop('disabled', false);
+	}
+
+	// Table Sidebar
+	var updateSidebar = function() {
+		var menuTable = container.find('.menu-table');
+		allMenu = model.getFullMenu();
+		totalGuests = model.getNumberOfGuests();
+		menuTable.children().remove();
+		allMenu.forEach(dish => {
+			menuTable.append(`							
+				<tr>
+					<td>${dish.name}</td>
+					<td>${
+						Number(
+							dish.ingredients.map(ingredient => {
+								return ingredient.quantity * ingredient.price;
+							})
+							.reduce((acc, cur) => {
+								return acc + cur;
+							})
+						).toFixed(2)*totalGuests
+					}
+					</td>
+				</tr>
+			`);
+		})
+	}
+	updateSidebar();
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we 
@@ -101,16 +154,17 @@ var SelectView = function (container, model) {
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
 	
-	// numberOfGuests.html(model.getNumberOfGuests());
-	console.log(model.getNumberOfGuests());
-	console.log(model.getFullMenu());
-	console.log(model.getSelectedDish("main dish"));
-	console.log(model.getAllIngredients());
-	console.log(model.getTotalMenuPrice());
-	console.log(model.removeDishFromMenu(1));
 
 
+	// ======> EVENT 
 
+	// Change nummber of guess
+	numberOfGuests.on('change', function() {
+		console.log(`Number of guests: ${this.value}`);
+		model.setNumberOfGuests(this.value);
+		updateTotalCost();
+		updateSidebar();
+	})
 	
 }
  
