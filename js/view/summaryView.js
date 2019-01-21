@@ -84,40 +84,40 @@ var SummaryView = function (container, model) {
 		`)
 	})
 
-	model.addDishToMenu(1);
-	model.addDishToMenu(2);
-	model.addDishToMenu(103);
+	// model.addDishToMenu(1);
+	// model.addDishToMenu(2);
+	// model.addDishToMenu(103);
 
-	var selectedMenu = container.find("#selected-wrapper");
-	var allMenu = model.getFullMenu();
-	console.log(allMenu);
-	allMenu.forEach(dish => {
-		// $("#selected-wrapper").append(('<p>Test</p>'))
-		// selectedMenu.append('<p>Test</p>');
+	// var selectedMenu = container.find("#selected-wrapper");
+	// var allMenu = model.getFullMenu();
+	// console.log(allMenu);
+	// allMenu.forEach(dish => {
+	// 	// $("#selected-wrapper").append(('<p>Test</p>'))
+	// 	// selectedMenu.append('<p>Test</p>');
 
-		selectedMenu.append(`
-			<div class="col-sm-6 col-md-3">
-						<div class="img-thumbnail">
-							<img src="images/${dish.image}" alt="...">
-							<div class="caption">
-								<h6 style="padding-top: 5px">${dish.name}</h6>
+	// 	selectedMenu.append(`
+	// 		<div class="col-sm-6 col-md-3">
+	// 					<div class="img-thumbnail">
+	// 						<img src="images/${dish.image}" alt="...">
+	// 						<div class="caption">
+	// 							<h6 style="padding-top: 5px">${dish.name}</h6>
 
-							</div>
-						</div>
-						<div class="caption" style="padding-top: 5px">
-							<h6 class="text-danger" style="text-align: right;"> SEK</h6>
-						</div>
-					</div>
-		`)
-	})
+	// 						</div>
+	// 					</div>
+	// 					<div class="caption" style="padding-top: 5px">
+	// 						<h6 class="text-danger" style="text-align: right;"> SEK</h6>
+	// 					</div>
+	// 				</div>
+	// 	`)
+	// })
 
-	model.setNumberOfGuests(2);
+	// model.setNumberOfGuests(2);
 
-	console.log(model.getNumberOfGuests());
-	var priceAcc = container.find("#totalPrice");
-	var totalPrice = model.getTotalMenuPrice();
-	priceAcc.append(`
-		${totalPrice}`);
+	// console.log(model.getNumberOfGuests());
+	// var priceAcc = container.find("#totalPrice");
+	// var totalPrice = model.getTotalMenuPrice();
+	// priceAcc.append(`
+	// 	${totalPrice}`);
 
 
 

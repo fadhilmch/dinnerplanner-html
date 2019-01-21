@@ -67,36 +67,36 @@ var DetailView = function (container, model) {
 	totalCost.html(`SEK 0.00`)
   	console.log(arrDishes);
 
-  	var detailDish = container.find("#dish-wrapper");
-  	var getDish = model.getDish(2);
-  	console.log(getDish);
-  	detailDish.append(`<div>
-					<h4>${getDish.name}</h4>
+  // 	var detailDish = container.find("#dish-wrapper");
+  // 	var getDish = model.getDish(2);
+  // 	console.log(getDish);
+  // 	detailDish.append(`<div>
+		// 			<h4>${getDish.name}</h4>
 					
-					  	<img class="fitImage" alt="Responsive image" src="images/${getDish.image}">
-						<div>
-					  		<p>${getDish.description} </p>  </div>
-					  		<a href="#" class="btn btn-warning">Back to Search</a>
-					</div>
-				</div>`)
+		// 			  	<img class="fitImage" alt="Responsive image" src="images/${getDish.image}">
+		// 				<div>
+		// 			  		<p>${getDish.description} </p>  </div>
+		// 			  		<a href="#" class="btn btn-warning">Back to Search</a>
+		// 			</div>
+		// 		</div>`)
 
-  	var ingredientsDish = container.find("#ingredients-wrapper");
+  // 	var ingredientsDish = container.find("#ingredients-wrapper");
 
-  	getDish.ingredients.forEach(dish => {
-  	ingredientsDish.append(`<div class="table-responsive">
-				<table class="table">
-					  <tbody> 	
-					    <tr>
-					      <th scope="row">${dish.quantity + dish.unit}</th>
-					      <td>${dish.name}</td>
-					      <td>SEK</td>
-					      <td>${dish.price}</td>
-					    </tr>
+  // 	getDish.ingredients.forEach(dish => {
+  // 	ingredientsDish.append(`<div class="table-responsive">
+		// 		<table class="table">
+		// 			  <tbody> 	
+		// 			    <tr>
+		// 			      <th scope="row">${dish.quantity + dish.unit}</th>
+		// 			      <td>${dish.name}</td>
+		// 			      <td>SEK</td>
+		// 			      <td>${dish.price}</td>
+		// 			    </tr>
 			
-					  </tbody>
-				</table>
-				</div>`)
-  })
+		// 			  </tbody>
+		// 		</table>
+		// 		</div>`)
+  // })
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we 
