@@ -1,255 +1,148 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Dish Details</title>
-	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-	 <link rel="stylesheet" type="text/css" href="style.css">
-	 <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<!-- <style type="text/css">
-		.gray{
-			background-color: #e9ecef;
-
-		}
-		.left{
-			text-align: left;
-		}
-		.center{
-			text-align: center;
-		}
-		.border{
-			border-color:#e9ecef; 
-		}
-		.fitImage{
-			width: 100%;
-			height: auto;
-		}
-		.margin{
-			margin: 7px;
-		}
-		
-	</style> -->
+    <title>Dish Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
-<body>
 
 <body>
-	<div>
-	<nav class="nav gray">
-		<div class="navbar-header mx-auto">
-			<div class="jumbotron center"> <h1>Dinner Planner</h1></div>
-		  		
-		  	
-  		</div>
-  	</nav>
-  	</div>
+    <!-- Top Bar -->
+    <div>
+        <nav class="navbar mx-auto fixed title">
+            <h1 class='mx-auto '>Dinner Planner</h1>
+        </nav>
+    </div>
+    <div class='full-height'>
+        <!-- Body -->
+        <div id='body' class="full-height">
+            <!-- Sidebar Left -->
+            <div id='sidebarView'>
+                <!-- Navbar on Mobile -->
+                <div class='d-block d-md-none'>
+                    <nav id='dinner-nav' class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+                        <a class="navbar-brand" href="#">My Dinner</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarText">
+                            <form class="form-inline">
+                                <span class='margin-right-5px'>People </span>
+                                <select class="guest form-control">
+                                </select>
+                            </form>
+                            <table class="table">
+                                <thead>
+                                    <tr class='table-active'>
+                                        <th>Dish Name</t>
+                                        <th>Cost</t>
+                                    </tr>
+                                </thead>
+                                <tbody class='menu-table'>
+                                </tbody>
 
-  	<div class="container" id="homeView">
+                            </table>
+                            <div class='total-wrapper'>
+                                <span class='totalCost'></span>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-md btn-warning btn-confirm" disabled="disabled">Confirm Dinner</button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div id='sidebar' class='d-none d-md-block center border-right'>
+                    <div class='padding-15'>
+                        <h4 class="left">My Dinner</h4>
+                        <div>
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <span class='margin-right-5px'>People </span>
+                                </div>
+                                <div class="form-group">
+                                    <select class="guest">
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead>
+                                <tr class='table-active'>
+                                    <th>Dish Name</t>
+                                    <th>Cost</t>
+                                </tr>
+                            </thead>
+                            <tbody class='menu-table'>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class='total-wrapper'>
+                        <span class='totalCost'></span>
+                    </div>
+                    <div class='row'>
+                        <button type="button" class="btn btn-md btn-warning mx-auto col-10 btn-confirm" disabled="disabled">Confirm
+                            Dinner</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Body -->
+            <div class="main-body full-height">
+                <div id="detailView">
+                    <div class="row">
+                        <div class="col-md-4" style="padding-bottom: 30px">
+                            <div id='dish-wrapper'></div>
+                        </div>
+                        <div class="col-md-8" style="padding-bottom: 20px">
+                            <div style="background-color: #FFFFE0">
+                                <div style="padding-top: 10px">
+                                    <h5 class="left" id='guestIngredients' style="padding-left: 10px"></h5>
 
-	<div class='d-block d-md-none'>
-			<nav class="navbar navbar-expand-lg navbar-light">
-					<a class="navbar-brand" href="#">My Dinner</a>
-		
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-		
-					<div class="collapse navbar-collapse" id="navbarText">
-						<form class="form-inline">
-							<span class='margin-right-5px'>People </span>
-							<select class="guest form-control">
-							</select>
-						</form>
-
-
-						<table class="table">
-
-								<thead>
-									<tr class='table-active'>
-										<th>Dish Name</t>
-										<th>Cost</t>
-									</tr>
-								</thead>
-		
-								<tbody>
-									<tr>
-										<td>Olive Oil</td>
-										<td>10</td>
-									</tr>
-								</tbody>
-							</table>
-
-							<div class='total-wrapper'>
-									<span id='totalCost'></span>
-								</div>
-								<div>
-									<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
-				
-								</div>
-						
-					</div>
-			</nav>
-		</div>
-
-<!-- Body -->
-	<div class="full-height">
-
-		<!-- Sidebar Left -->
-	
-		<div class="row full-height">
-			<div class="col-md-2 center border-right full-height no-padding d-none d-md-block">
-				<div class='padding-15'>
-					<h4 class="left">My Dinner</h4>
-					<div>
-						<form class="form-inline">
-							<div class="form-group">
-								<span class='margin-right-5px'>People </span>
-							</div>
-
-							<div class="form-group">
-								<select class="guest">
-								</select>
-							</div>
-
-						</form>
-					</div>
-				</div>
-				<br>
-
-
-				<div class="table-wrapper">
-
-					<table class="table">
-
-						<thead>
-							<tr class='table-active'>
-								<th>Dish Name</t>
-								<th>Cost</t>
-							</tr>
-						</thead>
-
-						<tbody>
-							<tr>
-								<td>Olive Oil</td>
-								<td>10</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-				<div class='total-wrapper'>
-					<span id='totalCost'></span>
-				</div>
-				<div>
-					<button type="button" class="btn btn-md btn-warning" disabled="disabled">Confirm Dinner</button>
-
-				</div>
-
-			</div>
-		
-		<div class="col-md-10 ">
-			<div class="row">
-			<div class="col-md-4" style="padding-bottom: 30px" >
-				<div id= 'dish-wrapper'></div>
-				<!-- <div style="padding-top: 10px">
-					<div>
-					<h4>TOAST</h4>
-					
-					  	<img class="fitImage" alt="Responsive image" src="images/toast.jpg">
-						<div>
-					  		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>  </div>
-					  		<a href="#" class="btn btn-warning">Back to Search</a>
-					</div>
-				</div> -->
-			</div>
-
-
-			<div  class="col-md-8" style="padding-bottom: 20px" >
-				<div style="background-color: #FFFFE0">
-				<div  style="padding-top: 10px">
-				<h5 class="left" id='guestIngredients' style="padding-left: 10px"></h5>
-				<div id='ingredients-wrapper' class="left" style="padding-left: 10px">
-					
-				</div>
-				<br>
-				<!-- <div class="table-responsive">
-				<table class="table">
-					 
-					  <tbody>
-					    <tr>
-					      <th scope="row">2 tbsp</th>
-					      <td>Olive Oil</td>
-					      <td>SEK</td>
-					      <td>0.20</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">2 tbsp</th>
-					      <td>Olive Oil</td>
-					      <td>SEK</td>
-					      <td>0.20</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">2 tbsp</th>
-					      <td>Olive Oil</td>
-					      <td>SEK</td>
-					      <td>0.20</td>
-					    </tr>
-					     <tr>
-					      <th scope="row">2 tbsp</th>
-					      <td>Olive Oil</td>
-					      <td>SEK</td>
-					      <td>0.20</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">2 tbsp</th>
-					      <td>Olive Oil</td>
-					      <td>SEK</td>
-					      <td>0.20</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">2 tbsp</th>
-					      <td>Olive Oil</td>
-					      <td>SEK</td>
-					      <td>0.20</td>
-					    </tr>
-					  </tbody>
-				</table>
-				</div> -->
-				
-				<a href="#" class="btn btn-warning left" style="margin:10px">Add to Menu</a>
-				</div>
-			 </div>
-			 </div>
-			
-			<br>
-			<div style="margin-left: 10px">
-			<h4>PREPARATION</h4>
-			<br>
-				<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-		</div>
-		</div>
-
-		
-	</div>
-</div>
-
-<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	 crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	 crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	 crossorigin="anonymous"></script>
-
-	<!-- The application JavaScript code -->
-	<script src="js/app.js"></script>
-	<script src="js/view/detailView.js"></script>
-	<script src="js/model/dinnerModel.js"></script>
-	<script src="js/view/selectView.js"></script>
-	<script src="js/view/homeView.js"></script>
-	<script src="js/view/summaryView.js"></script>
-	<script src="js/view/printView.js"></script>
+                                    <div class="left" style="padding-left: 10px">
+                                    	<div class="table-responsive">
+										<table class="table">
+											  <tbody id="ingredients-wrapper"> 	
+											    
+									
+											  </tbody>
+										</table>
+										</div>
+                                    </div>
+                                    <br>
+                                    <a href="#" class="btn btn-warning left" style="margin:10px">Add to Menu</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div style="margin-left: 10px">
+                                <h4>PREPARATION</h4>
+                                <br>
+                                <p id="dish-preparation">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- The application JavaScript code -->
+    <script src="js/app.js"></script>
+    <script src="js/view/detailView.js"></script>
+    <script src="js/model/dinnerModel.js"></script>
+    <script src="js/view/selectView.js"></script>
+    <script src="js/view/homeView.js"></script>
+    <script src="js/view/summaryView.js"></script>
+    <script src="js/view/printView.js"></script>
+    <script src="js/view/sidebarView.js"></script>
+    <script src="js/view/searchView.js"></script>
 </body>
+
 </html>

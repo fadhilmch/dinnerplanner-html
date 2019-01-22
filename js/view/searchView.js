@@ -21,9 +21,6 @@ var SearchView = function (container, model) {
     );
   });
 
-  // for(var i = 0; i < arrDishes.length; i++){
-  //   dishType.append(`<option value=${arrDishes[i].toLowerCase()}>${arrDishes[i]}</option>`);
-  // }
 
   for(var i = 0; i < arrDishes.length; i++){
      dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);

@@ -148,15 +148,7 @@ var DinnerModel = function() {
 		return dishes;
 	}
 
-	this.getPricePerMenu = function(id){
-		var totalPerIngredient = 0;
-		var dish = this.getDish(id);
-			dish.ingredients.forEach(ingredient => {
-				totalPerIngredient += ingredient.quantity * ingredient.price;
-			})
-			return totalPerIngredient;
-
-	}
+	
 
 
 

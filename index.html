@@ -7,24 +7,21 @@
     <title>Dinner planner</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-   <style type="text/css">
-   	.center{
-   		text-align: center;
-   	}
-   </style>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
+  	<link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 	
 <body>
-	<div class="jumbotron center">
-  		<h1>Dinner Planner</h1>
-  		<div id="homeView">
-			<!-- <div>
-				Number of guests: <span id="numberOfGuests"></span>
-			</div> -->
-		</div>
-	</div>
+	<div>
+        <nav class="nav sticky-top title">
+            <div class="navbar-header mx-auto">
+                <div class="center"> <h1>Dinner Planner</h1>
+                </div>
+            </div>
+        </nav>
+    </div>
 	
 	<br>
 
@@ -35,6 +32,8 @@
 		<br>
 		<button class="btn btn-warning center" type="submit">Create new dinner</button>
 	</div>
+
+	
 
 
     <!-- jQuery -->
@@ -50,6 +49,8 @@
 	<script src="js/view/summaryView.js"></script>
 	<script src="js/view/printView.js"></script>
 	<script src="js/view/selectView.js"></script>
+	<script src="js/view/sidebarView.js"></script>
+	<script src="js/view/searchView.js"></script>
 
 	<!-- TODO: Here you should include JS code for your other views -->
   </body>
