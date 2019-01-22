@@ -34,38 +34,9 @@ var DetailView = function (container, model) {
 	 * 
 	 */
 
-  // Select option for guests number
-  var numberOfGuests = container.find(".guest");
-  for (var i = 1; i < 10; i++){
-    numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
-  }
+ //  
 
-  // Dropdown Select for Dishes Type
-  var dishType = container.find('#dishType');
-  var arrDishes = model.getDishType();
-  arrDishes.splice(0,0,'all');
-  arrDishes = arrDishes.map(dish => {
-      return dish.replace(
-          /\w\S*/g,
-          function(txt) {
-              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          }
-      );
-  });
-
-  // for(var i = 0; i < arrDishes.length; i++){
-  //   dishType.append(`<option value=${arrDishes[i].toLowerCase()}>${arrDishes[i]}</option>`);
-	// }
-	
-	for(var i = 0; i < arrDishes.length; i++){
-    dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
-  }
-
-
-	// Total Cost
-	var totalCost = container.find('#totalCost');
-	totalCost.html(`SEK 0.00`)
-  	console.log(arrDishes);
+ 
 
   // 	var detailDish = container.find("#dish-wrapper");
   // 	var getDish = model.getDish(2);
@@ -117,12 +88,12 @@ var DetailView = function (container, model) {
 	 */
 	
 	// numberOfGuests.html(model.getNumberOfGuests());
-	console.log(model.getNumberOfGuests());
-	console.log(model.getFullMenu());
-	console.log(model.getSelectedDish("main dish"));
-	console.log(model.getAllIngredients());
-	console.log(model.getTotalMenuPrice());
-	console.log(model.removeDishFromMenu(1));
+	// console.log(model.getNumberOfGuests());
+	// console.log(model.getFullMenu());
+	// console.log(model.getSelectedDish("main dish"));
+	// console.log(model.getAllIngredients());
+	// console.log(model.getTotalMenuPrice());
+	// console.log(model.removeDishFromMenu(1));
 
 
 

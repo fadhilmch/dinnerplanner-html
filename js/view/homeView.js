@@ -49,8 +49,11 @@ var HomeView = function (container, model) {
 	var allMenu = model.getFullMenu();
 	var totalPrice = model.getTotalMenuPrice();
 	var totalGuests = model.getNumberOfGuests();
+	var menuPrice = model.getPricePerMenu(100);
+	console.log(menuPrice);
+	var total=0;
 
-	// Show View Component on Page
+	/*Show View Component on Page
 	var topNav = container.find('#top-nav');
 	topNav.load('./components/title.html');
 
@@ -58,7 +61,7 @@ var HomeView = function (container, model) {
 	navMobile.load('./components/nav-mobile.html');
 
 	var sidebar = container.find('#sidebar');
-	sidebar.load('./components/sidebar.html');
+	sidebar.load('./components/sidebar.html');*/
 
 
 
@@ -84,7 +87,8 @@ var HomeView = function (container, model) {
               return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
           }
       );
-	});
+	});    
+
 	
 	// Total Cost
 	var updateTotalCost = function(){
@@ -92,7 +96,7 @@ var HomeView = function (container, model) {
 		var totalCost = container.find('.totalCost');
 		totalCost.html(`SEK ${Number(totalPrice).toFixed(2)}`);
 		
-		// Menu Wrapper
+	// Menu Wrapper
 		var menuWrapper = container.find('#menu-wrapper');
 		allDishes.forEach(dish => {
 			menuWrapper.append(`
@@ -145,7 +149,7 @@ var HomeView = function (container, model) {
 
 	// ======> EVENT 
 
-	// Change nummber of guess
+	// Change number of guest
 	numberOfGuests.on('change', function() {
 		console.log(`Number of guests: ${this.value}`);
 		model.setNumberOfGuests(this.value);
@@ -204,11 +208,15 @@ var HomeView = function (container, model) {
 
 	// ================================================
 
-	// dish detail
+	// ===========================
+	// 			dishdetails.html 
+	// ===========================
 
+	//LOAD DETAIL SELECTED MENU
+
+	var loadSelectedDish = function(){
 	var detailDish = container.find("#dish-wrapper");
   	var getDish = model.getDish(2);
-  	console.log(getDish);
   	detailDish.append(`<div>
 					<h4>${getDish.name.toUpperCase()}</h4>
 					
@@ -219,8 +227,15 @@ var HomeView = function (container, model) {
 					</div>
 				</div>`)
 
-  	var ingredientsDish = container.find("#ingredients-wrapper");
+   }
 
+   loadSelectedDish();
+
+
+  	//LOAD INGREDIENTS OF SELECTED MENU
+  	var loadIngredients = function(){
+  	var ingredientsDish = container.find("#ingredients-wrapper");
+  	var getDish = model.getDish(2);
   	getDish.ingredients.forEach(dish => {
   	ingredientsDish.append(`<div class="table-responsive">
 				<table class="table">
@@ -235,28 +250,36 @@ var HomeView = function (container, model) {
 					  </tbody>
 				</table>
 				</div>`)
-  })
-  	model.setNumberOfGuests(2);
+	  })
+	}
 
-  	var totalPeople = container.find("#guestIngredients");
-  	guestIngredients = model.getNumberOfGuests();
-  	console.log("wewhewbr" +guestIngredients);
-  	totalPeople.append(`INGREDIENTS FOR ${guestIngredients}  PEOPLE` );
+	loadIngredients();
+  	
+  	// READ THE NUMBER OF GUEST  	
+  	var totalPeople = container.find(".guest");
+  	totalPeople.on('change', function() {
+		console.log(`Number of guests: ${this.value}`);
+		model.setNumberOfGuests(this.value);
+		total = this.value;	
+	})
+
+
+	var people = container.find("#guestIngredients");
+  	// guestIngredients = model.getNumberOfGuests();
+  	people.append(`INGREDIENTS FOR ${model.getNumberOfGuests()}  PEOPLE` );
 
   	
-	//dinner over view
+	// ===========================
+	// 	 dinneroverview.html 
+	// ===========================
 
-	model.addDishToMenu(1);
-	model.addDishToMenu(2);
-	model.addDishToMenu(103);
 
+	//LOAD DATA MENU OVERVIEW
+	var loadAllMenuOverview = function(){
 	var selectedMenu = container.find("#selected-wrapper");
 	var allMenu = model.getFullMenu();
 	console.log(allMenu);
 	allMenu.forEach(dish => {
-		// $("#selected-wrapper").append(('<p>Test</p>'))
-		// selectedMenu.append('<p>Test</p>');
-
 		selectedMenu.append(`
 			<div class="col-sm-6 col-md-3">
 						<div class="img-thumbnail">
@@ -270,28 +293,41 @@ var HomeView = function (container, model) {
 							<h6 class="text-danger" style="text-align: right;"> SEK</h6>
 						</div>
 					</div>
-		`)
-	})
+				`)
+		})
+	}
+
+	loadAllMenuOverview();
 
 	
-
+	//LOAD TOTAL PRICE OF SELECTED MENU ON OVERVIEW
+	var getTotalMenuPrice = function(){
 	console.log(model.getNumberOfGuests());
 	var priceAcc = container.find("#totalPrice");
 	var totalPrice = model.getTotalMenuPrice();
 	priceAcc.append(`
 		${totalPrice} SEK`);
- 
+	}
+	 getTotalMenuPrice();
 
+ 
+	//LOAD DATA OF GUEST
 	var totalGuest = container.find("#guestOverview");
   	guestOverview = model.getNumberOfGuests();
-  	console.log("wewhewbr" +guestOverview);
   	totalGuest.append(`My Dinner: ${guestOverview}  People`);
 
 
-  	//print out
+  	// ===========================
+	// 		printout.html 
+	// ===========================
+  	
+  	//LOAD TOTAL OF GUEST
   	var totalGuestPrint = container.find("#guestPrint");
   	totalGuestPrint.append(`My Dinner: ${guestOverview}  People`);
 
+  	//LOAD DATA OF MENU ON PRINT OUT
+
+  	var loadPrintMenu = function(){
   	var printMenu = container.find("#printOut");
   	allMenu.forEach( dish=>{
 
@@ -323,7 +359,9 @@ var HomeView = function (container, model) {
   			<br>
   			<br>`)
   	})
+  	}
 
+  	loadPrintMenu();
 	/**
 	 * When we want references to some view elements to be available from outside of view, we 
 	 * define them as this.someName. We don't need this in Lab 1 yet, but in Lab 2 it 

@@ -58,7 +58,8 @@ var DinnerModel = function() {
 			return acc + cur;
 		});
 		
-	}
+	} 
+
 
 	
 		/*
@@ -146,6 +147,17 @@ var DinnerModel = function() {
 	this.getAllDishes = function() {
 		return dishes;
 	}
+
+	this.getPricePerMenu = function(id){
+		var totalPerIngredient = 0;
+		var dish = this.getDish(id);
+			dish.ingredients.forEach(ingredient => {
+				totalPerIngredient += ingredient.quantity * ingredient.price;
+			})
+			return totalPerIngredient;
+
+	}
+
 
 
 	// the dishes variable contains an array of all the 

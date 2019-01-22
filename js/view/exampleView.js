@@ -62,12 +62,12 @@ var ExampleView = function (container, model) {
 	 */
 	
 	// numberOfGuests.html(model.getNumberOfGuests());
-	console.log(model.getNumberOfGuests());
-	console.log(model.getFullMenu());
-	console.log(model.getSelectedDish("main dish"));
-	console.log(model.getAllIngredients());
-	console.log(model.getTotalMenuPrice());
-	console.log(model.removeDishFromMenu(1));
+	// console.log(model.getNumberOfGuests());
+	// console.log(model.getFullMenu());
+	// console.log(model.getSelectedDish("main dish"));
+	// console.log(model.getAllIngredients());
+	// console.log(model.getTotalMenuPrice());
+	// console.log(model.removeDishFromMenu(1));
 
 
 
