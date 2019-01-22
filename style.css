@@ -92,7 +92,6 @@ h4.left {
     padding-right: 15px;
     border-bottom: 3px solid black;
     /* margin: 0px -15px; */
-    padding-top: 20px;
 }
 
 .guest {
@@ -163,6 +162,7 @@ tbody tr {
 .main-body {
     margin-left: 260px;
     /* padding: 0px 20px; */
+    padding-top: 20px;
 }
 
 @media (max-width: 767.98px) {
