@@ -9,191 +9,7 @@
 	<title>Select Dish</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	 crossorigin="anonymous">
-	<style type="text/css">
-		.gray {
-			background-color: #e9ecef;
-		}
-
-		.left {
-			text-align: left;
-		}
-
-		.center {
-			text-align: center;
-		}
-
-		.border {
-			border-color: #e9ecef;
-		}
-
-		.row {
-			margin-right: auto;
-			margin-left: auto;
-		}
-
-		.jumbotron {
-			border-bottom: 5px solid darkgray;
-			margin-bottom: 0px;
-		}
-
-		.border-right {
-			border-right: 3px solid black;
-		}
-
-		.full-height {
-			height: 100%;
-			min-height: 100%;
-		}
-
-		.margin-right-5px {
-			margin-right: 5px;
-		}
-
-		html {
-			height: 100%;
-		}
-
-		body {
-			min-height: 100%;
-			height: 100%;
-			/* margin-top: 60px; */
-		}
-
-		#body {
-			padding-top: 60px;
-		}
-
-		.table-wrapper {
-			width: 100%;
-			margin-top: 10px;
-		}
-
-		.no-padding {
-			padding: 0px;
-		}
-
-		.padding-15 {
-			padding: 0px 15px;
-		}
-
-		h4.left {
-			padding-top: 20px;
-		}
-
-		.total-wrapper {
-			width: 100%;
-			padding: 5px 15px;
-			text-align: right;
-		}
-
-		.table {
-			margin-bottom: 0px;
-		}
-
-		.full-width {
-			width: 100% !important;
-		}
-
-		.text-left {
-			text-align: left;
-		}
-
-		.sub-title {
-			padding-bottom: 20px;
-			padding-left: 15px;
-			padding-right: 15px;
-			border-bottom: 3px solid black;
-			/* margin: 0px -15px; */
-			padding-top: 20px;
-		}
-
-		.guest {
-			width: auto !important;
-		}
-
-		.top-nav {
-			padding: 30px 0px;
-		}
-
-		.menu {
-			border: 4px solid black;
-			margin-top: 20px;
-		}
-
-		.menu img {
-			width: 100%;
-			height: auto;
-		}
-
-		.menu .caption {
-			background-color: lightgray;
-			height: 100%;
-		}
-
-		.caption h5 {
-			padding: 5px;
-			margin: 0px;
-			border-top: 4px solid black;
-		}
-
-		.title {
-			text-align: center;
-			background-color: lightgray;
-		}
-
-		#dinner-nav {
-			margin-top: 50px;
-		}
-
-		#sidebar {
-			height: 100%;
-			width: 260px;
-			/* Set the width of the sidebar */
-			position: fixed;
-			/* Fixed Sidebar (stay in place on scroll) */
-			z-index: 1;
-			/* Stay on top */
-
-			overflow-x: hidden;
-			/* Disable horizontal scroll */
-			/* padding-top: 20px; */
-		}
-
-		tbody tr {
-			background-color: #f2f2f2;
-		}
-
-
-		.fixed {
-			position: fixed;
-			top: 0;
-			right: 0;
-			left: 0;
-			z-index: 1030;
-		}
-
-		.main-body {
-			margin-left: 260px;
-			/* padding: 0px 20px; */
-		}
-
-		@media (max-width: 767.98px) {
-			.main-body {
-				margin-top: 40px;
-				margin-left: 0px;
-			}
-
-			.top-nav {
-				padding: 10px 0px;
-			}
-
-			h1 {
-				font-size: 30px;
-			}
-
-
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -218,11 +34,13 @@
 				<div class='d-block d-md-none'>
 					<nav id='dinner-nav' class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 						<a class="navbar-brand" href="#">My Dinner</a>
+						<div id='nav-price' class='ml-auto' style='margin-right: 10px'></div>
 
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
 						 aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
+	
 
 						<div class="collapse navbar-collapse" id="navbarText">
 							<form class="form-inline">
@@ -299,7 +117,7 @@
 				<div class="main-body full-height">
 					<div class='sub-title'>
 						<div class='row'>
-							<h4 class="sleft col-md-12">Find a Dish</h4>
+							<h4 id='search-title' class="sleft col-md-12"></h4>
 						</div>
 						<div class="row">
 							<div class="col-lg-3 col-md-6">
