@@ -12,7 +12,7 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */ 
-var SelectView = function (container, model) {
+var SidebarView = function (container, model) {
 	
 	/**
 	 * We use the @method find() on @var {jQuery object} container to look for various elements 
@@ -34,86 +34,47 @@ var SelectView = function (container, model) {
 	 * 
 	 */
 	
-	 // Dummy
+	// Dummy Data
 	model.addDishToMenu(1);
 	model.addDishToMenu(100);
-	var tes = container.find('#tes');
-	// tes.load('./components/title.html');
-	$("#tes").load("./components/title.html #insert");
-	// $("#tes").append("./components/title.html");
 
-	
 	// Get from model
-	var arrDishes = model.getDishType();
-	var allDishes = model.getAllDishes();
 	var allMenu = model.getFullMenu();
 	var totalPrice = model.getTotalMenuPrice();
-	var totalGuests = model.getNumberOfGuests();
-	
+  var totalGuests = model.getNumberOfGuests();
+  
+  // Initialize variable
 
-  // Select option for guests number
+  //Initialize Component
   var numberOfGuests = container.find(".guest");
-  for (var i = 1; i < 10; i++){
-    numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
-	}
+  var totalCost = container.find('.totalCost');
+  var confirmButton = container.find('.btn-confirm');
+  var menuTable = container.find('.menu-table');
 
-
-  // Dropdown Select for Dishes Type
-  var dishType = container.find('#dishType');
-  arrDishes.splice(0,0,'all');
-  arrDishes = arrDishes.map(dish => {
-      return dish.replace(
-          /\w\S*/g,
-          function(txt) {
-              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          }
-      );
-  });
-
-  // for(var i = 0; i < arrDishes.length; i++){
-  //   dishType.append(`<option value=${arrDishes[i].toLowerCase()}>${arrDishes[i]}</option>`);
-	// }
-	
-	// for(var i = 0; i < arrDishes.length; i++){
- //    dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
- //  }
-
-
+  
+  // Initialize Function
+  var initialize = function() {
+    // Show options on select for guest number
+    for (var i = 1; i < 10; i++){
+      numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
+    };
+    setConfimButtonStatus();
+  };
+  
 	// Total Cost
-	var updateTotalCost = function(){
-		totalPrice = model.getTotalMenuPrice();
-		var totalCost = container.find('.totalCost');
+	var calculateTotalCost = function(){
 		totalCost.html(`SEK ${Number(totalPrice).toFixed(2)}`);
-		
-		// Menu Wrapper
-		var menuWrapper = container.find('#menu-wrapper');
-		allDishes.forEach(dish => {
-			menuWrapper.append(`
-				<div class="col-sm-6 col-md-3 col-lg-2">
-					<div class="menu">
-						<img src="images/${dish.image}" alt="${dish.name}">
-						<div class="caption">
-							<h5>${dish.name}</h5>
-						</div>
-					</div>
-				</div>
-			`)
-		})
 	}
 
-	updateTotalCost();
-
-	// Confirm button
-	if(allMenu.length > 0){
-		var confirmButton = container.find('.btn-confirm');
-		confirmButton.prop('disabled', false);
-	}
+  // Confirm button
+  var setConfimButtonStatus = function() {
+    if(allMenu.length > 0){
+      confirmButton.prop('disabled', false);
+    }
+  }
 
 	// Table Sidebar
-	var updateSidebar = function() {
-		var menuTable = container.find('.menu-table');
-		allMenu = model.getFullMenu();
-		totalGuests = model.getNumberOfGuests();
+	var showSidebar = function() {
 		menuTable.children().remove();
 		allMenu.forEach(dish => {
 			menuTable.append(`							
@@ -133,19 +94,18 @@ var SelectView = function (container, model) {
 				</tr>
 			`);
 		})
-	}
-	updateSidebar();
-
-
-
+  }
+  
+  initialize();
+  showSidebar();
+	calculateTotalCost();
+  
 	// ======> EVENT 
 
 	// Change nummber of guess
 	numberOfGuests.on('change', function() {
 		console.log(`Number of guests: ${this.value}`);
 		model.setNumberOfGuests(this.value);
-		updateTotalCost();
-		updateSidebar();
 	})
 	
 }

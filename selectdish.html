@@ -56,11 +56,16 @@
 		body {
 			min-height: 100%;
 			height: 100%;
+			/* margin-top: 60px; */
+		}
+
+		#body {
+			padding-top: 60px;
 		}
 
 		.table-wrapper {
 			width: 100%;
-			margin-top:10px;
+			margin-top: 10px;
 		}
 
 		.no-padding {
@@ -98,21 +103,21 @@
 			padding-left: 15px;
 			padding-right: 15px;
 			border-bottom: 3px solid black;
-			margin: 0px -15px;
-			padding-top:20px;
+			/* margin: 0px -15px; */
+			padding-top: 20px;
 		}
 
 		.guest {
 			width: auto !important;
 		}
 
-		.top-nav{
+		.top-nav {
 			padding: 30px 0px;
 		}
 
-		.menu{
+		.menu {
 			border: 4px solid black;
-			margin-top:20px;
+			margin-top: 20px;
 		}
 
 		.menu img {
@@ -136,20 +141,49 @@
 			background-color: lightgray;
 		}
 
-		#dinner-nav{
-			margin-top:50px;
+		#dinner-nav {
+			margin-top: 50px;
 		}
-		
-		tbody tr{
-      background-color: #f2f2f2;
-    }
 
-		@media (min-width: 320px) and (max-width: 480px) {
-			.main-body{
-				margin-top:90px;
+		#sidebar {
+			height: 100%;
+			width: 260px;
+			/* Set the width of the sidebar */
+			position: fixed;
+			/* Fixed Sidebar (stay in place on scroll) */
+			z-index: 1;
+			/* Stay on top */
+
+			overflow-x: hidden;
+			/* Disable horizontal scroll */
+			/* padding-top: 20px; */
+		}
+
+		tbody tr {
+			background-color: #f2f2f2;
+		}
+
+
+		.fixed {
+			position: fixed;
+			top: 0;
+			right: 0;
+			left: 0;
+			z-index: 1030;
+		}
+
+		.main-body {
+			margin-left: 260px;
+			/* padding: 0px 20px; */
+		}
+
+		@media (max-width: 767.98px) {
+			.main-body {
+				margin-top: 40px;
+				margin-left: 0px;
 			}
 
-			.top-nav{
+			.top-nav {
 				padding: 10px 0px;
 			}
 
@@ -157,14 +191,7 @@
 				font-size: 30px;
 			}
 
-			.fixed {
-				position: fixed;
-				top: 0;
-				right: 0;
-				left: 0;
-				z-index: 1030;
-			}
-  
+
 		}
 	</style>
 </head>
@@ -174,57 +201,61 @@
 	<!-- Top Bar -->
 	<div>
 		<nav class="navbar mx-auto fixed title">
-					<h1 class='mx-auto'>Dinner Planner</h1>
+			<h1 class='mx-auto'>Dinner Planner</h1>
 		</nav>
 	</div>
 
-	<div id='homeView' class='full-height'>
-		
-		<!-- Navbar on Mobile -->
-		<div class='d-block d-md-none'>
-			<nav id='dinner-nav' class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-				<a class="navbar-brand" href="#">My Dinner</a>
+	<div class='full-height'>
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-				 aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarText">
-					<form class="form-inline">
-						<span class='margin-right-5px'>People </span>
-						<select class="guest form-control">
-						</select>
-					</form>
-
-					<table class="table">
-						<thead>
-							<tr class='table-active'>
-								<th>Dish Name</t>
-								<th>Cost</t>
-							</tr>
-						</thead>
-						<tbody class='menu-table'>
-						</tbody>
-					</table>
-
-					<div class='total-wrapper'>
-						<span class='totalCost'></span>
-					</div>
-
-					<div>
-						<button type="button" class="btn btn-md btn-warning btn-confirm" disabled="disabled">Confirm Dinner</button>
-					</div>
-
-				</div>
-			</nav>
-		</div>
 
 		<!-- Body -->
+		<div id='body' class="full-height">
 
-		<div id='body' class="row full-height">
-				<!-- Sidebar Left -->
-				<div class="col-md-2 center border-right full-height no-padding d-none d-md-block">
+			<!-- Sidebar Left -->
+			<div id='sidebarView'>
+
+				<!-- Navbar on Mobile -->
+				<div class='d-block d-md-none'>
+					<nav id='dinner-nav' class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+						<a class="navbar-brand" href="#">My Dinner</a>
+
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+						 aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+
+						<div class="collapse navbar-collapse" id="navbarText">
+							<form class="form-inline">
+								<span class='margin-right-5px'>People </span>
+								<select class="guest form-control">
+								</select>
+							</form>
+
+							<table class="table">
+								<thead>
+									<tr class='table-active'>
+										<th>Dish Name</t>
+										<th>Cost</t>
+									</tr>
+								</thead>
+								<tbody class='menu-table'>
+								</tbody>
+							</table>
+
+							<div class='total-wrapper'>
+								<span class='totalCost'></span>
+							</div>
+
+							<div>
+								<button type="button" class="btn btn-md btn-warning btn-confirm" disabled="disabled">Confirm Dinner</button>
+							</div>
+
+						</div>
+					</nav>
+				</div>
+
+
+				<div id='sidebar' class='d-none d-md-block center border-right'>
 					<div class='padding-15'>
 						<h4 class="left">My Dinner</h4>
 						<div>
@@ -257,22 +288,25 @@
 						<span class='totalCost'></span>
 					</div>
 					<div class='row'>
-						<button type="button" class="btn btn-md btn-warning mx-auto col-10 btn-confirm" disabled="disabled">Confirm Dinner</button>
+						<button type="button" class="btn btn-md btn-warning mx-auto col-10 btn-confirm" disabled="disabled">Confirm
+							Dinner</button>
 					</div>
 				</div>
+			</div>
 
-				<!-- Body -->
-				<div class="col-md-10 main-body">
+			<!-- Body -->
+			<div id='searchView'>
+				<div class="main-body full-height">
 					<div class='sub-title'>
 						<div class='row'>
 							<h4 class="sleft col-md-12">Find a Dish</h4>
 						</div>
 						<div class="row">
-							<div class="col-md-3">
-								<input type="text" class="form-control full-width" id="keywords" placeholder="Enter key words">
+							<div class="col-lg-3 col-md-6">
+								<input id='search-input' type="text" class="form-control full-width" id="keywords" placeholder="Enter key words">
 							</div>
 
-							<div class="col-md-2">
+							<div class="col-lg-2 col-md-4">
 								<button class="btn btn-primary full-width text-left" type="button" data-toggle="dropdown">
 									<div class='row'>
 										<span class='text-left col-11 no-padding' id='dishTypeTitle'>All</span>
@@ -290,11 +324,9 @@
 							</select>
 						</div> -->
 
-
-
-							<div class="col-md-1">
+							<div class="col-lg-1 col-md-2">
 								<div>
-									<button type="button" class="btn btn-warning">Search</button>
+									<button id='search-btn' type="button" class="btn btn-warning">Search</button>
 								</div>
 
 							</div>
@@ -306,8 +338,9 @@
 					</div>
 
 				</div>
-
 			</div>
+
+		</div>
 	</div>
 
 	<!-- jQuery -->
@@ -322,6 +355,10 @@
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>
 	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/sidebarView.js"></script>
+	<script src="js/view/searchView.js"></script>
+
+
 	<script src="js/view/selectView.js"></script>
 	<script src="js/view/homeView.js"></script>
 	<script src="js/view/detailView.js"></script>
