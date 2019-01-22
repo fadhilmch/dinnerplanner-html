@@ -19,24 +19,20 @@ var SearchView = function (container, model) {
   }
 
   // Dropdown Select for Dishes Type
-  var showDropdownType = function() {
-    arrDishes.splice(0, 0, 'all');
-    arrDishes = arrDishes.map(dish => {
-      return dish.replace(
-        /\w\S*/g,
-        function (txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        }
-      );
-    });
-    // for(var i = 0; i < arrDishes.length; i++){
-    //   dishType.append(`<option value=${arrDishes[i].toLowerCase()}>${arrDishes[i]}</option>`);
-    // }
-  
-    for(var i = 0; i < arrDishes.length; i++){
-       dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
-     }
-  }
+  arrDishes.splice(0, 0, 'all');
+  arrDishes = arrDishes.map(dish => {
+    return dish.replace(
+      /\w\S*/g,
+      function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+  });
+
+
+  for(var i = 0; i < arrDishes.length; i++){
+     dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
+   }
 
   // Menu Wrapper
   var showDishesChoice = function() {

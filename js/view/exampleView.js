@@ -34,14 +34,8 @@ var ExampleView = function (container, model) {
 	 * 
 	 */
 
-	// var numberOfGuests = container.find("#numberOfGuests");
-		/*Adding number of user*/
-		model.setNumberOfGuests(100);
+	var numberOfGuests = container.find("#numberOfGuests");
 		
-		/*Adding menu for dinner*/
-		model.addDishToMenu(1);
-		model.addDishToMenu(2);
-		model.addDishToMenu(103);
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we 
@@ -61,13 +55,6 @@ var ExampleView = function (container, model) {
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
 	
-	// numberOfGuests.html(model.getNumberOfGuests());
-	// console.log(model.getNumberOfGuests());
-	// console.log(model.getFullMenu());
-	// console.log(model.getSelectedDish("main dish"));
-	// console.log(model.getAllIngredients());
-	// console.log(model.getTotalMenuPrice());
-	// console.log(model.removeDishFromMenu(1));
 
 
 

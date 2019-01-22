@@ -39,7 +39,7 @@ var SelectView = function (container, model) {
 	model.addDishToMenu(100);
 	var tes = container.find('#tes');
 	// tes.load('./components/title.html');
-	$("#tes").load("./components/title.html #insert");
+	// $("#tes").load("./components/title.html #insert");
 	// $("#tes").append("./components/title.html");
 
 	
@@ -69,14 +69,6 @@ var SelectView = function (container, model) {
           }
       );
   });
-
-  // for(var i = 0; i < arrDishes.length; i++){
-  //   dishType.append(`<option value=${arrDishes[i].toLowerCase()}>${arrDishes[i]}</option>`);
-	// }
-	
-	// for(var i = 0; i < arrDishes.length; i++){
- //    dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
- //  }
 
 
 	// Total Cost

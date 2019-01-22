@@ -11,92 +11,119 @@
  * 
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
- */ 
-var DetailView = function (container, model) {
-	
-	/**
-	 * We use the @method find() on @var {jQuery object} container to look for various elements 
-	 * inside the view in orther to use them later on. For instance:	
-	 * 
-	 * @var {jQuery object} numberOfGuests is a reference to the <span> element that 
-	 * represents the placeholder for where we want to show the number of guests. It's
-	 * a reference to HTML element (wrapped in jQuery object for added benefit of jQuery methods)
-	 * and we can use it to modify <span>, for example to populate it with dynamic data (for now 
-	 * only 'Hello world', but you should change this by end of Lab 1).
-	 * 
-	 * We use variables when we want to make the reference private (only available within) the
-	 * ExampleView.
-	 * 
-	 * IMPORTANT: Never use $('someSelector') directly in the views. Always use container.find
-	 * or some other way of searching only among the containers child elements. In this way you
-	 * make your view code modular and ensure it dosn't break if by mistake somebody else
-	 * in some other view gives the same ID to another element.
-	 * 
-	 */
+ */
+var DetailView = function(container, model) {
 
- //  
+    /**
+     * We use the @method find() on @var {jQuery object} container to look for various elements 
+     * inside the view in orther to use them later on. For instance:	
+     * 
+     * @var {jQuery object} numberOfGuests is a reference to the <span> element that 
+     * represents the placeholder for where we want to show the number of guests. It's
+     * a reference to HTML element (wrapped in jQuery object for added benefit of jQuery methods)
+     * and we can use it to modify <span>, for example to populate it with dynamic data (for now 
+     * only 'Hello world', but you should change this by end of Lab 1).
+     * 
+     * We use variables when we want to make the reference private (only available within) the
+     * ExampleView.
+     * 
+     * IMPORTANT: Never use $('someSelector') directly in the views. Always use container.find
+     * or some other way of searching only among the containers child elements. In this way you
+     * make your view code modular and ensure it dosn't break if by mistake somebody else
+     * in some other view gives the same ID to another element.
+     * 
+     */
 
- 
+    //  
+    // Dummy Data
+    model.addDishToMenu(1);
+    model.addDishToMenu(100);
+    var getDish = model.getDish(1);
 
-  // 	var detailDish = container.find("#dish-wrapper");
-  // 	var getDish = model.getDish(2);
-  // 	console.log(getDish);
-  // 	detailDish.append(`<div>
-		// 			<h4>${getDish.name}</h4>
+    // Get from model
+    var arrDishes = model.getDishType();
+    var allDishes = model.getAllDishes();
+    var allMenu = model.getFullMenu();
+    var totalPrice = model.getTotalMenuPrice();
+    var totalGuests = model.getNumberOfGuests();
+    var total = 0;
+
+    //Initialize Component
+    var detailDish = container.find("#dish-wrapper");
+    var ingredientsDish = container.find("#ingredients-wrapper");
+    var preparationTip = container.find("#dish-preparation");
+    var totalPeople = container.find(".guest");
+    var people = container.find("#guestIngredients");
+
+
+    // ===========================
+    // 			dishdetails.html 
+    // ===========================
+
+    //LOAD DETAIL SELECTED MENU
+    var loadSelectedDish = function() {
+        console.log(getDish);
+        detailDish.append(`<div>
+					<h4>${getDish.name.toUpperCase()}</h4>
 					
-		// 			  	<img class="fitImage" alt="Responsive image" src="images/${getDish.image}">
-		// 				<div>
-		// 			  		<p>${getDish.description} </p>  </div>
-		// 			  		<a href="#" class="btn btn-warning">Back to Search</a>
-		// 			</div>
-		// 		</div>`)
+					  	<img class="fitImage" alt="Responsive image" src="images/${getDish.image}">
+						<div>
+					  		<p>${getDish.description} </p>  </div>
+					  		<a href="#" class="btn btn-warning">Back to Search</a>
+					</div>
+				</div>`)
 
-  // 	var ingredientsDish = container.find("#ingredients-wrapper");
+    }
 
-  // 	getDish.ingredients.forEach(dish => {
-  // 	ingredientsDish.append(`<div class="table-responsive">
-		// 		<table class="table">
-		// 			  <tbody> 	
-		// 			    <tr>
-		// 			      <th scope="row">${dish.quantity + dish.unit}</th>
-		// 			      <td>${dish.name}</td>
-		// 			      <td>SEK</td>
-		// 			      <td>${dish.price}</td>
-		// 			    </tr>
-			
-		// 			  </tbody>
-		// 		</table>
-		// 		</div>`)
-  // })
-
-	/**
-	 * When we want references to some view elements to be available from outside of view, we 
-	 * define them as this.someName. We don't need this in Lab 1 yet, but in Lab 2 it 
-	 * will be important for assigning listeners to these buttons, because the listeners
-	 * should not be assigned in the view, but rather in controller.
-	 * 
-	 * We can then, in some other code, use exampleView.plusButton to reference the 
-	 * this button and do something with it (see Lab 2).
-	 * 
-	 */
-	this.plusButton = container.find("#plusGuest");
-	this.minusButton = container.find("#minusGuest");
-	
-	/**
-	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
-	 * in our view to dynamically set it's value to "Hello World".
-	 */
-	
-	// numberOfGuests.html(model.getNumberOfGuests());
-	// console.log(model.getNumberOfGuests());
-	// console.log(model.getFullMenu());
-	// console.log(model.getSelectedDish("main dish"));
-	// console.log(model.getAllIngredients());
-	// console.log(model.getTotalMenuPrice());
-	// console.log(model.removeDishFromMenu(1));
+    loadSelectedDish();
 
 
+    //LOAD INGREDIENTS OF SELECTED MENU
+    var loadIngredients = function() {
+        getDish.ingredients.forEach(dish => {
+            ingredientsDish.append(`<tr>
+		      <th scope="row">${dish.quantity + dish.unit}</th>
+		      <td>${dish.name}</td>
+		      <td>SEK</td>
+		      <td>${dish.price}</td>
+		    </tr>`)
+        })
+    }
 
-	
+    loadIngredients();
+
+    var loadPreparation = function() {
+        preparationTip.append(`${getDish.description}`)
+    }
+
+    loadPreparation();
+
+   
+
+    var getGuest = function() {
+        people.append(`INGREDIENTS FOR ${totalGuests}  PEOPLE`);
+    }
+
+    getGuest();
+
+    /**
+     * When we want references to some view elements to be available from outside of view, we 
+     * define them as this.someName. We don't need this in Lab 1 yet, but in Lab 2 it 
+     * will be important for assigning listeners to these buttons, because the listeners
+     * should not be assigned in the view, but rather in controller.
+     * 
+     * We can then, in some other code, use exampleView.plusButton to reference the 
+     * this button and do something with it (see Lab 2).
+     * 
+     */
+   
+    /**
+     * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
+     * in our view to dynamically set it's value to "Hello World".
+     */
+
+
+
+
+
 }
- 

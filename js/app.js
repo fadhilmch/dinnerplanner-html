@@ -4,6 +4,7 @@ $(function() {
 	
 	// And create the instance of ExampleView
 	var sidebarView = new SidebarView($("#sidebarView"), model);
+	
 	var searchView = new SearchView($("#searchView"), model);
 	
 	var homeView = new HomeView($("#homeView"),model);

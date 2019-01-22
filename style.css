@@ -14,6 +14,10 @@
     border-color: #e9ecef;
 }
 
+.border-btm {
+    border-bottom-color: #e9ecef;
+}
+
 .row {
     margin-right: auto;
     margin-left: auto;
@@ -112,6 +116,11 @@ h4.left {
     height: auto;
 }
 
+.fitImage {
+     width: 100%;
+    height: auto;
+}
+
 .menu .caption {
     background-color: lightgray;
     height: 100%;
@@ -126,10 +135,12 @@ h4.left {
 .title {
     text-align: center;
     background-color: lightgray;
+    padding: 50px;
+   
 }
 
 #dinner-nav {
-    margin-top: 50px;
+    margin-top: 65px;
 }
 
 #sidebar {
@@ -142,6 +153,7 @@ h4.left {
     /* Stay on top */
 
     overflow-x: hidden;
+    padding-top: 100px
     /* Disable horizontal scroll */
     /* padding-top: 20px; */
 }
@@ -161,18 +173,22 @@ tbody tr {
 
 .main-body {
     margin-left: 260px;
-    /* padding: 0px 20px; */
-    padding-top: 20px;
+    padding-top: 100px;
 }
 
 @media (max-width: 767.98px) {
     .main-body {
         margin-top: 40px;
         margin-left: 0px;
+        padding-top: 20px;
     }
 
     .top-nav {
         padding: 10px 0px;
+    }
+
+    .title{
+        padding: 10px;
     }
 
     h1 {
