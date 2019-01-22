@@ -41,7 +41,7 @@ var SidebarView = function (container, model) {
 	// Get from model
 	var allMenu = model.getFullMenu();
 	var totalPrice = model.getTotalMenuPrice();
-  var totalGuests = model.getNumberOfGuests();
+   var totalGuests = model.getNumberOfGuests();
   
   // Initialize variable
 
