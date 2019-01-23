@@ -2,186 +2,150 @@
 <html>
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<title>Select Dish</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	 crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Select Dish</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-
-	<!-- Top Bar -->
-	<div>
-		<nav class="navbar mx-auto fixed title">
-			<h1 class='mx-auto'>Dinner Planner</h1>
-		</nav>
-	</div>
-
-
-
-	<div class='full-height'>
-
-
-		<!-- Body -->
-		<div id='body' class="full-height">
-
-			<!-- Sidebar Left -->
-			<div id='sidebarView'>
-
-				<!-- Navbar on Mobile -->
-				<div class='d-block d-md-none'>
-					<nav id='dinner-nav' class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-						<a class="navbar-brand" href="#">My Dinner</a>
-						<div id='nav-price' class='ml-auto' style='margin-right: 10px'></div>
-
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-						 aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-
-
-						<div class="collapse navbar-collapse" id="navbarText">
-							<form class="form-inline">
-								<span class='margin-right-5px'>People </span>
-								<select class="guest form-control">
-								</select>
-							</form>
-
-							<table class="table">
-								<thead>
-									<tr class='table-active'>
-										<th>Dish Name</t>
-										<th>Cost</t>
-									</tr>
-								</thead>
-								<tbody class='menu-table'>
-								</tbody>
-							</table>
-
-							<div class='total-wrapper'>
-								<span class='totalCost'></span>
-							</div>
-
-							<div>
-								<button type="button" class="btn btn-md btn-warning btn-confirm" disabled="disabled">Confirm Dinner</button>
-							</div>
-
-						</div>
-					</nav>
-				</div>
-
-
-				<div id='sidebar' class='d-none d-md-block center border-right'>
-					<div class='padding-15'>
-						<h4 class="left">My Dinner</h4>
-						<div>
-							<form class="form-inline">
-								<div class="form-group">
-									<span class='margin-right-5px'>People </span>
-								</div>
-								<div class="form-group">
-									<select class="guest">
-									</select>
-								</div>
-							</form>
-						</div>
-					</div>
-
-					<div class="table-wrapper">
-						<table class="table">
-							<thead>
-								<tr class='table-active'>
-									<th>Dish Name</t>
-									<th>Cost</t>
-								</tr>
-							</thead>
-							<tbody class='menu-table'>
-							</tbody>
-						</table>
-					</div>
-
-					<div class='total-wrapper'>
-						<span class='totalCost'></span>
-					</div>
-					<div class='row'>
-						<button type="button" class="btn btn-md btn-warning mx-auto col-10 btn-confirm" disabled="disabled">Confirm
-							Dinner</button>
-					</div>
-				</div>
-			</div>
-
-			<!-- Body -->
-			<div class="main-body full-height">
-				<div id='searchView'>
-					<div class='sub-title'>
-						<div class='row'>
-							<h4 id='search-title' class="sleft col-md-12"></h4>
-						</div>
-						<div class="row">
-							<div class="col-lg-3 col-md-6">
-								<input id='search-input' type="text" class="form-control full-width" id="keywords" placeholder="Enter key words">
-							</div>
-
-							<div class="col-lg-2 col-md-4">
-								<button class="btn btn-primary full-width text-left" type="button" data-toggle="dropdown">
-									<div class='row'>
-										<span class='text-left col-11 no-padding' id='dishTypeTitle'>All</span>
-										<span class='dropdown-toggle col-1 no-padding'></span>
-									</div>
-								</button>
-
-								<ul class="dropdown-menu full-width" id='dishType'>
-								</ul>
-
-							</div>
-
-							<!-- <div class="form-group">
+    <!-- Top Bar -->
+    <div>
+        <nav class="navbar mx-auto fixed title">
+            <h1 class='mx-auto'>Dinner Planner</h1>
+        </nav>
+    </div>
+    <div class='full-height'>
+        <!-- Body -->
+        <div id='body' class="full-height">
+            <!-- Sidebar Left -->
+            <div id='sidebarView'>
+                <!-- Navbar on Mobile -->
+                <div class='d-block d-md-none'>
+                    <nav id='dinner-nav' class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+                        <a class="navbar-brand" href="#">My Dinner</a>
+                        <div id='nav-price' class='ml-auto' style='margin-right: 10px'></div>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarText">
+                            <form class="form-inline">
+                                <span class='margin-right-5px'>People </span>
+                                <select class="guest form-control">
+                                </select>
+                            </form>
+                            <table class="table">
+                                <thead>
+                                    <tr class='table-active'>
+                                        <th>Dish Name</t>
+                                        <th>Cost</t>
+                                    </tr>
+                                </thead>
+                                <tbody class='menu-table'>
+                                </tbody>
+                            </table>
+                            <div class='total-wrapper'>
+                                <span class='totalCost'></span>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-md btn-warning btn-confirm" disabled="disabled">Confirm Dinner</button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div id='sidebar' class='d-none d-md-block center border-right'>
+                    <div class='padding-15'>
+                        <h4 class="left">My Dinner</h4>
+                        <div>
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <span class='margin-right-5px'>People </span>
+                                </div>
+                                <div class="form-group">
+                                    <select class="guest">
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead>
+                                <tr class='table-active'>
+                                    <th>Dish Name</t>
+                                    <th>Cost</t>
+                                </tr>
+                            </thead>
+                            <tbody class='menu-table'>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class='total-wrapper'>
+                        <span class='totalCost'></span>
+                    </div>
+                    <div class='row'>
+                        <button type="button" class="btn btn-md btn-warning mx-auto col-10 btn-confirm" disabled="disabled">Confirm
+                            Dinner</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Body -->
+            <div class="main-body full-height">
+                <div id='searchView'>
+                    <div class='sub-title'>
+                        <div class='row'>
+                            <h4 id='search-title' class="sleft col-md-12"></h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6">
+                                <input id='search-input' type="text" class="form-control full-width" id="keywords" placeholder="Enter key words">
+                            </div>
+                            <div class="col-lg-2 col-md-4">
+                                <button class="btn btn-primary full-width text-left" type="button" data-toggle="dropdown">
+                                    <div class='row'>
+                                        <span class='text-left col-11 no-padding' id='dishTypeTitle'>All</span>
+                                        <span class='dropdown-toggle col-1 no-padding'></span>
+                                    </div>
+                                </button>
+                                <ul class="dropdown-menu full-width" id='dishType'>
+                                </ul>
+                            </div>
+                            <!-- <div class="form-group">
 							<select id="dishType">
 							</select>
 						</div> -->
-
-							<div class="col-lg-1 col-md-2">
-								<div>
-									<button id='search-btn' type="button" class="btn btn-warning">Search</button>
-								</div>
-
-							</div>
-						</div>
-
-					</div>
-					<br>
-					<div id='menu-wrapper' class="row center">
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<!-- jQuery -->
-	<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                            <div class="col-lg-1 col-md-2">
+                                <div>
+                                    <button id='search-btn' type="button" class="btn btn-warning">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div id='menu-wrapper' class="row center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	 crossorigin="anonymous"></script> -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	 crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	 crossorigin="anonymous"></script>
-
-	<!-- The application JavaScript code -->
-	<script src="js/app.js"></script>
-	<script src="js/model/dinnerModel.js"></script>
-	<script src="js/view/sidebarView.js"></script>
-	<script src="js/view/searchView.js"></script>
-	<script src="js/view/selectView.js"></script>
-	<script src="js/view/homeView.js"></script>
-	<script src="js/view/detailView.js"></script>
-	<script src="js/view/summaryView.js"></script>
-	<script src="js/view/printView.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- The application JavaScript code -->
+    <script src="js/app.js"></script>
+    <script src="js/model/dinnerModel.js"></script>
+    <script src="js/view/sidebarView.js"></script>
+    <script src="js/view/searchView.js"></script>
+    <script src="js/view/selectView.js"></script>
+    <script src="js/view/homeView.js"></script>
+    <script src="js/view/detailView.js"></script>
+    <script src="js/view/summaryView.js"></script>
+    <script src="js/view/printView.js"></script>
 </body>
 
 </html>
