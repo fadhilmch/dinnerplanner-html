@@ -34,67 +34,25 @@ var PrintView = function(container, model) {
      * 
      */
 
+    // Get from model
     var allMenu = model.getFullMenu();
     var totalGuests = model.getNumberOfGuests();
 
+    //Initialize Component
+    var totalGuestPrint = container.find("#guestPrint");
+    var printMenu = container.find("#printOut");
 
-    // Select option for guests number
-    var numberOfGuests = container.find(".guest");
-    for (var i = 1; i < 10; i++) {
-        numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
-    }
-
-    // Dropdown Select for Dishes Type
-    var dishType = container.find('#dishType');
-    var arrDishes = model.getDishType();
-    arrDishes.splice(0, 0, 'all');
-    arrDishes = arrDishes.map(dish => {
-        return dish.replace(
-            /\w\S*/g,
-            function(txt) {
-                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            }
-        );
-    });
-
-
-    for (var i = 0; i < arrDishes.length; i++) {
-        dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
-    }
-
-
-    // Total Cost
-    var totalCost = container.find('.totalCost');
-    totalCost.html(`SEK 0.00`)
-    console.log(arrDishes);
-
-    // Menu Wrapper
-    var menuWrapper = container.find('#menu-wrapper');
-    var allDishes = model.getAllDishes();
-    allDishes.forEach(dish => {
-        menuWrapper.append(`
-			<div class="col-sm-6 col-md-3 col-lg-2">
-				<div class="menu">
-					<img src="images/${dish.image}" alt="${dish.name}">
-					<div class="caption">
-						<h5>${dish.name}</h5>
-					</div>
-				</div>
-			</div>
-		`)
-    })
 
     //LOAD DATA OF TOTAL GUEST
-   
-    var totalGuestPrint = container.find("#guestPrint");
-    totalGuestPrint.append(`My Dinner: ${totalGuests}  People`);
+    var getTotalGuests = function() {
+        totalGuestPrint.append(`My Dinner: ${totalGuests}  People`);
+    }
+    getTotalGuests();
 
 
     //LOAD DATA OF MENU ON PRINT OUT
     var loadPrintMenu = function() {
-        var printMenu = container.find("#printOut");
         allMenu.forEach(dish => {
-
             printMenu.append(`<br>
   			<div class="row">
   				<div class="col-md-6" style="padding-bottom: 10px">

@@ -16,7 +16,7 @@ var SummaryView = function(container, model) {
 
     /**
      * We use the @method find() on @var {jQuery object} container to look for various elements 
-     * inside the view in orther to use them later on. For instance:	
+     * inside the view in orther to use them later on. For instance:    
      * 
      * @var {jQuery object} numberOfGuests is a reference to the <span> element that 
      * represents the placeholder for where we want to show the number of guests. It's
@@ -33,64 +33,32 @@ var SummaryView = function(container, model) {
      * in some other view gives the same ID to another element.
      * 
      */
-     var totalGuests = model.getNumberOfGuests();
-    
+    //Get data from Model
+    var totalGuests = model.getNumberOfGuests();
+    var allMenu = model.getFullMenu();
+    var totalPrice = model.getTotalMenuPrice();
 
-
-    // Select option for guests number
-    var numberOfGuests = container.find(".guest");
-    for (var i = 1; i < 10; i++) {
-        numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
-    }
-
-    // Dropdown Select for Dishes Type
-    var dishType = container.find('#dishType');
-    var arrDishes = model.getDishType();
-    arrDishes.splice(0, 0, 'all');
-    arrDishes = arrDishes.map(dish => {
-        return dish.replace(
-            /\w\S*/g,
-            function(txt) {
-                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            }
-        );
-    });
-
-
-   
-    for (var i = 0; i < arrDishes.length; i++) {
-        dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
-    }
-
-
-    // Total Cost
-    var totalCost = container.find('.totalCost');
-    totalCost.html(`SEK 0.00`)
-    console.log(arrDishes);
-
-    
-    // ===========================
-    // 	 summary.html 
-    // ===========================
+    //Initialize Component
+    var selectedMenu = container.find("#selected-wrapper");
+    var priceAcc = container.find("#totalPrice");
+    var totalGuest = container.find("#guestOverview");
 
 
     //LOAD DATA MENU OVERVIEW
     var loadAllMenuOverview = function() {
-        var selectedMenu = container.find("#selected-wrapper");
-        var allMenu = model.getFullMenu();
         console.log(allMenu);
         allMenu.forEach(dish => {
             selectedMenu.append(`
-			<div class="col-sm-6 col-md-3">				
-					<div class="menu">
-						<img src="images/${dish.image}" alt="${dish.name}">
-						<div class="caption">
-							<h5>${dish.name}</h5>
-						</div>
-					</div>
-				
-						<div class="caption" style="padding-top: 5px">
-							<h6 class="text-danger" style="text-align: right;">${
+            <div class="col-sm-6 col-md-3">             
+                    <div class="menu">
+                        <img src="images/${dish.image}" alt="${dish.name}">
+                        <div class="caption">
+                            <h5>${dish.name}</h5>
+                        </div>
+                    </div>
+                
+                        <div class="caption" style="padding-top: 5px">
+                            <h6 class="text-danger" style="text-align: right;">${
                         Number(
                             dish.ingredients.map(ingredient => {
                                 return ingredient.quantity * ingredient.price;
@@ -100,27 +68,25 @@ var SummaryView = function(container, model) {
                             })
                         ).toFixed(2)*totalGuests
                     } SEK</h6>
-						</div>
-					</div>
-				`)
+                        </div>
+                    </div>
+                `)
+        
         })
     }
 
     loadAllMenuOverview();
 
     //LOAD TOTAL GUEST
-    var totalGuest = container.find("#guestOverview");
-    totalGuest.append(`My Dinner: ${totalGuests}  People`);
-    
-
+    var getTotalGuests = function() {
+        totalGuest.append(`My Dinner: ${totalGuests}  People`);
+    }
+    getTotalGuests();
 
     //LOAD TOTAL PRICE OF SELECTED MENU ON OVERVIEW
     var getTotalMenuPrice = function() {
-        console.log(model.getNumberOfGuests());
-        var priceAcc = container.find("#totalPrice");
-        var totalPrice = model.getTotalMenuPrice();
         priceAcc.append(`
-		${Number(totalPrice).toFixed(2)} SEK`);
+        ${Number(totalPrice).toFixed(2)} SEK`);
     }
     getTotalMenuPrice();
 
@@ -136,7 +102,7 @@ var SummaryView = function(container, model) {
      * this button and do something with it (see Lab 2).
      * 
      */
-  
+
 
 
 
