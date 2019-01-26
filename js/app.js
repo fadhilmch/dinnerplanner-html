@@ -1,6 +1,8 @@
 $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
+
+	var generalController = new GeneralController();
 	
 	// And create the instance of ExampleView
 	var sidebarView = new SidebarView($("#sidebarView"), model);
