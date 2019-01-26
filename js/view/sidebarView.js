@@ -1,5 +1,6 @@
 var SidebarView = function(container, model) {
 		var self = this;
+
     // Dummy Data
     model.addDishToMenu(1);
     model.addDishToMenu(100);
@@ -25,7 +26,7 @@ var SidebarView = function(container, model) {
             self.numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
         };
         setConfimButtonStatus();
-    };
+		};
 
     // Total Cost
     var calculateTotalCost = function() {
@@ -66,15 +67,14 @@ var SidebarView = function(container, model) {
 
     initialize();
     showSidebar();
-    calculateTotalCost();
-
-		// Event Listener
-		// this.numberOfGuests.addEventListener('change',)
-
-    // Change nummber of guess
-    this.numberOfGuests.on('change', function() {
-        console.log(`Number of guests: ${this.value}`);
-        model.setthis.numberOfGuests(this.value);
-    })
-
+		calculateTotalCost();
+		
+		this.update = function(data){
+			totalGuests = model.getNumberOfGuests();
+			showSidebar();
+			calculateTotalCost();
+			console.log(data)
+		 }
+		 
+		model.addObserver(this);
 }

@@ -1,7 +1,6 @@
 var GeneralController = function(arrViews) {
     this.goToPage = function(name) {
         // Hide all views
-        // console.log(arrViews.keys())
         Object.keys(arrViews).forEach(view => {
             arrViews[view].hide();
         })
@@ -25,7 +24,6 @@ var GeneralController = function(arrViews) {
             case 'print':
                 arrViews['print'].show();
                 break;
-
         }
     }
 }
