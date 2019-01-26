@@ -42,6 +42,7 @@ var SummaryView = function(container, model) {
     var selectedMenu = container.find("#selected-wrapper");
     var priceAcc = container.find("#totalPrice");
     var totalGuest = container.find("#guestOverview");
+    this.printReceipt = container.find("#btnPrint");
 
 
     //LOAD DATA MENU OVERVIEW

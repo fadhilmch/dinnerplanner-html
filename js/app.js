@@ -45,6 +45,19 @@ $(function() {
 	var generalController = new GeneralController(dishView);
 	generalController.goToPage('home');
 
+	//controller instansiate
+	var homeController = new HomeController(homeView, model, generalController);
+
+	var searchController = new SearchController(searchView, model, generalController);
+
+	var detailController = new DetailController(detailView, model, generalController);
+
+	var summaryController = new SummaryController(summaryView, model, generalController);
+
+	var printController = new PrintController(printView, model, generalController);
+	
+
+
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to

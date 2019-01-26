@@ -1,4 +1,4 @@
-/** ExampleView Object constructor
+    /** ExampleView Object constructor
  * 
  * This object represents the code for one specific view (in this case the Example view). 
  * 

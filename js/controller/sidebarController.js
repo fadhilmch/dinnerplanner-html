@@ -1,1 +1,3 @@
-var SideBarController = function(view, model)
+var SideBarController = function(view, model){
+	
+}
