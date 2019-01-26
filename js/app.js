@@ -2,88 +2,50 @@ $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
 
+	var dishView = new Object() 
 
-	var sbView = $('#sidebarView');
-	var welView = $('#welcomeView');
-	var sView = $('#searchView');
-	var selView = $('#selectView');
-	var detView = $('#detailView');
-	var smryView = $('#summaryView');
-	var pView = $('#printView');
+	//initialize component
+	var welcome = $('#welcomeView');
+	var sidebar = $('#sidebarView');
+	var search = $('#searchView');
+	var select = $('#selectView');
+	var detail = $('#detailView');
+	var summary = $('#summaryView');
+	var print = $('#printView');
 	
-
-	var generalController = new GeneralController();
 
 	// And create the instance of ExampleView
-	var sidebarView = new SidebarView($("#sidebarView"), model);
+	var sidebarView = new SidebarView(sidebar, model);
 	
-	var searchView = new SearchView($("#searchView"), model);
+	var searchView = new SearchView(search, model);
 	
-	var homeView = new HomeView($("#homeView"),model);
+	var homeView = new HomeView(welcome,model);
 
-	var selectView = new SelectView($("#selectView"), model);
+	var selectView = new SelectView(select, model);
 
-	var detailView = new DetailView($("#detailView"), model);
+	var detailView = new DetailView(detail, model);
 
-	var summaryView = new SummaryView($("#summaryView"), model);
+	var summaryView = new SummaryView(summary, model);
 
-	var printView = new PrintView($("#printView"), model);
+	var printView = new PrintView(print, model);
 
-	
-	//home view
-	var showHomeView = function(){
-		welView.show();
-		sbView.hide();
-		sView.hide();
-		selView.hide();
-		detView.hide();
-		smryView.hide();
-		pView.hide();
-		
+	//initialize all view
+	var dinnerPlannerView = function(){
+		dishView['welcome'] = welcome;
+		dishView['sidebar'] = sidebar;
+		dishView['search'] = search;
+		dishView['select'] = select;
+		dishView['detail'] = detail;
+		dishView['summary'] = summary;
+		dishView['print'] = print;
 	}
 
-	// showHomeView();
+	dinnerPlannerView();
 
-	//detail view
-	var showDetailView = function(){
-		welView.hide();
-		sbView.show();
-		sView.hide();
-		selView.hide();
-		detView.show();
-		smryView.hide();
-		pView.hide();
-
-	}
-
-	// showDetailView()
-
-	//show select view
-	var showSelectView = function(){
-		welView.hide();
-		sbView.show();
-		sView.show();
-		selView.show();
-		detView.hide();
-		smryView.hide();
-		pView.hide();
-	}
-
-	showSelectView();
+	var generalController = new GeneralController(dishView);
+	generalController.goToPage('home');
 
 
-	//show print  view 
-	var showPrintView = function(){
-		welView.hide();
-		sbView.hide();
-		sView.hide();
-		selView.hide();
-		detView.hide();
-		smryView.hide();
-		pView.show();
-	}
-
-	// showPrintView();
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
 	 * use the $('someSelector') to search for elements in the whole HTML.
