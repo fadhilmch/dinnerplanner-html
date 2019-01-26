@@ -1,13 +1,31 @@
 var GeneralController = function(arrViews) {
-  var goToPage = function (name) {
-    // Hide all views
-    arrViews.forEach(view => {
-      view.hide();
-    })
-    
-    switch(name){
-      case 'home':
-        arrViews['homeView'].show();
+    this.goToPage = function(name) {
+        // Hide all views
+        // console.log(arrViews.keys())
+        Object.keys(arrViews).forEach(view => {
+            arrViews[view].hide();
+        })
+
+        switch (name) {
+            case 'home':
+                arrViews['welcome'].show()
+                break
+            case 'select':
+                arrViews['select'].show();
+                arrViews['search'].show();
+                arrViews['sidebar'].show();
+                break;
+            case 'detail':
+                arrViews['detail'].show();
+                arrViews['sidebar'].show();
+                break;
+            case 'summary':
+                arrViews['summary'].show();
+                break;
+            case 'print':
+                arrViews['print'].show();
+                break;
+
+        }
     }
-  }
 }
