@@ -9,23 +9,27 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body id="printView">
+<body>
     <div>
-        <nav class="nav sticky-top title">
-            <div class="navbar-header mx-auto">
-                <div class="center"> <h1>Dinner Planner</h1>
+        <div>
+            <nav class="nav sticky-top title">
+                <div class="navbar-header mx-auto">
+                    <div class="center"> <h1>Dinner Planner</h1>
+                    </div>
                 </div>
+            </nav>
+        </div>
+        <div id="printView">
+            <div>
+                <nav class="navbar border">
+                    <h5 id="guestPrint"class="navbar-header" style="display: flex;" style="align-items: flex-start;"></h5>
+                    <button type="button" class="btn btn-md btn-warning navbar-right" style="display: flex;" style="align-items: flex-end;" id="btnEditDinner">Go Back and Edit Dinner
+                    </button>
+                </nav>
             </div>
-        </nav>
-    </div>
-    <div>
-        <nav class="navbar border">
-            <h5 id="guestPrint"class="navbar-header" style="display: flex;" style="align-items: flex-start;"></h5>
-            <button type="button" class="btn btn-md btn-warning navbar-right" style="display: flex;" style="align-items: flex-end;" id="btnEditDinner">Go Back and Edit Dinner
-            </button>
-        </nav>
-    </div>
-    <div class="container" id="printOut">
+            <div class="container" id="printOut">
+            </div>
+        </div>
     </div>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

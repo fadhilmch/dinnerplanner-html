@@ -51,6 +51,14 @@ var HomeView = function (container, model) {
 	var totalGuests = model.getNumberOfGuests();
 	
 
+//hide welcome screen
+	var hideWelcomeScreen = function(){
+		var welcome = container.find("#welcomeView");
+		welcome.hide();
+		
+	}
+
+	hideWelcomeScreen();
 
 
 	
