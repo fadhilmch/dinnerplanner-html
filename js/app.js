@@ -46,7 +46,7 @@ $(function() {
 
 	var printView = new PrintView(print, model);
 
-<<<<<<< HEAD
+
 	//initialize all view
 	var dinnerPlannerView = function(){
 		dishView['welcome'] = welcome;
@@ -76,9 +76,7 @@ $(function() {
 	
 
 
-=======
-	
->>>>>>> 0b08ecd903b9d6609ef95b44b90ea6e78a64b689
+
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
