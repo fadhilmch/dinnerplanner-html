@@ -1,4 +1,5 @@
 var SidebarView = function(container, model) {
+		var self = this;
     // Dummy Data
     model.addDishToMenu(1);
     model.addDishToMenu(100);
@@ -11,39 +12,39 @@ var SidebarView = function(container, model) {
     // Initialize variable
 
     //Initialize Component
-    var numberOfGuests = container.find(".guest");
-    var totalCost = container.find('.totalCost');
-    var confirmButton = container.find('.btn-confirm');
-    var menuTable = container.find('.menu-table');
-    var navPrice = container.find('#nav-price');
+    this.numberOfGuests = container.find(".guest");
+   	this.totalCost = container.find('.this.totalCost');
+    this.confirmButton = container.find('.btn-confirm');
+    this.menuTable = container.find('.menu-table');
+    this.navPrice = container.find('#nav-price');
 
     // Initialize Function
     var initialize = function() {
         // Show options on select for guest number
         for (var i = 1; i < 10; i++) {
-            numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
+            self.numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
         };
         setConfimButtonStatus();
     };
 
     // Total Cost
     var calculateTotalCost = function() {
-        totalCost.html(`SEK ${Number(totalPrice).toFixed(2)}`);
-        navPrice.html(`SEK ${Number(totalPrice).toFixed(2)}`);
+        self.totalCost.html(`SEK ${Number(totalPrice).toFixed(2)}`);
+        self.navPrice.html(`SEK ${Number(totalPrice).toFixed(2)}`);
     }
 
     // Confirm button
     var setConfimButtonStatus = function() {
         if (allMenu.length > 0) {
-            confirmButton.prop('disabled', false);
+            self.confirmButton.prop('disabled', false);
         }
     }
 
     // Table Sidebar
     var showSidebar = function() {
-        menuTable.children().remove();
+        self.menuTable.children().remove();
         allMenu.forEach(dish => {
-            menuTable.append(`							
+            self.menuTable.append(`							
 				<tr>
 					<td>${dish.name}</td>
 					<td>${
@@ -67,12 +68,13 @@ var SidebarView = function(container, model) {
     showSidebar();
     calculateTotalCost();
 
-    // ======> EVENT 
+		// Event Listener
+		// this.numberOfGuests.addEventListener('change',)
 
     // Change nummber of guess
-    numberOfGuests.on('change', function() {
+    this.numberOfGuests.on('change', function() {
         console.log(`Number of guests: ${this.value}`);
-        model.setNumberOfGuests(this.value);
+        model.setthis.numberOfGuests(this.value);
     })
 
 }
