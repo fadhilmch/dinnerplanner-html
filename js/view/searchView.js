@@ -40,7 +40,7 @@ var SearchView = function(container, model) {
     }
 
     for (var i = 0; i < arrDishes.length; i++) {
-        self.dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
+        self.dishType.append(`<li class="dropdown-item">${arrDishes[i]}</li>`);
     }
 
     // Menu Wrapper

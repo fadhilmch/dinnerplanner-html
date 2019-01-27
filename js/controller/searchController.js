@@ -1,17 +1,18 @@
-var SearchController = function(container, model, controller) {
-
-  	
+var SearchController = function(view, model, controller) {
 	
-	container.dishType.click(function(){
+	view.dishType.click(function(){
 		console.log("dishType clicked")
 	})
 
-	container.searchButton.click(function(){
-		console.log(container.searchInput.value);
-		console.log(container.dishType.value);
+	view.searchButton.click(function(){
+		console.log('start')
+		// console.log(serchInput.value);
+		console.log(view.searchInput.val());
+		console.log(view.dishType.val());
+		console.log('stop')
 	})
 
-	container.menuWrapper.click(function(){
+	view.menuWrapper.click(function(){
 		console.log("menu clicked");	
 	})
 
