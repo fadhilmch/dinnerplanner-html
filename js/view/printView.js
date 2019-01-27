@@ -16,7 +16,7 @@ var PrintView = function(container, model) {
 
     /**
      * We use the @method find() on @var {jQuery object} container to look for various elements 
-     * inside the view in orther to use them later on. For instance:	
+     * inside the view in orther to use them later on. For instance:    
      * 
      * @var {jQuery object} numberOfGuests is a reference to the <span> element that 
      * represents the placeholder for where we want to show the number of guests. It's
@@ -44,47 +44,61 @@ var PrintView = function(container, model) {
     this.editfromPrint = container.find("#btnEditPrint");
 
 
+
     //LOAD DATA OF TOTAL GUEST
     var getTotalGuests = function() {
-        totalGuestPrint.append(`My Dinner: ${totalGuests}  People`);
+        totalGuestPrint.children().remove();
+        totalGuestPrint.append(`<h5 class="navbar-header" style="display: flex;" style="align-items: flex-start;"> My Dinner: ${totalGuests}  People</h5>`);
     }
-    getTotalGuests();
 
 
     //LOAD DATA OF MENU ON PRINT OUT
     var loadPrintMenu = function() {
+        printMenu.children().remove();
         allMenu.forEach(dish => {
             printMenu.append(`<br>
-  			<div class="row">
-  				<div class="col-md-6" style="padding-bottom: 10px">
-  					<div class="row">
-			  			<div class="col-md-6 center" style="padding-bottom: 10px">
-			  				<img class="fitImage" src="images/${dish.image}">
-			  			</div>
+            <div class="row">
+                <div class="col-md-6" style="padding-bottom: 10px">
+                    <div class="row">
+                        <div class="col-md-6 center" style="padding-bottom: 10px">
+                            <img class="fitImage" src="images/${dish.image}">
+                        </div>
 
-			  			<div class="col-md-6" >
-			  				<h5>${dish.name.toUpperCase()}</h5>
-			  				<p>
-			  				${dish.description}
-			  				</p>
-		  				</div>
-	  				</div>
-	  			</div>	
-	  			<div class="col-md-6">
-	  				<h5>PREPARATION</h5>
-	  				<p>
-					${dish.description}
-					</p>
-	  			
-	  			</div>
-	  			</div>
-  			
-  			<br>
-  			<br>`)
+                        <div class="col-md-6" >
+                            <h5>${dish.name.toUpperCase()}</h5>
+                            <p>
+                            ${dish.description}
+                            </p>
+                        </div>
+                    </div>
+                </div>  
+                <div class="col-md-6">
+                    <h5>PREPARATION</h5>
+                    <p>
+                    ${dish.description}
+                    </p>
+                
+                </div>
+                </div>
+            
+            <br>
+            <br>`)
         })
     }
 
     loadPrintMenu();
+
+    this.update = function(data) {
+        totalGuests = model.getNumberOfGuests();
+        totalPrice = model.getTotalMenuPrice();
+        allMenu = model.getFullMenu();
+        getTotalGuests();
+        loadPrintMenu();
+
+    }
+
+    model.addObserver(this);
+
 
     /**
      * When we want references to some view elements to be available from outside of view, we 

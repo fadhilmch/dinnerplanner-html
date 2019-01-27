@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6">
-                                        <input id='search-input' type="text" class="form-control full-width" id="keywords" placeholder="Enter key words">
+                                        <input name="txt"id='search-input' type="text" class="form-control full-width" id="keywords" placeholder="Enter key words">
                                     </div>
                                     <div class="col-lg-2 col-md-4">
                                         <button class="btn btn-primary full-width text-left" type="button" data-toggle="dropdown">
@@ -166,7 +166,9 @@
                     <div id="summaryView">
                         <div>
                             <nav class="navbar border">
-                                <h5 id ="guestOverview"class="navbar-header" style="display: flex;" style="align-items: flex-start;"> </h5>
+                                <div id ="guestOverview">
+                                <h5 class="navbar-header" style="display: flex;" style="align-items: flex-start;"> </h5>
+                                </div>
                                 <button type="button" class="btn btn-md btn-warning navbar-right" style="display: flex;" style="align-items: flex-end;" id="btnEditSummary">Go Back and Edit Dinner
                                 </button>
                             </nav>
@@ -177,10 +179,10 @@
                                     <div class="row" id='selected-wrapper'>
                                     </div>
                                 </div>
-                                <div class="col-md-4" style="text-align: left">
+                                <div id ="totalPrice" class="col-md-4" style="text-align: left">
                                     <div class="flex-container">
                                         <h6>Total: </h6>
-                                        <h6 class="text-danger" id="totalPrice"> </h6>
+                                        <h6 class="text-danger"> </h6>
                                     </div>
                                 </div>
                                 <div class="container center border-top">
@@ -194,7 +196,9 @@
                     <div id="printView">
                         <div>
                             <nav class="navbar border">
-                                <h5 id="guestPrint"class="navbar-header" style="display: flex;" style="align-items: flex-start;"></h5>
+                                <div id="guestPrint">
+                                <h5 class="navbar-header" style="display: flex;" style="align-items: flex-start;"></h5>
+                                </div>
                                 <button type="button" class="btn btn-md btn-warning navbar-right" style="display: flex;" style="align-items: flex-end;" id="btnEditPrint">Go Back and Edit Dinner
                                 </button>
                             </nav>
@@ -216,12 +220,12 @@
         <script src="js/app.js"></script>
         <script src="js/model/dinnerModel.js"></script>
         <script src="js/view/homeView.js"></script>
-        <script src="js/view/detailView.js"></script>
-        <script src="js/view/summaryView.js"></script>
-        <script src="js/view/printView.js"></script>
         <script src="js/view/selectView.js"></script>
         <script src="js/view/sidebarView.js"></script>
         <script src="js/view/searchView.js"></script>
+        <script src="js/view/detailView.js"></script>
+        <script src="js/view/summaryView.js"></script>
+        <script src="js/view/printView.js"></script>
         <script src="js/controller/generalController.js"></script>
         <script src="js/controller/homeController.js"></script>
         <script src="js/controller/searchController.js"></script>
