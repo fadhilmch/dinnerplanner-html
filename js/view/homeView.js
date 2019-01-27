@@ -40,8 +40,8 @@ var HomeView = function (container, model) {
 	// ===========================
 
 	// Dummy Data
-	model.addDishToMenu(1);
-	model.addDishToMenu(100);
+	// model.addDishToMenu(1);
+	// model.addDishToMenu(100);
 
 	 // Get from model
 	var arrDishes = model.getDishType();

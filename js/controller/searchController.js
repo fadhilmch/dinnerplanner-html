@@ -1,6 +1,9 @@
 var SearchController = function(container, model, controller) {
 
-    model.addObserver(this);
+   container.menuWrapper.click(function(e){
+   	console.log($(e.target).val());
+
+   })
 
 
 

@@ -3,7 +3,7 @@ var SidebarController = function(view, model, generalController){
   view.numberOfGuests.change((e) =>{
     model.setNumberOfGuests($(e.target).val());
     model.notifyObserver();
-    console.log("absnabs"+model.getNumberOfGuests());
+   
   })
 
   view.confirmButton.click(() => {

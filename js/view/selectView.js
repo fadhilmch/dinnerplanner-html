@@ -35,8 +35,8 @@ var SelectView = function (container, model) {
 	 */
 	
 	 // Dummy
-	model.addDishToMenu(1);
-	model.addDishToMenu(100);
+	// model.addDishToMenu(1);
+	// model.addDishToMenu(100);
 	var tes = container.find('#tes');
 	// tes.load('./components/title.html');
 	// $("#tes").load("./components/title.html #insert");

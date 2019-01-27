@@ -41,8 +41,8 @@ var SummaryView = function(container, model) {
     var totalPrice = model.getTotalMenuPrice();
 
     //Initialize Component
-    var selectedMenu = container.find("#selected-wrapper");
-    var priceAcc = container.find("#totalPrice");
+    this.selectedMenu = container.find("#selected-wrapper");
+    this.priceAcc = container.find("#totalPrice");
     this.totalGuest = container.find("#guestOverview");
     this.printReceipt = container.find("#btnPrint");
     this.editfromSummary = container.find("#btnEditSummary");
@@ -50,9 +50,8 @@ var SummaryView = function(container, model) {
 
     //LOAD DATA MENU OVERVIEW
     var loadAllMenuOverview = function() {
-        console.log(allMenu);
         allMenu.forEach(dish => {
-            selectedMenu.append(`
+            self.selectedMenu.append(`
             <div class="col-sm-6 col-md-3">             
                     <div class="menu">
                         <img src="images/${dish.image}" alt="${dish.name}">
@@ -89,7 +88,7 @@ var SummaryView = function(container, model) {
 
     //LOAD TOTAL PRICE OF SELECTED MENU ON OVERVIEW
     var getTotalMenuPrice = function() {
-        priceAcc.append(`
+        self.priceAcc.append(`
         ${Number(totalPrice).toFixed(2)} SEK`);
     }
     getTotalMenuPrice();

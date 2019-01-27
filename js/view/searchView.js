@@ -1,24 +1,22 @@
 var SearchView = function(container, model) {
-
+    var self = this;
     // Get from model
     var allDishes = model.getAllDishes();
     var arrDishes = model.getDishType();
     var allMenu = model.getFullMenu();
 
     // Initialize Component
-    var dishType = container.find('#dishType');
-    var menuWrapper = container.find('#menu-wrapper');
-    var searchButton = container.find('#search-btn');
-    var searchInput = container.find('search-input');
-    var searchTitle = container.find('#search-title');
+    this.dishType = container.find('#dishType');
+    this.menuWrapper = container.find('#menu-wrapper');
+    this.searchButton = container.find('#search-btn');
+    this.searchInput = container.find('search-input');
+    this.searchTitle = container.find('#search-title');
 
     // Initialize function
     var initialize = function() {
         showDropdownType();
         setSearchTitle();
     }
-
-    // this.dishItem = container;
 
 
     // register observer
@@ -38,13 +36,13 @@ var SearchView = function(container, model) {
     }
 
     for (var i = 0; i < arrDishes.length; i++) {
-        dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
+        self.dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
     }
 
     // Menu Wrapper
     var showDishesChoice = function() {
         allDishes.forEach(dish => {
-        menuWrapper.append(`
+        self.menuWrapper.append(`
           <div class="col-sm-6 col-md-3 col-lg-2">
             <div class="menu">
               <img src="images/${dish.image}" alt="${dish.name}">
@@ -59,11 +57,11 @@ var SearchView = function(container, model) {
 
 
     var setSearchTitle = function() {
-        searchTitle.html('Find a Dish');
+        self.searchTitle.html('Find a Dish');
         if (allMenu.length === 0)
-            searchTitle.html('Find a Dish');
+            self.searchTitle.html('Find a Dish');
         else
-            searchTitle.html('Add another dish');
+            self.searchTitle.html('Add another dish');
     }
 
     initialize();

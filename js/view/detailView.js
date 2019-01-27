@@ -62,7 +62,6 @@ var DetailView = function(container, model) {
 
     //LOAD DETAIL SELECTED MENU
     var loadSelectedDish = function() {
-        console.log(getDish);
         detailDish.append(`<div>
 					<h4>${getDish.name.toUpperCase()}</h4>
 					
