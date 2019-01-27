@@ -14,7 +14,7 @@ var SidebarView = function(container, model) {
 
     //Initialize Component
     this.numberOfGuests = container.find(".guest");
-   	this.totalCost = container.find('.this.totalCost');
+   	this.totalCost = container.find('.totalCost');
     this.confirmButton = container.find('.btn-confirm');
     this.menuTable = container.find('.menu-table');
     this.navPrice = container.find('#nav-price');
