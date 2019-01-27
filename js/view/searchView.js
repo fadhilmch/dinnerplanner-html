@@ -18,7 +18,7 @@ var SearchView = function(container, model) {
         setSearchTitle();
     }
 
-    this.dishItem = container;
+    // this.dishItem = container;
 
 
     // register observer
@@ -59,7 +59,6 @@ var SearchView = function(container, model) {
 
 
     var setSearchTitle = function() {
-        console.log('fdlsfj')
         searchTitle.html('Find a Dish');
         if (allMenu.length === 0)
             searchTitle.html('Find a Dish');

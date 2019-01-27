@@ -1,5 +1,5 @@
 var SidebarView = function(container, model) {
-		var self = this;
+    var self = this;
 
     // Dummy Data
     model.addDishToMenu(1);
@@ -14,7 +14,7 @@ var SidebarView = function(container, model) {
 
     //Initialize Component
     this.numberOfGuests = container.find(".guest");
-   	this.totalCost = container.find('.this.totalCost');
+    this.totalCost = container.find('.this.totalCost');
     this.confirmButton = container.find('.btn-confirm');
     this.menuTable = container.find('.menu-table');
     this.navPrice = container.find('#nav-price');
@@ -26,7 +26,7 @@ var SidebarView = function(container, model) {
             self.numberOfGuests.append(`<option value="${i}" ${(i===1)?"selected":""}>${i}</option>`);
         };
         setConfimButtonStatus();
-		};
+    };
 
     // Total Cost
     var calculateTotalCost = function() {
@@ -45,36 +45,36 @@ var SidebarView = function(container, model) {
     var showSidebar = function() {
         self.menuTable.children().remove();
         allMenu.forEach(dish => {
-            self.menuTable.append(`							
-				<tr>
-					<td>${dish.name}</td>
-					<td>${
-						Number(
-							dish.ingredients.map(ingredient => {
-								return ingredient.quantity * ingredient.price;
-							})
-							.reduce((acc, cur) => {
-								return acc + cur;
-							})
-						).toFixed(2)*totalGuests
-					}
-					</td>
-				</tr>
-			`);
+            self.menuTable.append(`                         
+                <tr>
+                    <td>${dish.name}</td>
+                    <td>${
+                        Number(
+                            dish.ingredients.map(ingredient => {
+                                return ingredient.quantity * ingredient.price;
+                            })
+                            .reduce((acc, cur) => {
+                                return acc + cur;
+                            })
+                        ).toFixed(2)*totalGuests
+                    }
+                    </td>
+                </tr>
+            `);
         })
     }
 
 
     initialize();
     showSidebar();
-		calculateTotalCost();
-		
-		this.update = function(data){
-			totalGuests = model.getNumberOfGuests();
-			showSidebar();
-			calculateTotalCost();
-			console.log(data)
-		 }
-		 
-		model.addObserver(this);
+    calculateTotalCost();
+
+    this.update = function(data) {
+        totalGuests = model.getNumberOfGuests();
+        showSidebar();
+        calculateTotalCost();
+        console.log(data)
+    }
+
+    model.addObserver(this);
 }

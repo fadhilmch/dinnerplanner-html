@@ -4,4 +4,10 @@ var SummaryController = function(container, model, controller){
 		controller.goToPage('print');
 	})
 
+	container.editfromSummary.click(function(){
+		controller.goToPage('search');
+	})
+
+	container.totalGuest.append(model.getNumberOfGuests());
+
 }

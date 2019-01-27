@@ -41,6 +41,7 @@ var PrintView = function(container, model) {
     //Initialize Component
     var totalGuestPrint = container.find("#guestPrint");
     var printMenu = container.find("#printOut");
+    this.editfromPrint = container.find("#btnEditPrint");
 
 
     //LOAD DATA OF TOTAL GUEST
