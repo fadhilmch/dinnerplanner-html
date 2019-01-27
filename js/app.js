@@ -46,7 +46,37 @@ $(function() {
 
 	var printView = new PrintView(print, model);
 
+
+	//initialize all view
+	var dinnerPlannerView = function(){
+		dishView['welcome'] = welcome;
+		dishView['sidebar'] = sidebar;
+		dishView['search'] = search;
+		dishView['select'] = select;
+		dishView['detail'] = detail;
+		dishView['summary'] = summary;
+		dishView['print'] = print;
+	}
+
+	dinnerPlannerView();
+
+	var generalController = new GeneralController(dishView);
+	generalController.goToPage('home');
+
+	//controller instansiate
+	var homeController = new HomeController(homeView, model, generalController);
+
+	var searchController = new SearchController(searchView, model, generalController);
+
+	var detailController = new DetailController(detailView, model, generalController);
+
+	var summaryController = new SummaryController(summaryView, model, generalController);
+
+	var printController = new PrintController(printView, model, generalController);
 	
+
+
+
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to

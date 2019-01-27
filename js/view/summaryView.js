@@ -33,6 +33,8 @@ var SummaryView = function(container, model) {
      * in some other view gives the same ID to another element.
      * 
      */
+    var self = this;
+
     //Get data from Model
     var totalGuests = model.getNumberOfGuests();
     var allMenu = model.getFullMenu();
@@ -41,7 +43,9 @@ var SummaryView = function(container, model) {
     //Initialize Component
     var selectedMenu = container.find("#selected-wrapper");
     var priceAcc = container.find("#totalPrice");
-    var totalGuest = container.find("#guestOverview");
+    this.totalGuest = container.find("#guestOverview");
+    this.printReceipt = container.find("#btnPrint");
+    this.editfromSummary = container.find("#btnEditSummary");
 
 
     //LOAD DATA MENU OVERVIEW
@@ -71,7 +75,7 @@ var SummaryView = function(container, model) {
                         </div>
                     </div>
                 `)
-        
+
         })
     }
 
@@ -79,7 +83,7 @@ var SummaryView = function(container, model) {
 
     //LOAD TOTAL GUEST
     var getTotalGuests = function() {
-        totalGuest.append(`My Dinner: ${totalGuests}  People`);
+        self.totalGuest.append(`My Dinner: ${totalGuests}  People`);
     }
     getTotalGuests();
 
@@ -103,7 +107,12 @@ var SummaryView = function(container, model) {
      * 
      */
 
+    this.update = function(data) {
+        totalGuests = model.getNumberOfGuests();
+        console.log(data);
 
+    }
+    model.addObserver(this);
 
 
 

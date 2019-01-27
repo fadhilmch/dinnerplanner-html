@@ -9,7 +9,7 @@ var GeneralController = function(arrViews) {
             case 'home':
                 arrViews['welcome'].show()
                 break
-            case 'select':
+            case 'search':
                 arrViews['select'].show();
                 arrViews['search'].show();
                 arrViews['sidebar'].show();

@@ -18,18 +18,24 @@ var SearchView = function(container, model) {
         setSearchTitle();
     }
 
+    // this.dishItem = container;
+
+
+    // register observer
+    model.addObserver(this);
+
     // Dropdown Select for Dishes Type
-    var showDropdownType = function(){
-    arrDishes.splice(0, 0, 'all');
-    arrDishes = arrDishes.map(dish => {
-        return dish.replace(
-            /\w\S*/g,
-            function(txt) {
-                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            }
-        );
-    });
-  }
+    var showDropdownType = function() {
+        arrDishes.splice(0, 0, 'all');
+        arrDishes = arrDishes.map(dish => {
+            return dish.replace(
+                /\w\S*/g,
+                function(txt) {
+                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                }
+            );
+        });
+    }
 
     for (var i = 0; i < arrDishes.length; i++) {
         dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
@@ -38,7 +44,7 @@ var SearchView = function(container, model) {
     // Menu Wrapper
     var showDishesChoice = function() {
         allDishes.forEach(dish => {
-            menuWrapper.append(`
+        menuWrapper.append(`
           <div class="col-sm-6 col-md-3 col-lg-2">
             <div class="menu">
               <img src="images/${dish.image}" alt="${dish.name}">
@@ -53,7 +59,6 @@ var SearchView = function(container, model) {
 
 
     var setSearchTitle = function() {
-        console.log('fdlsfj')
         searchTitle.html('Find a Dish');
         if (allMenu.length === 0)
             searchTitle.html('Find a Dish');
@@ -63,4 +68,11 @@ var SearchView = function(container, model) {
 
     initialize();
     showDishesChoice();
+
+    //update observer
+    // this.update = function(obj){
+
+    // }
+
+
 }
