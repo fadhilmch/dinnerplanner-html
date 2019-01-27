@@ -67,27 +67,14 @@ var SidebarView = function(container, model) {
 
     initialize();
     showSidebar();
-<<<<<<< HEAD
-		calculateTotalCost();
-		
-		this.update = function(data){
-			console.log(data)
-			totalGuests = model.getNumberOfGuests();
-			showSidebar();
-			calculateTotalCost();
-		 }
-		 
-		model.addObserver(this);
-=======
     calculateTotalCost();
-
-    this.update = function(data) {
+    
+    this.update = function(data){
+        console.log(data)
         totalGuests = model.getNumberOfGuests();
         showSidebar();
         calculateTotalCost();
-        console.log(data)
-    }
-
+        }
+        
     model.addObserver(this);
->>>>>>> 820d960389870e345b909fd286fbc004ffcc94c0
 }
