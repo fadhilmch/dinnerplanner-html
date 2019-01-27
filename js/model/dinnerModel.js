@@ -18,6 +18,15 @@ var DinnerModel = function() {
 			observer.update(self);
 		})
 	}
+
+	Object.defineProperty(this,"heading",{
+    get: function() { return totalGuests; },
+    // set: function(value) { 
+    //   heading = value; 
+    //   //call notifyAll in the assignment function     
+    //   this.notifyAll();
+    // }
+  });
  
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
