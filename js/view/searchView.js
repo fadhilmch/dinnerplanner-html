@@ -39,6 +39,7 @@ var SearchView = function(container, model) {
             self.dishType.append(`<option>${arrDishes[i]} </option>`);
         }
     }
+    
     // Menu Wrapper
     var showDishesChoice = function() {
            console.log('All DIshes')

@@ -14,4 +14,5 @@ var SearchController = function(container, model, controller) {
         console.log("menu clicked");
     })
 
+
 }
