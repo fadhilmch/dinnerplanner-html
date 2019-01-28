@@ -113,18 +113,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id='menu-wrapper' class="row center">
+                            <div id='menu-wrapper' class="row center">  
                             </div>
                         </div>
+                        <div id='dishItemView'>
+                         <div id ='item-dish'></div>
+                         </div>
                         <div id="detailView">
                             <div class="row">
                                 <div class="col-md-4" style="padding-bottom: 30px">
                                     <div id='dish-wrapper'></div>
+                                    <a id ='backtoSearch'href="#" class="btn btn-warning">Back to Search</a>
                                 </div>
                                 <div class="col-md-8" style="padding-bottom: 20px">
                                     <div style="background-color: #FFFFE0">
                                         <div style="padding-top: 10px">
-                                            <h5 class="left" id='guestIngredients' style="padding-left: 10px"></h5>
+                                            <div id='guestIngredients'>
+                                            <h5 class="left"  style="padding-left: 10px"></h5></div>
                                             <div class="left" style="padding-left: 10px">
                                                 <div class="table-responsive">
                                                     <table class="table" style="background-color: #FFFFE0">
@@ -133,7 +138,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <a href="#" class="btn btn-warning left" style="margin:10px">Add to Menu</a>
+                                            <a id ='addToMenu'href="#" class="btn btn-warning left" style="margin:10px">Add to Menu</a>
                                         </div>
                                     </div>
                                 </div>
@@ -141,8 +146,10 @@
                             <div style="padding: : 10px">
                                 <h4 style='padding-left: 10px'>PREPARATION</h4>
                                 <div style="padding: 10px">
-                                    <p id="dish-preparation">
+                                    <div id="dish-preparation">
+                                    <p>
                                     </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -210,6 +217,7 @@
         <script src="js/app.js"></script>
         <script src="js/model/dinnerModel.js"></script>
         <script src="js/view/homeView.js"></script>
+         <script src="js/view/dishItemView.js"></script>
         <script src="js/view/selectView.js"></script>
         <script src="js/view/sidebarView.js"></script>
         <script src="js/view/searchView.js"></script>

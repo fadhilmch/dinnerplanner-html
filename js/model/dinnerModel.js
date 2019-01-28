@@ -7,6 +7,8 @@ var DinnerModel = function() {
     var menu = new Array();
     var filterType = "all";
     var filterName = "";
+    var dishId;
+    var currentDishId;
 
     this.observers = new Array();
 
@@ -55,6 +57,21 @@ var DinnerModel = function() {
 
     this.getFilterName = (name) => {
         return filterName;
+    }
+
+    this.setDishId = (id) =>{
+        dishId = id;
+    }
+    this.getDishId = (id) =>{
+        return dishId;
+    }
+
+    this.setCurrentDishId = (cur) =>{
+        currentDishId = cur;
+    }
+
+    this.getCurrentDishId = (cur) =>{
+        return currentDishId;
     }
 
 
@@ -201,6 +218,9 @@ var DinnerModel = function() {
         })
         return dishType;
     }
+
+
+
 
     // this.getAllDishes = function() {
     //     return dishes;

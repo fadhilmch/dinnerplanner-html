@@ -39,19 +39,20 @@ var SearchView = function(container, model) {
             self.dishType.append(`<option>${arrDishes[i]} </option>`);
         }
     }
-    
+
+
     // Menu Wrapper
     var showDishesChoice = function() {
-           console.log('All DIshes')
+    console.log('All DIshes')
     console.log(allDishes);
         self.menuWrapper.children().remove();
         allDishes.forEach(dish => {
             self.menuWrapper.append(`
           <div class="col-sm-6 col-md-3 col-lg-2">
-            <div class="menu">
-              <img src="images/${dish.image}" alt="${dish.name}">
+            <div class="menu"}>
+              <img src="images/${dish.image}" alt="${dish.id}">
               <div class="caption">
-                <h5>${dish.name}</h5>
+                <h5>${dish.name} </h5>
               </div>
             </div>
           </div>
@@ -87,10 +88,9 @@ var SearchView = function(container, model) {
     this.update = function(data) {
         allDishes = model.getAllDishes(model.getFilterType(),model.getFilterName());
         showDishesChoice();
-        // model.getAllDishes(this.dishType.val().toLowerCase(), this.searchInput.val());
-        // showFilterDishes(this.dishType.val(), this.searchInput.val());
-        //console.log(model.getAllDishes(this.dishType.val().toLowerCase(), this.searchInput.val()));
-
+        model.getCurrentDishId();
+        console.log( model.getCurrentDishId());
+        
 
     }
 

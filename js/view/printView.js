@@ -87,7 +87,7 @@ var PrintView = function(container, model) {
     }
 
     loadPrintMenu();
-      getTotalGuests();
+    getTotalGuests();
 
 
     this.update = function(data) {

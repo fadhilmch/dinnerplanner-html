@@ -11,6 +11,7 @@ $(function() {
 	var detail = $('#detailView');
 	var summary = $('#summaryView');
 	var print = $('#printView');
+	var dishItem = $('#item-dish');
 
 	//initialize all view
 	var dinnerPlannerView = function(){
@@ -45,6 +46,8 @@ $(function() {
 	var summaryView = new SummaryView(summary, model);
 
 	var printView = new PrintView(print, model);
+
+	var dishItemView = new DishItemView(dishItem, model);
 
 
 	//initialize all view
