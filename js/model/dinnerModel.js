@@ -5,6 +5,8 @@ var DinnerModel = function() {
     var self = this;
     var totalGuests = 1;
     var menu = new Array();
+    var filterType = "all";
+    var filterName = "";
 
     this.observers = new Array();
 
@@ -38,6 +40,22 @@ var DinnerModel = function() {
 
     //TODO Lab 1 implement the data structure that will hold number of guest
     // and selected dishes for the dinner menu
+
+    this.setFilterType = (type) => {
+        filterType = type;
+    }
+
+    this.getFilterType = (type) => {
+        return filterType;
+    }
+
+    this.setFilterName = (name) => {
+        filterName = name;
+    }
+
+    this.getFilterName = (name) => {
+        return filterName;
+    }
 
 
     this.setNumberOfGuests = function(num) {
@@ -141,8 +159,13 @@ var DinnerModel = function() {
     //you can use the filter argument to filter out the dish by name or ingredient (use for search)
     //if you don't pass any filter all the dishes will be returned
     this.getAllDishes = function(type, filter) {
+        console.log(`type: ${type}, filter ${filter}`)
         return dishes.filter(function(dish) {
             var found = true;
+            if(filter=="" && type=="all"){
+                console.log('masuk')
+                return true;
+            }
             if (filter) {
                 found = false;
                 dish.ingredients.forEach(function(ingredient) {
@@ -150,13 +173,16 @@ var DinnerModel = function() {
                         found = true;
                     }
                 });
+
                 if (dish.name.indexOf(filter) != -1) {
                     found = true;
                 }
             }
+
             return dish.type == type && found;
         });
     }
+    
 
     //function that returns a dish of specific ID
     this.getDish = function(id) {
@@ -176,12 +202,9 @@ var DinnerModel = function() {
         return dishType;
     }
 
-    this.getAllDishes = function() {
-        return dishes;
-    }
-
-
-
+    // this.getAllDishes = function() {
+    //     return dishes;
+    // }
 
 
     // the dishes variable contains an array of all the 

@@ -87,6 +87,8 @@ var PrintView = function(container, model) {
     }
 
     loadPrintMenu();
+      getTotalGuests();
+
 
     this.update = function(data) {
         totalGuests = model.getNumberOfGuests();

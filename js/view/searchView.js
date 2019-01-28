@@ -1,22 +1,19 @@
 var SearchView = function(container, model) {
     var self = this;
-    // Get from model
-    var allDishes = model.getAllDishes();
-    var arrDishes = model.getDishType();
-    var allMenu = model.getFullMenu();
-  //  var filterMenu = model.getAllDishes('starter', 'toast');
+
 
     // Initialize Component
     this.dishType = container.find('#dishType');
     this.menuWrapper = container.find('#menu-wrapper');
     this.searchButton = container.find('#search-btn');
-    this.searchInput = container.find('#search-input');
     this.searchTitle = container.find('#search-title');
-    
+    this.searchInput = container.find('#search-input');
 
-
-    // this.searchInput= document.getElementById("#search-input");
-    //this.dishType.value ="starter";
+    // Get from model
+    var allDishes = model.getAllDishes(model.getFilterType(),model.getFilterName());
+    // console.log(model.getFilterType + model.getFilterName + 'fdkfjdkj')
+    var arrDishes = model.getDishType();
+    var allMenu = model.getFullMenu();
 
 
     // Initialize function
@@ -37,16 +34,18 @@ var SearchView = function(container, model) {
                 }
             );
         });
-    }
 
-    for (var i = 0; i < arrDishes.length; i++) {
-        self.dishType.append(`<li class="dropdown-item">${arrDishes[i]}</a></li>`);
+        for (var i = 0; i < arrDishes.length; i++) {
+            self.dishType.append(`<option>${arrDishes[i]} </option>`);
+        }
     }
-
     // Menu Wrapper
     var showDishesChoice = function() {
+           console.log('All DIshes')
+    console.log(allDishes);
+        self.menuWrapper.children().remove();
         allDishes.forEach(dish => {
-        self.menuWrapper.append(`
+            self.menuWrapper.append(`
           <div class="col-sm-6 col-md-3 col-lg-2">
             <div class="menu">
               <img src="images/${dish.image}" alt="${dish.name}">
@@ -59,22 +58,6 @@ var SearchView = function(container, model) {
         })
     }
 
-    //Show filter dishes
-    var showFilterDishes = function(starter){
-        console.log(model.getAllDishes(starter));
-        model.getAllDishes(starter).forEach(dish => {
-        self.menuWrapper.append(`
-          <div class="col-sm-6 col-md-3 col-lg-2">
-            <div class="menu">
-              <img src="images/${dish.image}" alt="${dish.name}">
-              <div class="caption">
-                <h5>${dish.name}</h5>
-              </div>
-            </div>
-          </div>
-        `)
-        })
-    }
 
 
     var setSearchTitle = function() {
@@ -85,20 +68,32 @@ var SearchView = function(container, model) {
             self.searchTitle.html('Add another dish');
     }
 
-   
+    var selectDishType = function() {
+        var type = self.dishType.value;
+        console.log("type" + type);
+    }
+    //selectDishType();
+
 
 
     initialize();
     showDishesChoice();
-    // // showFilterDishes();
+
+
 
 
     //update observer
     this.update = function(data) {
-        console.log(data)
+        allDishes = model.getAllDishes(model.getFilterType(),model.getFilterName());
+        showDishesChoice();
+        // model.getAllDishes(this.dishType.val().toLowerCase(), this.searchInput.val());
+        // showFilterDishes(this.dishType.val(), this.searchInput.val());
+        //console.log(model.getAllDishes(this.dishType.val().toLowerCase(), this.searchInput.val()));
+
+
     }
 
-  // register observer
+    // register observer
     model.addObserver(this);
 
 }

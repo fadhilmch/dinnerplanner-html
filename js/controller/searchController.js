@@ -1,18 +1,17 @@
 var SearchController = function(container, model, controller) {
+    container.searchButton.click(function() {
+        // var filter = model.getAllDishes(container.dishType.val().toLowerCase(),container.searchInput.val());
+        // model.notifyObserver();
+        // console.log(filter);
+        model.setFilterName(container.searchInput.val());
+        model.setFilterType(container.dishType.val().toLowerCase());
+        model.notifyObserver();
 
-  	
-	
-	container.dishType.click(function(){
-		console.log("dishType clicked")
-	})
 
-	container.searchButton.click(function(){
-		console.log(container.searchInput.value);
-		console.log(container.dishType.value);
-	})
+    })
 
-	container.menuWrapper.click(function(){
-		console.log("menu clicked");	
-	})
+    container.menuWrapper.click(function() {
+        console.log("menu clicked");
+    })
 
 }

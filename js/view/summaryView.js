@@ -110,7 +110,9 @@ var SummaryView = function(container, model) {
         `);
     }
 
-        loadAllMenuOverview();
+         loadAllMenuOverview();
+         getTotalMenuPrice();
+         getTotalGuests();
       
 
 
