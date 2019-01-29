@@ -82,9 +82,9 @@
             self.ingredientsDish.children().remove();
             dishItem.ingredients.forEach(dish => {
                 self.ingredientsDish.append(`<tr>
-              <th scope="row">${dish.quantity*model.getNumberOfGuests() + dish.unit}</th>
+              <th scope="row">${dish.quantity*model.getNumberOfGuests() + " "+ dish.unit}</th>
               <td>${dish.name}</td>
-              <td>${Number(dish.price)*model.getNumberOfGuests()*dish.quantity}</td>
+              <td>${(Number(dish.price)*model.getNumberOfGuests()*dish.quantity).toFixed(2)}</td>
               <td>SEK</td>
             </tr>`)
             })
