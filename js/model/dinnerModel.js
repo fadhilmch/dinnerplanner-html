@@ -59,18 +59,18 @@ var DinnerModel = function() {
         return filterName;
     }
 
-    this.setDishId = (id) =>{
+    this.setDishId = (id) => {
         dishId = id;
     }
-    this.getDishId = (id) =>{
+    this.getDishId = (id) => {
         return dishId;
     }
 
-    this.setCurrentDishId = (cur) =>{
+    this.setCurrentDishId = (cur) => {
         currentDishId = cur;
     }
 
-    this.getCurrentDishId = (cur) =>{
+    this.getCurrentDishId = (cur) => {
         return currentDishId;
     }
 
@@ -114,17 +114,19 @@ var DinnerModel = function() {
         //TODO Lab 1
 
         // Method 1 - Using Map and Reduce
-        return totalGuests * menu.map(dish => {
-                return dish.ingredients.map(ingredient => {
-                        return ingredient.quantity * ingredient.price;
-                    })
-                    .reduce((acc, cur) => {
-                        return acc + cur;
-                    });
-            })
-            .reduce((acc, cur) => {
-                return acc + cur;
-            });
+        if (this.getFullMenu().length > 0) {
+            return totalGuests * menu.map(dish => {
+                    return dish.ingredients.map(ingredient => {
+                            return ingredient.quantity * ingredient.price;
+                        })
+                        .reduce((acc, cur) => {
+                            return acc + cur;
+                        });
+                })
+                .reduce((acc, cur) => {
+                    return acc + cur;
+                });
+        }
 
     }
 
@@ -136,19 +138,19 @@ var DinnerModel = function() {
     var totalPerMenu = 0;
 
     menu.forEach(dish => {
-    	var totalPerIngredient = 0;
-		
-    	dish.ingredients.forEach(ingredient => {
-    		totalPerIngredient += ingredient.quantity * ingredient.price;
-    	})
+        var totalPerIngredient = 0;
+        
+        dish.ingredients.forEach(ingredient => {
+            totalPerIngredient += ingredient.quantity * ingredient.price;
+        })
 
-    	totalPerMenu += totalPerIngredient;
+        totalPerMenu += totalPerIngredient;
     })
 
     return totalGuests * totalPerMenu
     */
 
- //function that returns a dish of specific ID
+    //function that returns a dish of specific ID
     this.getDish = function(id) {
         for (key in dishes) {
             if (dishes[key].id == id) {
@@ -156,7 +158,7 @@ var DinnerModel = function() {
             }
         }
     }
-    
+
     //Adds the passed dish to the menu. If the dish of that type already exists on the menu
     //it is removed from the menu and the new one added.
     this.addDishToMenu = function(id) {
@@ -186,7 +188,7 @@ var DinnerModel = function() {
     this.getAllDishes = function(type, filter) {
         return dishes.filter(function(dish) {
             var found = true;
-            if(filter=="" && type=="all"){
+            if (filter == "" && type == "all") {
                 return true;
             }
             if (filter) {
@@ -205,9 +207,9 @@ var DinnerModel = function() {
             return dish.type == type && found;
         });
     }
-    
 
-   
+
+
 
     this.getDishType = function() {
         var dishType = new Array();

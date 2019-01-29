@@ -2,8 +2,8 @@ var SidebarView = function(container, model) {
     var self = this;
 
     // Dummy Data
-    model.addDishToMenu(1);
-    model.addDishToMenu(100);
+    //model.addDishToMenu(1);
+    //model.addDishToMenu(100);
 
     // Get from model
     var allMenu = model.getFullMenu();
@@ -30,8 +30,10 @@ var SidebarView = function(container, model) {
 
     // Total Cost
     var calculateTotalCost = function() {
+        if(allMenu.length>0){
         self.totalCost.html(`SEK ${Number(totalPrice).toFixed(2)}`);
         self.navPrice.html(`SEK ${Number(totalPrice).toFixed(2)}`);
+        }
     }
 
     // Confirm button
@@ -39,11 +41,15 @@ var SidebarView = function(container, model) {
         if (allMenu.length > 0) {
             self.confirmButton.prop('disabled', false);
         }
+
     }
+
+    console.log(allMenu);
 
     // Table Sidebar
     var showSidebar = function() {
         self.menuTable.children().remove();
+        if(allMenu.length >0){
         allMenu.forEach(dish => {
             self.menuTable.append(`                         
                 <tr>
@@ -62,6 +68,7 @@ var SidebarView = function(container, model) {
                 </tr>
             `);
         })
+        }
     }
 
 
@@ -74,6 +81,7 @@ var SidebarView = function(container, model) {
         totalGuests = model.getNumberOfGuests();
         totalPrice = model.getTotalMenuPrice();
         allMenu = model.getFullMenu();
+        setConfimButtonStatus();
         showSidebar();
         calculateTotalCost();
        

@@ -47,8 +47,8 @@ var SearchView = function(container, model) {
         allDishes.forEach(dish => {
             self.menuWrapper.append(`
           <div class="col-sm-6 col-md-3 col-lg-2">
-            <div class="menu"}>
-              <img src="images/${dish.image}" alt="${dish.id}">
+            <div class="menu" }>
+              <img src="images/${dish.image}" alt="${dish.id}" >
               <div class="caption">
                 <h5>${dish.name} </h5>
               </div>

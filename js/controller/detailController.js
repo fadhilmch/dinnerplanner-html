@@ -7,6 +7,7 @@ var DetailController = function(view, model, controller){
   })
 	view.btnBack.click(function() {
 		controller.goToPage('search');
+		 model.notifyObserver();
 
     })
 
