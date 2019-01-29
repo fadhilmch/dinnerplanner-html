@@ -84,8 +84,8 @@
                 self.ingredientsDish.append(`<tr>
               <th scope="row">${dish.quantity*model.getNumberOfGuests() + dish.unit}</th>
               <td>${dish.name}</td>
-              <td>SEK</td>
               <td>${Number(dish.price)*model.getNumberOfGuests()*dish.quantity}</td>
+              <td>SEK</td>
             </tr>`)
             })
         }
