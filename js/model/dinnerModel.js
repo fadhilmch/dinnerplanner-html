@@ -148,7 +148,15 @@ var DinnerModel = function() {
     return totalGuests * totalPerMenu
     */
 
-
+ //function that returns a dish of specific ID
+    this.getDish = function(id) {
+        for (key in dishes) {
+            if (dishes[key].id == id) {
+                return dishes[key];
+            }
+        }
+    }
+    
     //Adds the passed dish to the menu. If the dish of that type already exists on the menu
     //it is removed from the menu and the new one added.
     this.addDishToMenu = function(id) {
@@ -176,11 +184,9 @@ var DinnerModel = function() {
     //you can use the filter argument to filter out the dish by name or ingredient (use for search)
     //if you don't pass any filter all the dishes will be returned
     this.getAllDishes = function(type, filter) {
-        console.log(`type: ${type}, filter ${filter}`)
         return dishes.filter(function(dish) {
             var found = true;
             if(filter=="" && type=="all"){
-                console.log('masuk')
                 return true;
             }
             if (filter) {
@@ -201,14 +207,7 @@ var DinnerModel = function() {
     }
     
 
-    //function that returns a dish of specific ID
-    this.getDish = function(id) {
-        for (key in dishes) {
-            if (dishes[key].id == id) {
-                return dishes[key];
-            }
-        }
-    }
+   
 
     this.getDishType = function() {
         var dishType = new Array();

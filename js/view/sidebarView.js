@@ -68,11 +68,12 @@ var SidebarView = function(container, model) {
     initialize();
     showSidebar();
     calculateTotalCost();
+    console.log(allMenu);
     
     this.update = function(data){
-        console.log(data)
         totalGuests = model.getNumberOfGuests();
         totalPrice = model.getTotalMenuPrice();
+        allMenu = model.getFullMenu();
         showSidebar();
         calculateTotalCost();
        

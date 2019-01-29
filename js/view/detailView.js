@@ -36,12 +36,8 @@
 
         var self = this;
         // Dummy Data
-        model.addDishToMenu(1);
-        model.addDishToMenu(100);
+       
         var cur = model.getCurrentDishId();
-        var getDish = model.getDish(1);
-
-
 
 
         // Get from model
@@ -61,10 +57,6 @@
         this.btnBack = container.find('#backtoSearch');
         this.addToMenu = container.find('#addToMenu');
 
-
-        // ===========================
-        //          dishdetails.html 
-        // ===========================
 
         //LOAD DETAIL SELECTED MENU
         var loadSelectedDish = function() {
@@ -90,10 +82,10 @@
             self.ingredientsDish.children().remove();
             dishItem.ingredients.forEach(dish => {
                 self.ingredientsDish.append(`<tr>
-              <th scope="row">${dish.quantity + dish.unit}</th>
+              <th scope="row">${dish.quantity*model.getNumberOfGuests() + dish.unit}</th>
               <td>${dish.name}</td>
               <td>SEK</td>
-              <td>${dish.price}</td>
+              <td>${Number(dish.price)*model.getNumberOfGuests()*dish.quantity}</td>
             </tr>`)
             })
         }
@@ -108,19 +100,19 @@
 
         var getGuest = function() {
             self.people.children().remove();
-            self.people.append(`<h5 class="left" style="padding-left: 10px"> INGREDIENTS FOR ${totalGuests}  PEOPLE</h5></div>`);
+            self.people.append(`<h5 class="left" style="padding-left: 10px"> INGREDIENTS FOR ${model.getNumberOfGuests()}  PEOPLE</h5></div>`);
         }
 
         getGuest();
         model.getCurrentDishId();
-        console.log(model.getCurrentDishId());
 
+      
 
         //update observer
         this.update = function(data) {
             model.getCurrentDishId();
-            totalGuests = model.getNumberOfGuests();
-            console.log(model.getCurrentDishId());
+            model.getNumberOfGuests();
+            getGuest();
             loadSelectedDish();
             loadIngredients();
             loadPreparation();

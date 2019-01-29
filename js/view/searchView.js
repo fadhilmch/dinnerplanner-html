@@ -43,8 +43,6 @@ var SearchView = function(container, model) {
 
     // Menu Wrapper
     var showDishesChoice = function() {
-    console.log('All DIshes')
-    console.log(allDishes);
         self.menuWrapper.children().remove();
         allDishes.forEach(dish => {
             self.menuWrapper.append(`
@@ -82,15 +80,10 @@ var SearchView = function(container, model) {
     showDishesChoice();
 
 
-
-
     //update observer
     this.update = function(data) {
         allDishes = model.getAllDishes(model.getFilterType(),model.getFilterName());
         showDishesChoice();
-        model.getCurrentDishId();
-        console.log( model.getCurrentDishId());
-        
 
     }
 

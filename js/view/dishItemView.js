@@ -16,7 +16,6 @@ var DishItemView = function(container, model) {
         var self = this;
         //initialize model
         var getItem = model.getDish(1); 
-        console.log(getItem);
         //initialize component
         this.itemDish = container.find("#item-dish");
 
