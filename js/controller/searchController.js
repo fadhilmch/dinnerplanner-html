@@ -8,13 +8,16 @@ var SearchController = function(view, model, generalController) {
 
     view.menuWrapper.click((e) => {
         var id = e.target.accessKey;
+        console.log(e.target);
         model.setCurrentDishId(id);
         model.getFullMenu();
         model.setFilterName("");
         model.setFilterType("all");
         view.dishType.prop("selectedIndex", 0);
-        generalController.goToPage('detail');
         model.notifyObserver();
+        if(id != null){
+             generalController.goToPage('detail');
+        }
 
     })
 

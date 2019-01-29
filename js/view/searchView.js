@@ -45,7 +45,7 @@ var SearchView = function(container, model) {
         self.menuWrapper.children().remove();
         allDishes.forEach(dish => {
             self.menuWrapper.append(`
-          <div class="col-sm-6 col-md-3 col-lg-2">
+          <div class="col-sm-6 col-md-3 col-lg-2" accessKey="${dish.id}">
             <div class="menu">
               <img src="images/${dish.image}" accessKey="${dish.id}">
               <div class="caption" alt="${dish.id}" >
@@ -73,8 +73,6 @@ var SearchView = function(container, model) {
         console.log("type" + type);
     }
     //selectDishType();
-
-
 
     initialize();
     showDishesChoice();
