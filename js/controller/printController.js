@@ -1,7 +1,7 @@
-var PrintController = function(container, model, controller){
+var PrintController = function(view, model, generalController){
 	
-	container.editfromPrint.click(function(){
-		controller.goToPage('search');
+	view.editfromPrint.click(() => {
+		generalController.goToPage('search');
 		
 	})
 }

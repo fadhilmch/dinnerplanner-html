@@ -10,7 +10,7 @@ var SearchView = function(container, model) {
     this.searchInput = container.find('#search-input');
 
     // Get from model
-    var allDishes = model.getAllDishes(model.getFilterType(),model.getFilterName());
+    var allDishes = model.getAllDishes(model.getFilterType(), model.getFilterName());
     var arrDishes = model.getDishType();
     var allMenu = model.getFullMenu();
 
@@ -64,8 +64,8 @@ var SearchView = function(container, model) {
         if (model.getFullMenu().length > 0)
             self.searchTitle.append(`<h4 class="left col-md-12">Add Another Dish</h4>`);
         else
-             self.searchTitle.append(`<h4 class="left col-md-12">Find a Dish</h4>`);
-       
+            self.searchTitle.append(`<h4 class="left col-md-12">Find a Dish</h4>`);
+
     }
 
     var selectDishType = function() {
@@ -82,7 +82,7 @@ var SearchView = function(container, model) {
 
     //update observer
     this.update = function(data) {
-        allDishes = model.getAllDishes(model.getFilterType(),model.getFilterName());
+        allDishes = model.getAllDishes(model.getFilterType(), model.getFilterName());
         showDishesChoice();
         model.getFullMenu();
         setSearchTitle();

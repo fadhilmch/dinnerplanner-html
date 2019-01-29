@@ -110,10 +110,10 @@ var SummaryView = function(container, model) {
         `);
     }
 
-         loadAllMenuOverview();
-         getTotalMenuPrice();
-         getTotalGuests();
-      
+    loadAllMenuOverview();
+    getTotalMenuPrice();
+    getTotalGuests();
+
 
 
     this.update = function(data) {

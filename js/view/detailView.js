@@ -36,7 +36,7 @@
 
         var self = this;
         // Dummy Data
-       
+
         var cur = model.getCurrentDishId();
 
 
@@ -106,7 +106,7 @@
         getGuest();
         model.getCurrentDishId();
 
-      
+
 
         //update observer
         this.update = function(data) {

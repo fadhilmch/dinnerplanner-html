@@ -1,7 +1,7 @@
-var HomeController = function (view, model, controller){
+var HomeController = function (view, model, generalController){
 
-	view.createDinner.click(function(){
-		controller.goToPage('search');
+	view.createDinner.click(() => {
+		generalController.goToPage('search');
 
 	})
 

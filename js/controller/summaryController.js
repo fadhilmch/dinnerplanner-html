@@ -1,19 +1,19 @@
-var SummaryController = function(container, model, controller){
+var SummaryController = function(view, model, generalController) {
 
-	container.totalGuest.change((e) =>{
-    model.setNumberOfGuests($(e.target).val());
-    model.notifyObserver();
+    view.totalGuest.change((e) => {
+        model.setNumberOfGuests($(e.target).val());
+        model.notifyObserver();
 
-  })
+    })
 
-	container.printReceipt.click(function(){
-		controller.goToPage('print');
-	})
+    view.printReceipt.click(() => {
+        generalController.goToPage('print');
+    })
 
-	container.editfromSummary.click(function(){
-		controller.goToPage('search');
-		
-	})
+    view.editfromSummary.click(() => {
+        generalController.goToPage('search');
+
+    })
 
 
 

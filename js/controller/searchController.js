@@ -1,21 +1,21 @@
-var SearchController = function(container, model, controller) {
-    container.searchButton.click(function() {
-        model.setFilterName(container.searchInput.val());
-        model.setFilterType(container.dishType.val().toLowerCase());
+var SearchController = function(view, model, generalController) {
+    view.searchButton.click(() => {
+        model.setFilterName(view.searchInput.val());
+        model.setFilterType(view.dishType.val().toLowerCase());
         model.notifyObserver();
 
     })
 
-    container.menuWrapper.click(function(e) {
-    	var id= e.target.accessKey;
-    	model.setCurrentDishId(id);
+    view.menuWrapper.click((e) => {
+        var id = e.target.accessKey;
+        model.setCurrentDishId(id);
         model.getFullMenu();
         model.setFilterName("");
         model.setFilterType("all");
-        container.dishType.prop("selectedIndex", 0);
-        controller.goToPage('detail');
+        view.dishType.prop("selectedIndex", 0);
+        generalController.goToPage('detail');
         model.notifyObserver();
-      
+
     })
 
 
