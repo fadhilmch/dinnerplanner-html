@@ -44,7 +44,6 @@ var SidebarView = function(container, model) {
 
     }
 
-    console.log(allMenu);
 
     // Table Sidebar
     var showSidebar = function() {
@@ -75,7 +74,6 @@ var SidebarView = function(container, model) {
     initialize();
     showSidebar();
     calculateTotalCost();
-    console.log(allMenu);
     
     this.update = function(data){
         totalGuests = model.getNumberOfGuests();

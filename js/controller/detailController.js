@@ -8,17 +8,13 @@ var DetailController = function(view, model, controller){
 	view.btnBack.click(function() {
 	    controller.goToPage('search');
 		model.getFullMenu();
-		console.log(model.getFullMenu());
 		model.notifyObserver();
 
     })
 
 	view.addToMenu.click(function(){
 		var cur =model.getCurrentDishId();
-		console.log(model.getFullMenu());
-		 console.log(cur);
 		 model.addDishToMenu(Number(cur));
-		 console.log(model.getFullMenu());
 		 model.notifyObserver();
 
 	})

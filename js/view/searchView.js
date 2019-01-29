@@ -46,10 +46,10 @@ var SearchView = function(container, model) {
         allDishes.forEach(dish => {
             self.menuWrapper.append(`
           <div class="col-sm-6 col-md-3 col-lg-2">
-            <div class="menu" }>
-              <img src="images/${dish.image}" alt="${dish.id}" >
-              <div class="caption">
-                <h5>${dish.name} </h5>
+            <div class="menu">
+              <img src="images/${dish.image}" accessKey="${dish.id}">
+              <div class="caption" alt="${dish.id}" >
+                <h5 accessKey ="${dish.id}">${dish.name} </h5>
               </div>
             </div>
           </div>
@@ -85,7 +85,6 @@ var SearchView = function(container, model) {
         allDishes = model.getAllDishes(model.getFilterType(),model.getFilterName());
         showDishesChoice();
         model.getFullMenu();
-        console.log(model.getFullMenu());
         setSearchTitle();
 
     }

@@ -7,7 +7,7 @@ var SearchController = function(container, model, controller) {
     })
 
     container.menuWrapper.click(function(e) {
-    	var id= $(e.target)["0"].alt;
+    	var id= e.target.accessKey;
     	model.setCurrentDishId(id);
         model.getFullMenu();
         model.setFilterName("");
