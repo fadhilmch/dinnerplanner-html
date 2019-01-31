@@ -35,7 +35,7 @@ var SearchView = function(container, model) {
         });
 
         for (var i = 0; i < arrDishes.length; i++) {
-            self.dishType.append(`<option>${arrDishes[i]} </option>`);
+            self.dishType.append(`<option ${(arrDishes[i]===model.getFilterType())?'selected':''}>${arrDishes[i]} </option>`);
         }
     }
 

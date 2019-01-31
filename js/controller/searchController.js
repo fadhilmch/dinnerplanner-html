@@ -3,11 +3,10 @@ var SearchController = function(view, model, generalController) {
         model.setFilterName(view.searchInput.val());
         model.setFilterType(view.dishType.val().toLowerCase());
         model.notifyObserver();
-
     })
 
     view.menuWrapper.click((e) => {
-        var id = e.target.accessKey;
+				var id = e.target.accessKey;
         console.log(e.target);
         model.setCurrentDishId(id);
         model.getFullMenu();
