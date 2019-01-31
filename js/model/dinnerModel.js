@@ -1,4 +1,5 @@
-//DinnerModel Object constructor
+'use strict'
+
 var DinnerModel = function() {
 
     // Initialize Variable
@@ -16,6 +17,7 @@ var DinnerModel = function() {
     this.addObserver = function(observer) {
         self.observers.push(observer);
     }
+
     //Iterate over observers, calling their update method
     this.notifyObserver = function() {
         self.observers.forEach(function(observer) {
@@ -29,25 +31,11 @@ var DinnerModel = function() {
         })
     }
 
-
-
-    Object.defineProperty(this, "heading", {
-        get: function() { return totalGuests; },
-        // set: function(value) { 
-        //   heading = value; 
-        //   //call notifyAll in the assignment function     
-        //   this.notifyAll();
-        // }
-    });
-
-    //TODO Lab 1 implement the data structure that will hold number of guest
-    // and selected dishes for the dinner menu
-
     this.setFilterType = (type) => {
         filterType = type;
     }
 
-    this.getFilterType = (type) => {
+    this.getFilterType = () => {
         return filterType;
     }
 
@@ -55,14 +43,15 @@ var DinnerModel = function() {
         filterName = name;
     }
 
-    this.getFilterName = (name) => {
+    this.getFilterName = () => {
         return filterName;
     }
 
     this.setDishId = (id) => {
         dishId = id;
     }
-    this.getDishId = (id) => {
+
+    this.getDishId = () => {
         return dishId;
     }
 
@@ -70,24 +59,20 @@ var DinnerModel = function() {
         currentDishId = cur;
     }
 
-    this.getCurrentDishId = (cur) => {
+    this.getCurrentDishId = () => {
         return currentDishId;
     }
 
-
     this.setNumberOfGuests = function(num) {
-        //TODO Lab 1
         totalGuests = num;
     }
 
     this.getNumberOfGuests = function() {
-        //TODO Lab 1
         return totalGuests;
     }
 
     //Returns the dish that is on the menu for selected type 
     this.getSelectedDish = function(type) {
-        //TODO Lab 1
         return menu.filter(dish => {
             return dish.type === type;
         })
@@ -95,25 +80,18 @@ var DinnerModel = function() {
 
     //Returns all the dishes on the menu.
     this.getFullMenu = function() {
-        //TODO Lab 1
         return menu;
     }
 
     //Returns all ingredients for all the dishes on the menu.
     this.getAllIngredients = function() {
-        //TODO Lab 1
         return menu.map(dish => {
             return dish.ingredients;
         })
     }
 
-
-
     //Returns the total price of the menu (all the ingredients multiplied by number of guests).
     this.getTotalMenuPrice = function() {
-        //TODO Lab 1
-
-        // Method 1 - Using Map and Reduce
         if (this.getFullMenu().length > 0) {
             return totalGuests * menu.map(dish => {
                     return dish.ingredients.map(ingredient => {
@@ -130,29 +108,9 @@ var DinnerModel = function() {
 
     }
 
-
-
-    /*
-    // Method 2 - Using For Each
-
-    var totalPerMenu = 0;
-
-    menu.forEach(dish => {
-        var totalPerIngredient = 0;
-        
-        dish.ingredients.forEach(ingredient => {
-            totalPerIngredient += ingredient.quantity * ingredient.price;
-        })
-
-        totalPerMenu += totalPerIngredient;
-    })
-
-    return totalGuests * totalPerMenu
-    */
-
     //function that returns a dish of specific ID
     this.getDish = function(id) {
-        for (key in dishes) {
+        for (let key in dishes) {
             if (dishes[key].id == id) {
                 return dishes[key];
             }
@@ -162,8 +120,7 @@ var DinnerModel = function() {
     //Adds the passed dish to the menu. If the dish of that type already exists on the menu
     //it is removed from the menu and the new one added.
     this.addDishToMenu = function(id) {
-        //TODO Lab 1 
-        dishType = this.getDish(id).type;
+        let dishType = this.getDish(id).type;
         menu = menu.filter(dish => {
             return dish.type !== dishType;
         })
@@ -176,7 +133,6 @@ var DinnerModel = function() {
 
     //Removes dish from menu
     this.removeDishFromMenu = function(id) {
-        //TODO Lab 1
         return menu.filter(dish => {
             return dish.id !== id;
         });
@@ -186,12 +142,13 @@ var DinnerModel = function() {
     //you can use the filter argument to filter out the dish by name or ingredient (use for search)
     //if you don't pass any filter all the dishes will be returned
     this.getAllDishes = function(type, filter) {
-        return dishes.filter(function(dish) {
+        console.log(`Type: ${type}, Query: ${filter}`)
+        return dishes.filter((dish) => {
             var found = true;
             if (filter == "" && type == "all") {
                 return true;
             }
-            if (filter) {
+            if (filter != "") {
                 found = false;
                 dish.ingredients.forEach(function(ingredient) {
                     if (ingredient.name.indexOf(filter) != -1) {
@@ -204,11 +161,9 @@ var DinnerModel = function() {
                 }
             }
 
-            return dish.type == type && found;
+            return type === 'all' ? found : dish.type == type && found;
         });
     }
-
-
 
 
     this.getDishType = function() {
@@ -220,22 +175,6 @@ var DinnerModel = function() {
         return dishType;
     }
 
-
-
-
-    // this.getAllDishes = function() {
-    //     return dishes;
-    // }
-
-
-    // the dishes variable contains an array of all the 
-    // dishes in the database. each dish has id, name, type,
-    // image (name of the image file), description and
-    // array of ingredients. Each ingredient has name, 
-    // quantity (a number), price (a number) and unit (string 
-    // defining the unit i.e. "g", "slices", "ml". Unit
-    // can sometimes be empty like in the example of eggs where
-    // you just say "5 eggs" and not "5 pieces of eggs" or anything else.
     var dishes = [{
         'id': 1,
         'name': 'French toast',

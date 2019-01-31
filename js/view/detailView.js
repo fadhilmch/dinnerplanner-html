@@ -35,18 +35,6 @@
          */
 
         var self = this;
-        // Dummy Data
-
-        var cur = model.getCurrentDishId();
-
-
-        // Get from model
-        var arrDishes = model.getDishType();
-        var allDishes = model.getAllDishes();
-        var allMenu = model.getFullMenu();
-        var totalPrice = model.getTotalMenuPrice();
-        var totalGuests = model.getNumberOfGuests();
-        var total = 0;
 
         //Initialize Component
         this.detailDish = container.find("#dish-wrapper");
@@ -62,16 +50,18 @@
         var loadSelectedDish = function() {
             var id = model.getCurrentDishId();
             var dish = model.getDish(id);
-            self.detailDish.children().remove();
-            self.detailDish.append(`<div>
-                    <h4>${dish.name.toUpperCase()}</h4>
-                    
-                        <img class="fitImage" alt="Responsive image" src="images/${dish.image}">
-                        <div>
-                            <p>${dish.description} </p>  </div>
-                            
-                    </div>
-                </div>`)
+            if(dish){
+                self.detailDish.children().remove();
+                self.detailDish.append(`<div>
+                        <h4>${dish.name.toUpperCase()}</h4>
+                        
+                            <img class="fitImage" alt="Responsive image" src="images/${dish.image}">
+                            <div>
+                                <p>${dish.description} </p>  </div>
+                                
+                        </div>
+                    </div>`)
+            }
 
         }
 
@@ -79,23 +69,27 @@
         var loadIngredients = function() {
             var id = model.getCurrentDishId();
             var dishItem = model.getDish(id);
-            self.ingredientsDish.children().remove();
-            dishItem.ingredients.forEach(dish => {
-                self.ingredientsDish.append(`<tr>
-              <th scope="row">${dish.quantity*model.getNumberOfGuests() + " "+ dish.unit}</th>
-              <td>${dish.name}</td>
-              <td>${(Number(dish.price)*model.getNumberOfGuests()*dish.quantity).toFixed(2)}</td>
-              <td>SEK</td>
-            </tr>`)
-            })
+            if(dishItem){
+                self.ingredientsDish.children().remove();
+                dishItem.ingredients.forEach(dish => {
+                    self.ingredientsDish.append(`<tr>
+                <th scope="row">${dish.quantity*model.getNumberOfGuests() + " "+ dish.unit}</th>
+                <td>${dish.name}</td>
+                <td>${(Number(dish.price)*model.getNumberOfGuests()*dish.quantity).toFixed(2)}</td>
+                <td>SEK</td>
+                </tr>`)
+                })
+            }
         }
 
 
         var loadPreparation = function() {
             var id = model.getCurrentDishId();
             var dish = model.getDish(id);
-            self.preparationTip.children().remove();
-            self.preparationTip.append(` <p>${dish.description} </p>`)
+            if(dish){
+                self.preparationTip.children().remove();
+                self.preparationTip.append(` <p>${dish.description} </p>`)
+            }
         }
 
         var getGuest = function() {

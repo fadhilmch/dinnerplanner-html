@@ -84,7 +84,6 @@ var SearchView = function(container, model) {
         showDishesChoice();
         model.getFullMenu();
         setSearchTitle();
-
     }
 
     // register observer

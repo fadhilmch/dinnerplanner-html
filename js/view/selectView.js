@@ -45,7 +45,7 @@ var SelectView = function(container, model) {
 
     // Get from model
     var arrDishes = model.getDishType();
-    var allDishes = model.getAllDishes();
+    var allDishes = model.getAllDishes(model.getFilterType(), model.getFilterName());
     var allMenu = model.getFullMenu();
     var totalPrice = model.getTotalMenuPrice();
     var totalGuests = model.getNumberOfGuests();
