@@ -1,14 +1,12 @@
+'use strict';
+
 var SidebarView = function(container, model) {
     var self = this;
-
-    // Dummy Data
-    //model.addDishToMenu(1);
-    //model.addDishToMenu(100);
 
     // Get from model
     var allMenu = model.getFullMenu();
     var totalPrice = model.getTotalMenuPrice();
-    var totalGuests = model.getNumberOfGuests();
+    var dishPrice = model.dishPrice;
 
     // Initialize variable
 
@@ -53,17 +51,7 @@ var SidebarView = function(container, model) {
                 self.menuTable.append(`                         
                 <tr>
                     <td>${dish.name}</td>
-                    <td>${
-                        Number(
-                            dish.ingredients.map(ingredient => {
-                                return ingredient.quantity * ingredient.price;
-                            })
-                            .reduce((acc, cur) => {
-                                return acc + cur;
-                            })
-                        ).toFixed(2)*totalGuests
-                    }
-                    </td>
+                    <td>${dishPrice(dish.id)}</td>
                 </tr>
             `);
             })
@@ -76,7 +64,7 @@ var SidebarView = function(container, model) {
     calculateTotalCost();
 
     this.update = function(data) {
-        totalGuests = model.getNumberOfGuests();
+        // totalGuests = model.getNumberOfGuests();
         totalPrice = model.getTotalMenuPrice();
         allMenu = model.getFullMenu();
         setConfimButtonStatus();

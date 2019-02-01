@@ -52,7 +52,7 @@ var PrintView = function(container, model) {
     getTotalGuests();
 
     this.update = function(data) {
-        totalGuests = model.getNumberOfGuests();
+        // totalGuests = model.getNumberOfGuests();
         totalPrice = model.getTotalMenuPrice();
         allMenu = model.getFullMenu();
         getTotalGuests();

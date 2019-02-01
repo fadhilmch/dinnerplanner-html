@@ -1,5 +1,8 @@
-var DetailController = function(view, model, generalController) {
+'use strict';
 
+var DetailController = function(view, model, generalController) {
+    model.totalGuests.addObserver(view);
+    
     view.people.change((e) => {
         model.setNumberOfGuests($(e.target).val());
         model.notifyObserver();
