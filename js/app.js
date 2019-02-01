@@ -1,7 +1,9 @@
+'use strict';
+
 $(function() {
-	//We instantiate our model
+	//instantiate our model
 	var model = new DinnerModel();
-	var dishView = new Object() 
+	var dishView = {}; 
 
 	//initialize component
 	var welcome = $('#welcomeView');
@@ -11,7 +13,6 @@ $(function() {
 	var detail = $('#detailView');
 	var summary = $('#summaryView');
 	var print = $('#printView');
-	var dishItem = $('#item-dish');
 
 	//instantiate all views
 	var dinnerPlannerView = function(){
@@ -25,9 +26,6 @@ $(function() {
 	}
 	
 	dinnerPlannerView();
-
-	// Initialize General Controller
-	var generalController = new GeneralController(dishView);
 
 	//Initialize First Page
 	var generalController = new GeneralController(dishView);
@@ -54,13 +52,4 @@ $(function() {
 	var printView = new PrintView(print, model);
 	var printController = new PrintController(printView, model, generalController);
 	
-
-
-	/**
-	 * IMPORTANT: app.js is the only place where you are allowed to
-	 * use the $('someSelector') to search for elements in the whole HTML.
-	 * In other places you should limit the search only to the children 
-	 * of the specific view you're working with (see exampleView.js).
-	 */
-
 });

@@ -1,10 +1,8 @@
+'use strict';
+
 var SummaryController = function(view, model, generalController) {
-
-    view.totalGuest.change((e) => {
-        model.setNumberOfGuests($(e.target).val());
-        model.notifyObserver();
-
-    })
+    model.selectedDish.addObserver(view);
+    model.totalGuests.addObserver(view);
 
     view.printReceipt.click(() => {
         generalController.goToPage('print');
@@ -14,7 +12,4 @@ var SummaryController = function(view, model, generalController) {
         generalController.goToPage('search');
 
     })
-
-
-
 }

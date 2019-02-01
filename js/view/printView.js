@@ -1,7 +1,8 @@
+'use strict';
+
 var PrintView = function(container, model) {
     // Get from model
     var allMenu = model.getFullMenu();
-    var totalGuests = model.getNumberOfGuests();
 
     //Initialize Component
     var totalGuestPrint = container.find("#guestPrint");
@@ -11,7 +12,7 @@ var PrintView = function(container, model) {
     //LOAD DATA OF TOTAL GUEST
     var getTotalGuests = function() {
         totalGuestPrint.children().remove();
-        totalGuestPrint.append(`<h5 class="navbar-header" style="display: flex;" style="align-items: flex-start;"> My Dinner: ${totalGuests}  People</h5>`);
+        totalGuestPrint.append(`<h5 class="navbar-header" style="display: flex;" style="align-items: flex-start;"> My Dinner: ${model.getNumberOfGuests()}  People</h5>`);
     }
 
     //LOAD DATA OF MENU ON PRINT OUT
@@ -52,12 +53,8 @@ var PrintView = function(container, model) {
     getTotalGuests();
 
     this.update = function(data) {
-        // totalGuests = model.getNumberOfGuests();
-        totalPrice = model.getTotalMenuPrice();
         allMenu = model.getFullMenu();
         getTotalGuests();
         loadPrintMenu();
     }
-
-    model.addObserver(this);
 }

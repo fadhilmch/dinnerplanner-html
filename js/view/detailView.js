@@ -1,3 +1,5 @@
+'use strict';
+
 var DetailView = function(container, model) {
     var self = this;
 
@@ -26,7 +28,6 @@ var DetailView = function(container, model) {
                     </div>
                 </div>`)
         }
-
     }
 
     //LOAD INGREDIENTS OF SELECTED MENU
@@ -62,6 +63,9 @@ var DetailView = function(container, model) {
 
     getGuest();
     model.getCurrentDishId();
+    loadSelectedDish();
+    loadIngredients();
+    loadPreparation();
 
     //update observer
     this.update = function(data) {
@@ -72,14 +76,5 @@ var DetailView = function(container, model) {
         loadIngredients();
         loadPreparation();
     }
-
-    // register observer
-    model.addObserver(this);
-
-
-
-
-
-
 
 }

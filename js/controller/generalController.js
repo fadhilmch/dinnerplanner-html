@@ -1,3 +1,5 @@
+'use strict';
+
 var GeneralController = function(arrViews) {
     this.goToPage = function(name) {
         // Hide all views

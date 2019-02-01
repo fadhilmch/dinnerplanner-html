@@ -1,6 +1,7 @@
+'use strict';
+
 var SearchView = function(container, model) {
     var self = this;
-
 
     // Initialize Component
     this.dishType = container.find('#dishType');
@@ -57,8 +58,6 @@ var SearchView = function(container, model) {
         })
     }
 
-
-
     var setSearchTitle = function() {
         self.searchTitle.children().remove();
         if (model.getFullMenu().length > 0)
@@ -67,12 +66,6 @@ var SearchView = function(container, model) {
             self.searchTitle.append(`<h4 class="left col-md-12">Find a Dish</h4>`);
 
     }
-
-    var selectDishType = function() {
-        var type = self.dishType.value;
-        console.log("type" + type);
-    }
-    //selectDishType();
 
     initialize();
     showDishesChoice();
@@ -85,8 +78,4 @@ var SearchView = function(container, model) {
         model.getFullMenu();
         setSearchTitle();
     }
-
-    // register observer
-    model.addObserver(this);
-
 }

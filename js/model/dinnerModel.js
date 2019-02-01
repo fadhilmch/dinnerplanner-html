@@ -28,37 +28,14 @@
 var DinnerModel = function () {
 
     // Initialize Variable
-    var self = this;
-    // var totalGuests = 1;
-    var selectedDish = [];
-
     this.totalGuests = new Observable(1);
     this.selectedDish = new Observable({});
+    this.dishId = new Observable(0);
 
     var filterType = "all";
     var filterName = "";
     var dishId;
     var currentDishId;
-
-    var observers = new Array();
-
-    // Add to the collection of observers
-    this.addObserver = function(observer) {
-        observers.push(observer);
-    }
-
-    //Iterate over observers, calling their update method
-    this.notifyObserver = function() {
-        observers.forEach(function(observer) {
-            observer.update(self);
-        })
-    }
-
-    this.removeObserver = function(observer) {
-        observers.filter(obs => {
-            obs !== observer
-        })
-    }
 
     this.setFilterType = (type) => {
         filterType = type;
@@ -76,20 +53,15 @@ var DinnerModel = function () {
         return filterName;
     }
 
-    this.setDishId = (id) => {
-        dishId = id;
+    // Set current dish ID
+    /** @param {number} id */
+    this.setCurrentDishId = (id) => {
+        this.dishId.notifyObserver(id);
     }
 
-    this.getDishId = () => {
-        return dishId;
-    }
-
-    this.setCurrentDishId = (cur) => {
-        currentDishId = cur;
-    }
-
+    // Get the current dish ID
     this.getCurrentDishId = () => {
-        return currentDishId;
+        return this.dishId.getValue();
     }
 
     // Set number of guest
@@ -104,25 +76,17 @@ var DinnerModel = function () {
         return this.totalGuests.getValue();
     }
 
-    //Returns the dish that is on the menu for selected type 
-    /** @param  {string} type */
-    this.getSelectedDish = (type) => {
-        return selectedDish.filter(dish => {
-            return dish.type === type;
-        })
-    }
-
     //Returns all the dishes on the menu.
     this.getFullMenu = () => {
-        return selectedDish;
-    }
+        return Object.values(this.selectedDish.getValue());
+    };
 
     //Returns all ingredients for all the dishes on the menu.
     this.getAllIngredients = () => {
-        return selectedDish.map(dish => {
+        return this.getFullMenu().map(dish => {
             return dish.ingredients;
-        })
-    }
+        });
+    };
 
     //Get dish total price per dish
     this.dishPrice = (id) => {
@@ -133,10 +97,11 @@ var DinnerModel = function () {
                 return acc + cur;
             })
         ).toFixed(2)*this.getNumberOfGuests();
-    }
+    };
 
     // Get total price of the menu
     this.getTotalMenuPrice = () => {
+        let selectedDish = this.getFullMenu();
         if(selectedDish) {
             return this.getNumberOfGuests() * selectedDish.map(dish => {
                 return dish.ingredients.map(ingredient => {
@@ -152,37 +117,38 @@ var DinnerModel = function () {
         };
     };
 
-    // Get all dishes from model
-    /** @param {number} id */
-    this.getDish = (id) => {
-        for (let key in dishes) {
-            if (dishes[key].id == id) {
-                return dishes[key];
-            }
-        }
-    }
 
     // Add dish to menu
     /** @param {number} id */
     this.addDishToMenu = (id) => {
         let dishType = this.getDish(id).type;
 
-        selectedDish = selectedDish.filter(dish => {
-            return dish.type !== dishType;
-        });
+        let dishTemp = this.selectedDish.getValue();
+        dishTemp[dishType] = this.getDish(id);
 
-        dishes.forEach(dish => {
-            if (dish.id === id)
-                selectedDish.push(dish);
-        });
+        this.selectedDish.notifyObserver(dishTemp);
     };
 
     // Remove dish from menu
     /** @param {number} id */
     this.removeDishFromMenu = (id) => {
-        return selectedDish.filter(dish => {
-            return dish.id !== id;
-        });
+        let dish = this.getDish(id);
+        let dishTemp = this.selectedDish.getValue();
+        if (dish) {
+            delete dishTemp[dish.type];
+        };
+        this.selectedDish.notifyObserver(dishTemp);
+    };
+
+
+    // Get all dish by id model
+    /** @param {number} id */
+    this.getDish = (id) => {
+        for (let key in dishes) {
+            if (dishes[key].id == id) {
+                return dishes[key];
+            };
+        };
     };
 
     // Get all or filtered dishes
@@ -225,179 +191,8 @@ var DinnerModel = function () {
                 dishType.push(dish.type);
         });
         return dishType;
-    }
-}
-
-// var DinnerModel = function() {
-//     var self = this;
-
-//     var totalGuests = 1;
-//     var selectedDish = {};
-//     var observers = [];
-
-//     var filterType = "all";
-//     var filterName = "";
-//     var dishId;
-//     var currentDishId;
-    
-
-//     this.setFilterType = (type) => {
-//         filterType = type;
-//     }
-
-//     this.getFilterType = () => {
-//         return filterType;
-//     }
-
-//     this.setFilterName = (name) => {
-//         filterName = name;
-//     }
-
-//     this.getFilterName = () => {
-//         return filterName;
-//     }
-
-//     this.setDishId = (id) => {
-//         dishId = id;
-//     }
-
-//     this.getDishId = () => {
-//         return dishId;
-//     }
-
-//     this.setCurrentDishId = (cur) => {
-//         currentDishId = cur;
-//     }
-
-//     this.getCurrentDishId = () => {
-//         return currentDishId;
-//     }
-//     // Add to the collection of observers
-//     this.addObserver = (observer) => {
-//         observers.push(observer);
-//     }
-
-//     //Iterate over observers, calling their update method
-//     this.notifyObserver = () => {
-//         observers.forEach(function(observer) {
-//             observer.update(self);
-//         })
-//     }
-
-//     this.removeObserver = function(observer) {
-//         observers.filter(obs => {
-//             obs.id !== observer
-//         })
-//     }
-
-//     // Set number of guest
-//     /** @param  {number} value */
-//     this.setNumberOfGuests = (value) => { totalGuests = value };
-
-//     // Get number of guest
-//     this.getNumberOfGuests = () => { return totalGuests };
-
-//     // Get the selected dish on the menu
-//     /** @param  {string} type */
-//     this.getSelectedDish = (type) => { return selectedDish[type] };
-
-//     // Get the all dish on the menu
-//     this.getFullMenu = () => { 
-//         return Object.values(selectedDish) };
-
-//     // Get all ingredients on the menu
-//     this.getAllIngredients = () => { 
-//         return Object.values(selectedDish).map( dish => {
-//             return dish.ingredients;
-//         })
-//     };
-
-//     // Get total price of the menu
-//     this.getTotalPrice = () => {
-//         if(selectedDish) {
-//             let menu = Object.values(selectedDish);
-//             console.log(menu)
-//             return totalGuests * menu.map(dish => {
-//                 return dish.ingredients.map(ingredient => {
-//                         return ingredient.quantity * ingredient.price;
-//                     })
-//                     .reduce((acc, cur) => {
-//                         return acc + cur;
-//                     }, 0);
-//             })
-//             .reduce((acc, cur) => {
-//                 return acc + cur;
-//             }, 0);
-//         };
-//     };
-
-//     // Get all dishes from model
-//     /** @param {number} id */
-//     this.getDish = (id) => {
-//         for (let key in dishes) {
-//             if (dishes[key].id == id) {
-//                 return dishes[key];
-//             };
-//         };
-//     };
-    
-//     // Add dish to menu
-//     /** @param {number} id */
-//     this.addDishToMenu = (id) => {
-//         let dish = this.getDish(id);
-//         if (dish) {
-//             selectedDish[dish.type] = dish;
-//         };
-//     };
-
-//     // Remove dish from menu
-//     /** @param {number} id */
-//     this.removeDishFromMenu = (id) => {
-//         let dish = this.getDish(id);
-//         if (dish) {
-//             delete selectedDish[dish.type];
-//         };
-//     };
-
-//     // Get all or filtered dishes
-//     /** 
-//      * @param {string} type
-//      * @param {string} filter
-//      */
-//     this.getAllDishes = (type, filter) => {
-//         return dishes.filter((dish) => {
-//             var found = true;
-//             if (filter == "" && type == "all") {
-//                 return true;
-//             };
-
-//             if (filter != "") {
-//                 found = false;
-//                 dish.ingredients.forEach(function(ingredient) {
-//                     if (ingredient.name.indexOf(filter) != -1) {
-//                         found = true;
-//                     }
-//                 });
-
-//                 if (dish.name.indexOf(filter) != -1) {
-//                     found = true;
-//                 };
-//             };
-
-//             return type === 'all' ? found : dish.type == type && found;
-//         });
-//     };
-
-//     // Get all dishes type
-//     this.getDishType = () => {
-//         let dishType = [];
-//         dishes.forEach(dish => {
-//             if (dishType.indexOf(dish.type) === -1)
-//                 dishType.push(dish.type);
-//         })
-//         return dishType;
-//     }
-// }
+    };
+};
 
 /**
  * @class Observable

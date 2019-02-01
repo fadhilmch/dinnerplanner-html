@@ -6,7 +6,6 @@ var SidebarView = function(container, model) {
     // Get from model
     var allMenu = model.getFullMenu();
     var totalPrice = model.getTotalMenuPrice();
-    var dishPrice = model.dishPrice;
 
     // Initialize variable
 
@@ -51,7 +50,7 @@ var SidebarView = function(container, model) {
                 self.menuTable.append(`                         
                 <tr>
                     <td>${dish.name}</td>
-                    <td>${dishPrice(dish.id)}</td>
+                    <td>${model.dishPrice(dish.id)}</td>
                 </tr>
             `);
             })
@@ -67,11 +66,11 @@ var SidebarView = function(container, model) {
         // totalGuests = model.getNumberOfGuests();
         totalPrice = model.getTotalMenuPrice();
         allMenu = model.getFullMenu();
+        console.log(allMenu);
         setConfimButtonStatus();
         showSidebar();
         calculateTotalCost();
 
     }
 
-    model.addObserver(this);
 }
