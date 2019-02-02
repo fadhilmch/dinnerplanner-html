@@ -10,6 +10,7 @@ var SidebarController = function(view, model, generalController) {
 
     view.confirmButton.click(() => {
         generalController.goToPage('summary');
+        model.setSearchQuery();
     })
 
 }

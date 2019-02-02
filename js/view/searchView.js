@@ -11,38 +11,30 @@ var SearchView = function(container, model) {
     this.searchInput = container.find('#search-input');
 
     // Get from model
-    var allDishes = model.getAllDishes(model.getFilterType(), model.getFilterName());
     var arrDishes = model.getDishType();
-    var allMenu = model.getFullMenu();
-
-
-    // Initialize function
-    var initialize = function() {
-        showDropdownType();
-        setSearchTitle();
-    }
-
 
     // Dropdown Select for Dishes Type
-    var showDropdownType = function() {
+    var renderDropdownType = () => {
+        self.dishType.children().remove();
         arrDishes.splice(0, 0, 'all');
         arrDishes = arrDishes.map(dish => {
             return dish.replace(
                 /\w\S*/g,
-                function(txt) {
+                (txt) => {
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                 }
             );
         });
 
         for (var i = 0; i < arrDishes.length; i++) {
-            self.dishType.append(`<option ${(arrDishes[i]===model.getFilterType())?'selected':''}>${arrDishes[i]} </option>`);
+            self.dishType.append(`<option ${(arrDishes[i]===model.getSearchQuery().type)?'selected':''}>${arrDishes[i]} </option>`);
         }
     }
 
 
     // Menu Wrapper
-    var showDishesChoice = function() {
+    var renderDishesChoice = (type='all', filter='') => {
+        let allDishes = model.getAllDishes(type, filter);
         self.menuWrapper.children().remove();
         allDishes.forEach(dish => {
             self.menuWrapper.append(`
@@ -58,7 +50,7 @@ var SearchView = function(container, model) {
         })
     }
 
-    var setSearchTitle = function() {
+    var renderSearchTitle = () => {
         self.searchTitle.children().remove();
         if (model.getFullMenu().length > 0)
             self.searchTitle.append(`<h4 class="left col-md-12">Add Another Dish</h4>`);
@@ -67,15 +59,15 @@ var SearchView = function(container, model) {
 
     }
 
-    initialize();
-    showDishesChoice();
-
-
+    renderDropdownType();
+    renderSearchTitle();
+    renderDishesChoice();
+    
     //update observer
-    this.update = function(data) {
-        allDishes = model.getAllDishes(model.getFilterType(), model.getFilterName());
-        showDishesChoice();
-        model.getFullMenu();
-        setSearchTitle();
+    this.update = (data) => {
+        let queryFilter = model.getSearchQuery();
+        renderSearchTitle();
+        renderDishesChoice(queryFilter.type, queryFilter.query);
+        renderDropdownType();
     }
 }

@@ -26,28 +26,34 @@ var DetailView = function(container, model) {
                             <p>${dish.description} </p>  </div>
                             
                     </div>
-                </div>`)
-        }
-    }
+                </div>`);
+        };
+    };
 
     //LOAD INGREDIENTS OF SELECTED MENU
-    var loadIngredients = function() {
+    var loadIngredients = () => {
         var id = model.getCurrentDishId();
         var dishItem = model.getDish(id);
         if(dishItem){
             self.ingredientsDish.children().remove();
             dishItem.ingredients.forEach(dish => {
-                self.ingredientsDish.append(`<tr>
-            <th scope="row">${dish.quantity*model.getNumberOfGuests() + " "+ dish.unit}</th>
-            <td>${dish.name}</td>
-            <td>${(Number(dish.price)*model.getNumberOfGuests()*dish.quantity).toFixed(2)}</td>
-            <td>SEK</td>
-            </tr>`)
-            })
-        }
-    }
+                self.ingredientsDish.append(`
+                <tr>
+                    <th scope="row">${ numberPrint(dish.quantity*model.getNumberOfGuests()) + " "+ dish.unit}</th>
+                    <td>${dish.name}</td>
+                    <td>${ numberPrint(Number(dish.price)*model.getNumberOfGuests())}</td>
+                    <td>SEK</td>
+                </tr>`
+                );
+            });
+        };
+    };
 
-    var loadPreparation = function() {
+    var numberPrint = (num) => {
+        return (num%1===0)?num:num.toFixed(2);
+    };
+
+    var loadPreparation = () => {
         var id = model.getCurrentDishId();
         var dish = model.getDish(id);
         if(dish){
@@ -56,21 +62,18 @@ var DetailView = function(container, model) {
         }
     }
 
-    var getGuest = function() {
+    var getGuest = () => {
         self.people.children().remove();
         self.people.append(`<h5 class="left" style="padding-left: 10px"> INGREDIENTS FOR ${model.getNumberOfGuests()}  PEOPLE</h5></div>`);
     }
 
     getGuest();
-    model.getCurrentDishId();
     loadSelectedDish();
     loadIngredients();
     loadPreparation();
 
     //update observer
     this.update = function(data) {
-        model.getCurrentDishId();
-        model.getNumberOfGuests();
         getGuest();
         loadSelectedDish();
         loadIngredients();

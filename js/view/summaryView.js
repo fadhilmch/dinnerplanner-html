@@ -15,18 +15,6 @@ var SummaryView = function(container, model) {
     this.printReceipt = container.find("#btnPrint");
     this.editfromSummary = container.find("#btnEditSummary");
 
-
-    /**
-     * When we want references to some view elements to be available from outside of view, we 
-     * define them as this.someName. We don't need this in Lab 1 yet, but in Lab 2 it 
-     * will be important for assigning listeners to these buttons, because the listeners
-     * should not be assigned in the view, but rather in controller.
-     * 
-     * We can then, in some other code, use exampleView.plusButton to reference the 
-     * this button and do something with it (see Lab 2).
-     * 
-     */
-
     //LOAD DATA MENU OVERVIEW
     var loadAllMenuOverview = function() {
         self.selectedMenu.children().remove();

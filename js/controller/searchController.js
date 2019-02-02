@@ -1,20 +1,28 @@
 'use strict';
 
 var SearchController = function(view, model, generalController) {
-    view.searchButton.click(() => {
-        model.setFilterName(view.searchInput.val());
-        model.setFilterType(view.dishType.val().toLowerCase());
-        // model.notifyObserver();
-    })
+    model.searchQuery.addObserver(view);
+
+    var searchQuery = () => {
+        let query = view.searchInput.val().toLowerCase();
+        let type = view.dishType.val().toLowerCase();
+        model.setSearchQuery({query, type});
+    };
+
+    view.searchButton.click(() => { searchQuery() });
+
+    view.dishType.on('change', () => { searchQuery() });
+
+    view.searchInput.on('keypress',(e) => {
+        if(e.which == 13) {
+            searchQuery();
+        }
+    });
 
     view.menuWrapper.click((e) => {
         var id = e.target.accessKey;
-        console.log(e.target);
         model.setCurrentDishId(id);
-        model.getFullMenu();
-        model.setFilterName("");
-        model.setFilterType("all");
-        view.dishType.prop("selectedIndex", 0);
+        model.setSearchQuery();
         if(id != null){
              generalController.goToPage('detail');
         }

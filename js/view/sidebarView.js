@@ -63,10 +63,8 @@ var SidebarView = function(container, model) {
     calculateTotalCost();
 
     this.update = function(data) {
-        // totalGuests = model.getNumberOfGuests();
         totalPrice = model.getTotalMenuPrice();
         allMenu = model.getFullMenu();
-        console.log(allMenu);
         setConfimButtonStatus();
         showSidebar();
         calculateTotalCost();

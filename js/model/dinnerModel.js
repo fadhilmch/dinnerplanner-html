@@ -31,27 +31,21 @@ var DinnerModel = function () {
     this.totalGuests = new Observable(1);
     this.selectedDish = new Observable({});
     this.dishId = new Observable(0);
+    this.searchQuery = new Observable({'type':'all','query':''});
 
-    var filterType = "all";
-    var filterName = "";
-    var dishId;
-    var currentDishId;
+    /** @param {Object} query */
+    this.setSearchQuery = (query) => {
+        if(query){
+            this.searchQuery.notifyObserver({'type':query.type,'query': query.query});
+        }
+        else {
+            this.searchQuery.notifyObserver({'type': 'all', 'query': ''});
+        };
+    };
 
-    this.setFilterType = (type) => {
-        filterType = type;
-    }
-
-    this.getFilterType = () => {
-        return filterType;
-    }
-
-    this.setFilterName = (name) => {
-        filterName = name;
-    }
-
-    this.getFilterName = () => {
-        return filterName;
-    }
+    this.getSearchQuery = () => {
+        return this.searchQuery.getValue();
+    };
 
     // Set current dish ID
     /** @param {number} id */
@@ -91,8 +85,9 @@ var DinnerModel = function () {
     //Get dish total price per dish
     this.dishPrice = (id) => {
         return Number(this.getDish(id).ingredients.map(ingredient => {
-                return ingredient.quantity * ingredient.price;
-            })
+            // return ingredient.quantity * ingredient.price;
+            return ingredient.price;
+        })
             .reduce((acc, cur) => {
                 return acc + cur;
             })
@@ -105,7 +100,8 @@ var DinnerModel = function () {
         if(selectedDish) {
             return this.getNumberOfGuests() * selectedDish.map(dish => {
                 return dish.ingredients.map(ingredient => {
-                        return ingredient.quantity * ingredient.price;
+                        // return ingredient.quantity * ingredient.price;
+                        return ingredient.price;
                     })
                     .reduce((acc, cur) => {
                         return acc + cur;
@@ -156,7 +152,7 @@ var DinnerModel = function () {
      * @param {string} type
      * @param {string} filter
      */
-    this.getAllDishes = (type, filter) => {
+    this.getAllDishes = (type = 'all', filter = '') => {
         filter = filter.toLowerCase();
 
         return dishes.filter((dish) => {
@@ -225,11 +221,11 @@ class Observable {
 
     getValue() {
         if (Array.isArray(this._value)) {
-			return [...this._value];
+            return [...this._value];
 		}
-
+        
 		if (typeof this._value === 'object') {
-			return {...this._value};
+            return {...this._value};
 		}
 
 		return this._value;
