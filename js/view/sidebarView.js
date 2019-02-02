@@ -7,8 +7,6 @@ var SidebarView = function(container, model) {
     var allMenu = model.getFullMenu();
     var totalPrice = model.getTotalMenuPrice();
 
-    // Initialize variable
-
     //Initialize Component
     this.numberOfGuests = container.find(".guest");
     this.totalCost = container.find('.totalCost');
@@ -30,16 +28,15 @@ var SidebarView = function(container, model) {
         if (allMenu.length > 0) {
             self.totalCost.html(`SEK ${Number(totalPrice).toFixed(2)}`);
             self.navPrice.html(`SEK ${Number(totalPrice).toFixed(2)}`);
-        }
-    }
+        };
+    };
 
     // Confirm button
     var setConfimButtonStatus = function() {
         if (allMenu.length > 0) {
             self.confirmButton.prop('disabled', false);
-        }
-
-    }
+        };
+    };
 
 
     // Table Sidebar
@@ -53,9 +50,9 @@ var SidebarView = function(container, model) {
                     <td>${model.dishPrice(dish.id)}</td>
                 </tr>
             `);
-            })
-        }
-    }
+            });
+        };
+    };
 
 
     initialize();
@@ -68,7 +65,6 @@ var SidebarView = function(container, model) {
         setConfimButtonStatus();
         showSidebar();
         calculateTotalCost();
+    };
 
-    }
-
-}
+};
