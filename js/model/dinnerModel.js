@@ -32,6 +32,24 @@ var DinnerModel = function () {
     this.selectedDish = new Observable({});
     this.dishId = new Observable(0);
     this.searchQuery = new Observable({'type':'all','query':''});
+    
+    var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=10&tags=';
+    var header = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
+
+    this.fetchUrl = () => {
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'X-Mashape-key': header
+            }
+        }).then(res => res.json())
+        .then(data => {
+            console.log('Success: ', JSON.stringify(data));
+        })
+        .catch(err => {
+            console.log('Error: ', err);
+        })
+    }
 
     /** @param {Object} query */
     this.setSearchQuery = (query) => {
@@ -236,7 +254,530 @@ class Observable {
  * @description array of dummy data for all dishes
  * @type {Array.<Dish>}
  */
-const dishes = [{
+const dishes = [
+// {
+//     "vegetarian": false,
+//     "vegan": false,
+//     "glutenFree": true,
+//     "dairyFree": false,
+//     "veryHealthy": true,
+//     "cheap": false,
+//     "veryPopular": true,
+//     "sustainable": false,
+//     "weightWatcherSmartPoints": 14,
+//     "gaps": "no",
+//     "lowFodmap": false,
+//     "ketogenic": false,
+//     "whole30": false,
+//     "preparationMinutes": 20,
+//     "cookingMinutes": 10,
+//     "sourceUrl": "http://www.theroastedroot.net/broiled-salmon-and-fig-salad-with-blackberries-and-green-goddess-dressing/",
+//     "spoonacularSourceUrl": "https://spoonacular.com/broiled-salmon-and-fig-salad-with-blackberries-and-green-goddess-dressing-814353",
+//     "aggregateLikes": 1258,
+//     "spoonacularScore": 100,
+//     "healthScore": 100,
+//     "creditText": "The Roasted Root",
+//     "sourceName": "The Roasted Root",
+//     "pricePerServing": 630.99,
+//     "extendedIngredients": [
+//         {
+//             "id": 9037,
+//             "aisle": "Produce",
+//             "image": "avocado.jpg",
+//             "consitency": "solid",
+//             "name": "avocado",
+//             "original": "1 ripe avocado, sliced",
+//             "originalString": "1 ripe avocado, sliced",
+//             "originalName": "ripe avocado, sliced",
+//             "amount": 1,
+//             "unit": "",
+//             "meta": [
+//                 "ripe",
+//                 "sliced"
+//             ],
+//             "metaInformation": [
+//                 "ripe",
+//                 "sliced"
+//             ],
+//             "measures": {
+//                 "us": {
+//                     "amount": 1,
+//                     "unitShort": "",
+//                     "unitLong": ""
+//                 },
+//                 "metric": {
+//                     "amount": 1,
+//                     "unitShort": "",
+//                     "unitLong": ""
+//                 }
+//             }
+//         },
+//         {
+//             "id": 9042,
+//             "aisle": "Produce",
+//             "image": "blackberries.jpg",
+//             "consitency": "solid",
+//             "name": "blackberries",
+//             "original": "½ cup blackberries",
+//             "originalString": "½ cup blackberries",
+//             "originalName": "blackberries",
+//             "amount": 0.5,
+//             "unit": "cup",
+//             "meta": [],
+//             "metaInformation": [],
+//             "measures": {
+//                 "us": {
+//                     "amount": 0.5,
+//                     "unitShort": "cups",
+//                     "unitLong": "cups"
+//                 },
+//                 "metric": {
+//                     "amount": 118.294,
+//                     "unitShort": "g",
+//                     "unitLong": "grams"
+//                 }
+//             }
+//         },
+//         {
+//             "id": 9050,
+//             "aisle": "Produce",
+//             "image": "blueberries.jpg",
+//             "consitency": "solid",
+//             "name": "blueberries",
+//             "original": "½ cup blueberries",
+//             "originalString": "½ cup blueberries",
+//             "originalName": "blueberries",
+//             "amount": 0.5,
+//             "unit": "cup",
+//             "meta": [],
+//             "metaInformation": [],
+//             "measures": {
+//                 "us": {
+//                     "amount": 0.5,
+//                     "unitShort": "cups",
+//                     "unitLong": "cups"
+//                 },
+//                 "metric": {
+//                     "amount": 118.294,
+//                     "unitShort": "g",
+//                     "unitLong": "grams"
+//                 }
+//             }
+//         },
+//         {
+//             "id": 2009,
+//             "aisle": "Spices and Seasonings",
+//             "image": "chili-powder.jpg",
+//             "consitency": "solid",
+//             "name": "chili powder",
+//             "original": "Chili powder",
+//             "originalString": "Chili powder",
+//             "originalName": "Chili powder",
+//             "amount": 2,
+//             "unit": "servings",
+//             "meta": [],
+//             "metaInformation": [],
+//             "measures": {
+//                 "us": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 },
+//                 "metric": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 }
+//             }
+//         },
+//         {
+//             "id": 42193,
+//             "aisle": "Condiments",
+//             "image": "mayonnaise.png",
+//             "consitency": "liquid",
+//             "name": "fat free mayo",
+//             "original": "Mayo-Free Green Goddess Dressing",
+//             "originalString": "Mayo-Free Green Goddess Dressing",
+//             "originalName": "Mayo-Free Green Goddess Dressing",
+//             "amount": 2,
+//             "unit": "servings",
+//             "meta": [
+//                 "green"
+//             ],
+//             "metaInformation": [
+//                 "green"
+//             ],
+//             "measures": {
+//                 "us": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 },
+//                 "metric": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 }
+//             }
+//         },
+//         {
+//             "id": 9089,
+//             "aisle": "Dried Fruits;Produce",
+//             "image": "figs-fresh.jpg",
+//             "consitency": "solid",
+//             "name": "figs",
+//             "original": "Maple Roasted Figs",
+//             "originalString": "Maple Roasted Figs",
+//             "originalName": "Maple Roasted Figs",
+//             "amount": 2,
+//             "unit": "servings",
+//             "meta": [],
+//             "metaInformation": [],
+//             "measures": {
+//                 "us": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 },
+//                 "metric": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 }
+//             }
+//         },
+//         {
+//             "id": 1022020,
+//             "aisle": "Spices and Seasonings",
+//             "image": "garlic-powder.png",
+//             "consitency": "solid",
+//             "name": "garlic powder",
+//             "original": "Garlic powder",
+//             "originalString": "Garlic powder",
+//             "originalName": "Garlic powder",
+//             "amount": 2,
+//             "unit": "servings",
+//             "meta": [],
+//             "metaInformation": [],
+//             "measures": {
+//                 "us": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 },
+//                 "metric": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 }
+//             }
+//         },
+//         {
+//             "id": 10011251,
+//             "aisle": "Produce",
+//             "image": "romaine.jpg",
+//             "consitency": "solid",
+//             "name": "hearts of romaine",
+//             "original": "5 ounces hearts of romaine, chopped",
+//             "originalString": "5 ounces hearts of romaine, chopped",
+//             "originalName": "hearts of romaine, chopped",
+//             "amount": 5,
+//             "unit": "ounces",
+//             "meta": [
+//                 "chopped"
+//             ],
+//             "metaInformation": [
+//                 "chopped"
+//             ],
+//             "measures": {
+//                 "us": {
+//                     "amount": 5,
+//                     "unitShort": "oz",
+//                     "unitLong": "ounces"
+//                 },
+//                 "metric": {
+//                     "amount": 141.748,
+//                     "unitShort": "g",
+//                     "unitLong": "grams"
+//                 }
+//             }
+//         },
+//         {
+//             "id": 4053,
+//             "aisle": "Oil, Vinegar, Salad Dressing",
+//             "image": "olive-oil.jpg",
+//             "consitency": "liquid",
+//             "name": "olive oil",
+//             "original": "Olive oil",
+//             "originalString": "Olive oil",
+//             "originalName": "Olive oil",
+//             "amount": 2,
+//             "unit": "servings",
+//             "meta": [],
+//             "metaInformation": [],
+//             "measures": {
+//                 "us": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 },
+//                 "metric": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 }
+//             }
+//         },
+//         {
+//             "id": 15076,
+//             "aisle": "Seafood",
+//             "image": "salmon.png",
+//             "consitency": "solid",
+//             "name": "salmon fillets",
+//             "original": "2 (1/3-pound) salmon fillets",
+//             "originalString": "2 (1/3-pound) salmon fillets",
+//             "originalName": "salmon fillets",
+//             "amount": 0.6666666666666666,
+//             "unit": "pound",
+//             "meta": [],
+//             "metaInformation": [],
+//             "measures": {
+//                 "us": {
+//                     "amount": 0.667,
+//                     "unitShort": "lb",
+//                     "unitLong": "pounds"
+//                 },
+//                 "metric": {
+//                     "amount": 302.395,
+//                     "unitShort": "g",
+//                     "unitLong": "grams"
+//                 }
+//             }
+//         },
+//         {
+//             "id": 1012047,
+//             "aisle": "Spices and Seasonings",
+//             "image": "salt.jpg",
+//             "consitency": "solid",
+//             "name": "sea salt",
+//             "original": "Sea salt",
+//             "originalString": "Sea salt",
+//             "originalName": "Sea salt",
+//             "amount": 2,
+//             "unit": "servings",
+//             "meta": [],
+//             "metaInformation": [],
+//             "measures": {
+//                 "us": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 },
+//                 "metric": {
+//                     "amount": 2,
+//                     "unitShort": "servings",
+//                     "unitLong": "servings"
+//                 }
+//             }
+//         }
+//     ],
+//     "id": 814353,
+//     "title": "Broiled Salmon and Fig Salad with Blackberries and Green Goddess Dressing",
+//     "readyInMinutes": 30,
+//     "servings": 2,
+//     "image": "https://spoonacular.com/recipeImages/814353-556x370.jpg",
+//     "imageType": "jpg",
+//     "cuisines": [],
+//     "dishTypes": [
+//         "lunch",
+//         "main course",
+//         "main dish",
+//         "dinner"
+//     ],
+//     "diets": [
+//         "gluten free",
+//         "pescatarian"
+//     ],
+//     "occasions": [],
+//     "winePairing": {
+//         "pairedWines": [
+//             "chardonnay",
+//             "pinot noir",
+//             "sauvignon blanc"
+//         ],
+//         "pairingText": "Salmon on the menu? Try pairing with Chardonnay, Pinot Noir, and Sauvignon Blanc. To decide on white or red, you should consider your seasoning and sauces. Chardonnay is a great friend to buttery, creamy dishes, while sauvignon blanc can complement herb or citrus-centric dishes. A light-bodied, low-tannin red such as the pinot noir goes great with broiled or grilled salmon. The CalNaturale Chardonnay Lodi with a 4.1 out of 5 star rating seems like a good match. It costs about 11 dollars per bottle.",
+//         "productMatches": [
+//             {
+//                 "id": 430688,
+//                 "title": "CalNaturale Chardonnay Lodi",
+//                 "description": "Complexity and intensity define this Chardonnay. The nose is full of citrus, green apple and pear with floral overtones. The flavors are rich on entry with lively fruit in the mid palate and a long fruity, warm finish.",
+//                 "price": "$10.99",
+//                 "imageUrl": "https://spoonacular.com/productImages/430688-312x231.jpg",
+//                 "averageRating": 0.82,
+//                 "ratingCount": 2,
+//                 "score": 0.677142857142857,
+//                 "link": "https://www.amazon.com/2014-CalNaturale-Chardonnay-Lodi-1-0/dp/B00DBF4NJK?tag=spoonacular-20"
+//             }
+//         ]
+//     },
+//     "instructions": "Preheat the oven on the high broil setting and move one of the racks to the second to the highest shelf.Coat the bottom of a baking dish with olive oil and place the salmon in the dish. Sprinkle the fish with chili powder and garlic powder (or spices of choice). Drizzle olive oil on top and use your hands to coat all of the salmon fillets. Sprinkle with sea salt.Slice 3 to 4 figs in half and place face-up on a baking sheet. drizzle with a small amount of maple syrup and sprinkle with sea salt.Place both the fish and the figs in the oven. Broil figs for 6 minutes, or until juices are seeping out, and broil the salmon for 8 to 12 minutes, or until crispy and cooked through (mine took 10 minutes). Remove from the oven and allow the figs and salmon to cool a couple of minutes.Divide the romaine lettuce, avocado, blueberries, blackberries, salmon, and figs between two plates. Drizzle with desired amount of green goddess dressing and enjoy.",
+//     "analyzedInstructions": [
+//         {
+//             "name": "",
+//             "steps": [
+//                 {
+//                     "number": 1,
+//                     "step": "Preheat the oven on the high broil setting and move one of the racks to the second to the highest shelf.Coat the bottom of a baking dish with olive oil and place the salmon in the dish. Sprinkle the fish with chili powder and garlic powder (or spices of choice).",
+//                     "ingredients": [
+//                         {
+//                             "id": 1022020,
+//                             "name": "garlic powder",
+//                             "image": "garlic-powder.png"
+//                         },
+//                         {
+//                             "id": 2009,
+//                             "name": "chili powder",
+//                             "image": "chili-powder.jpg"
+//                         },
+//                         {
+//                             "id": 4053,
+//                             "name": "olive oil",
+//                             "image": "olive-oil.jpg"
+//                         },
+//                         {
+//                             "id": 15076,
+//                             "name": "salmon",
+//                             "image": "salmon.png"
+//                         }
+//                     ],
+//                     "equipment": [
+//                         {
+//                             "id": 404646,
+//                             "name": "baking pan",
+//                             "image": "roasting-pan.jpg"
+//                         },
+//                         {
+//                             "id": 404784,
+//                             "name": "oven",
+//                             "image": "oven.jpg"
+//                         }
+//                     ]
+//                 },
+//                 {
+//                     "number": 2,
+//                     "step": "Drizzle olive oil on top and use your hands to coat all of the salmon fillets. Sprinkle with sea salt.Slice 3 to 4 figs in half and place face-up on a baking sheet. drizzle with a small amount of maple syrup and sprinkle with sea salt.",
+//                     "ingredients": [
+//                         {
+//                             "id": 15076,
+//                             "name": "salmon fillets",
+//                             "image": "salmon.png"
+//                         },
+//                         {
+//                             "id": 4053,
+//                             "name": "olive oil",
+//                             "image": "olive-oil.jpg"
+//                         },
+//                         {
+//                             "id": 1012047,
+//                             "name": "sea salt",
+//                             "image": "salt.jpg"
+//                         },
+//                         {
+//                             "id": 9089,
+//                             "name": "figs",
+//                             "image": "figs-fresh.jpg"
+//                         }
+//                     ],
+//                     "equipment": [
+//                         {
+//                             "id": 404727,
+//                             "name": "baking sheet",
+//                             "image": "baking-sheet.jpg"
+//                         }
+//                     ]
+//                 },
+//                 {
+//                     "number": 3,
+//                     "step": "Place both the fish and the figs in the oven. Broil figs for 6 minutes, or until juices are seeping out, and broil the salmon for 8 to 12 minutes, or until crispy and cooked through (mine took 10 minutes).",
+//                     "ingredients": [
+//                         {
+//                             "id": 15076,
+//                             "name": "salmon",
+//                             "image": "salmon.png"
+//                         },
+//                         {
+//                             "id": 9089,
+//                             "name": "figs",
+//                             "image": "figs-fresh.jpg"
+//                         }
+//                     ],
+//                     "equipment": [
+//                         {
+//                             "id": 404784,
+//                             "name": "oven",
+//                             "image": "oven.jpg"
+//                         }
+//                     ],
+//                     "length": {
+//                         "number": 24,
+//                         "unit": "minutes"
+//                     }
+//                 },
+//                 {
+//                     "number": 4,
+//                     "step": "Remove from the oven and allow the figs and salmon to cool a couple of minutes.Divide the romaine lettuce, avocado, blueberries, blackberries, salmon, and figs between two plates.",
+//                     "ingredients": [
+//                         {
+//                             "id": 10111251,
+//                             "name": "romaine",
+//                             "image": "romaine"
+//                         },
+//                         {
+//                             "id": 9042,
+//                             "name": "blackberries",
+//                             "image": "blackberries.jpg"
+//                         },
+//                         {
+//                             "id": 9050,
+//                             "name": "blueberries",
+//                             "image": "blueberries.jpg"
+//                         },
+//                         {
+//                             "id": 9037,
+//                             "name": "avocado",
+//                             "image": "avocado.jpg"
+//                         },
+//                         {
+//                             "id": 15076,
+//                             "name": "salmon",
+//                             "image": "salmon.png"
+//                         },
+//                         {
+//                             "id": 9089,
+//                             "name": "figs",
+//                             "image": "figs-fresh.jpg"
+//                         }
+//                     ],
+//                     "equipment": [
+//                         {
+//                             "id": 404784,
+//                             "name": "oven",
+//                             "image": "oven.jpg"
+//                         }
+//                     ]
+//                 },
+//                 {
+//                     "number": 5,
+//                     "step": "Drizzle with desired amount of green goddess dressing and enjoy.",
+//                     "ingredients": [],
+//                     "equipment": []
+//                 }
+//             ]
+//         }
+//     ],
+//     "creditsText": "The Roasted Root"
+// },
+{
     'id': 1,
     'name': 'French toast',
     'type': 'starter',
