@@ -47,9 +47,11 @@ var DinnerModel = function () {
         .then(data => {
             this.fetchedDishes = data.recipes;
             console.log('Success: ', JSON.stringify(data.recipes[0].id));
+            return data.recipes;
         })
         .catch(err => {
             console.log('Error: ', err);
+            return Promise.reject(Error(error.message))
         })
     }
 
