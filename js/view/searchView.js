@@ -12,11 +12,11 @@ var SearchView = function(container, model) {
 
     // Get from model
     var arrDishes = model.getDishType();
+    arrDishes.splice(0, 0, 'all');
 
     // Dropdown Select for Dishes Type
     var renderDropdownType = () => {
         self.dishType.children().remove();
-        arrDishes.splice(0, 0, 'all');
         arrDishes = arrDishes.map(dish => {
             return dish.replace(
                 /\w\S*/g,
@@ -62,7 +62,7 @@ var SearchView = function(container, model) {
     renderDropdownType();
     renderSearchTitle();
     renderDishesChoice();
-    
+
     //update observer
     this.update = (data) => {
         let queryFilter = model.getSearchQuery();
