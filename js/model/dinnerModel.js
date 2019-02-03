@@ -44,7 +44,7 @@ var DinnerModel = function () {
             }
         }).then(res => res.json())
         .then(data => {
-            console.log('Success: ', JSON.stringify(data));
+            console.log('Success: ', JSON.stringify(data.recipes[0].id));
         })
         .catch(err => {
             console.log('Error: ', err);
