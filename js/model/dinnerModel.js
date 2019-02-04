@@ -116,6 +116,12 @@ var DinnerModel = function () {
         ).toFixed(2)*this.getNumberOfGuests();
     };
 
+    //Get dish total price per dish
+    this.dishPrice2 = (id) => {
+        var dish = this.getDish2(id);
+        return dish.pricePerServing;
+    };
+
     // Get total price of the menu
     this.getTotalMenuPrice = () => {
         let selectedDish = this.getFullMenu();
@@ -135,6 +141,20 @@ var DinnerModel = function () {
         };
     };
 
+    // Get total price of the menu
+    this.getTotalMenuPrice2 = () => {
+        let selectedDish = this.getFullMenu();
+        if(selectedDish) {
+            return this.getNumberOfGuests() * selectedDish.map(dish => {
+                return dish.pricePerServing;
+            })
+            .reduce((acc, cur) => {
+                return acc + cur;
+            }, 0);
+        };
+    };
+    
+
 
     // Add dish to menu
     /** @param {number} id */
@@ -143,6 +163,15 @@ var DinnerModel = function () {
 
         let dishTemp = this.selectedDish.getValue();
         dishTemp[dishType] = this.getDish(id);
+
+        this.selectedDish.notifyObserver(dishTemp);
+    };
+
+    this.addDishToMenu2 = (id) => {
+        let dishType = this.getDish2(id).type;
+
+        let dishTemp = this.selectedDish.getValue();
+        dishTemp[dishType] = this.getDish2(id);
 
         this.selectedDish.notifyObserver(dishTemp);
     };
@@ -165,6 +194,15 @@ var DinnerModel = function () {
         for (let key in dishes) {
             if (dishes[key].id == id) {
                 return dishes[key];
+            };
+        };
+    };
+
+    this.getDish2 = (id) => {
+        console.log('get dish id')
+        for (let key in this.fetchedDishes) {
+            if (this.fetchedDishes[key].id == id) {
+                return this.fetchedDishes[key];
             };
         };
     };

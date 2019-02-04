@@ -21,9 +21,10 @@ var SearchController = function(view, model, generalController) {
 
     view.menuWrapper.click((e) => {
         var id = e.target.accessKey;
+        console.log(e.target.accessKey);
         model.setCurrentDishId(id);
         model.setSearchQuery();
-        if(id != null){
+        if(id != ""){
              generalController.goToPage('detail');
         }
 

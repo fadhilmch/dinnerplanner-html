@@ -30,6 +30,24 @@ var DetailView = function(container, model) {
         };
     };
 
+    var loadSelectedDish2 = function() {
+        var id = model.getCurrentDishId();
+        var dish = model.getDish2(id);
+        console.log(dish);
+        if(dish){
+            self.detailDish.children().remove();
+            self.detailDish.append(`<div>
+                    <h4>${dish.sourceName.toUpperCase()}</h4>
+                    
+                        <img class="fitImage" alt="Responsive image" src="${dish.image}">
+                        <div>
+                            <p>${dish.title} </p>  </div>
+                            
+                    </div>
+                </div>`);
+        };
+    };
+
     //LOAD INGREDIENTS OF SELECTED MENU
     var loadIngredients = () => {
         var id = model.getCurrentDishId();
@@ -42,6 +60,24 @@ var DetailView = function(container, model) {
                     <th scope="row">${ numberPrint(dish.quantity*model.getNumberOfGuests()) + " "+ dish.unit}</th>
                     <td>${dish.name}</td>
                     <td>${ numberPrint(Number(dish.price)*model.getNumberOfGuests())}</td>
+                    <td>SEK</td>
+                </tr>`
+                );
+            });
+        };
+    };
+
+    var loadIngredients2 = () => {
+        var id = model.getCurrentDishId();
+        var dishItem = model.getDish2(id);
+        if(dishItem){
+            self.ingredientsDish.children().remove();
+            dishItem.extendedIngredients.forEach(dish => {
+                self.ingredientsDish.append(`
+                <tr>
+                    <th scope="row">${ numberPrint(dish.amount*model.getNumberOfGuests()) + " "+ dish.unit}</th>
+                    <td>${dish.name}</td>
+                    <td>100</td>
                     <td>SEK</td>
                 </tr>`
                 );
@@ -62,22 +98,31 @@ var DetailView = function(container, model) {
         }
     }
 
+     var loadPreparation2 = () => {
+        var id = model.getCurrentDishId();
+        var dish = model.getDish2(id);
+        if(dish){
+            self.preparationTip.children().remove();
+            self.preparationTip.append(` <p>${dish.instructions} </p>`)
+        }
+    }
+
     var getGuest = () => {
         self.people.children().remove();
         self.people.append(`<h5 class="left" style="padding-left: 10px"> INGREDIENTS FOR ${model.getNumberOfGuests()}  PEOPLE</h5></div>`);
     }
 
     getGuest();
-    loadSelectedDish();
-    loadIngredients();
-    loadPreparation();
+    loadSelectedDish2();
+    loadIngredients2();
+    loadPreparation2();
 
     //update observer
     this.update = function(data) {
         getGuest();
-        loadSelectedDish();
-        loadIngredients();
-        loadPreparation();
+        loadSelectedDish2();
+        loadIngredients2();
+        loadPreparation2();
     }
 
 }

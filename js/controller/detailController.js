@@ -11,7 +11,7 @@ var DetailController = function(view, model, generalController) {
 
     view.addToMenu.click(() => {
         var cur = model.getCurrentDishId();
-        model.addDishToMenu(Number(cur));
+        model.addDishToMenu2(Number(cur));
     })
 
 

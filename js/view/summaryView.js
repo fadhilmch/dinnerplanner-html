@@ -6,7 +6,7 @@ var SummaryView = function(container, model) {
     //Get data from Model
     var totalGuests = model.getNumberOfGuests();
     var allMenu = model.getFullMenu();
-    var totalPrice = model.getTotalMenuPrice();
+    var totalPrice = model.getTotalMenuPrice2();
 
     //Initialize Component
     this.selectedMenu = container.find("#selected-wrapper");
@@ -30,14 +30,31 @@ var SummaryView = function(container, model) {
                 
                         <div class="caption" style="padding-top: 5px">
                             <h6 class="text-danger" style="text-align: right;">${
-                        Number(
-                            dish.ingredients.map(ingredient => {
-                                return ingredient.quantity * ingredient.price;
-                            })
-                            .reduce((acc, cur) => {
-                                return acc + cur;
-                            })
-                        ).toFixed(2)*totalGuests
+                       model.dishPrice(dish.id)
+                    } SEK</h6>
+                        </div>
+                    </div>
+                `);
+        });
+    };
+
+    //LOAD DATA MENU OVERVIEW
+    var loadAllMenuOverview2 = () => {
+        self.selectedMenu.children().remove();
+        allMenu.forEach(dish => {
+            console.log(allMenu);
+            self.selectedMenu.append(`
+            <div class="col-sm-6 col-md-3">             
+                    <div class="menu">
+                        <img src="${dish.image}" alt="${dish.title}">
+                        <div class="caption">
+                            <h5>${dish.title}</h5>
+                        </div>
+                    </div>
+                
+                        <div class="caption" style="padding-top: 5px">
+                            <h6 class="text-danger" style="text-align: right;">${
+                       model.dishPrice2(dish.id)
                     } SEK</h6>
                         </div>
                     </div>
@@ -65,16 +82,16 @@ var SummaryView = function(container, model) {
         `);
     };
 
-    loadAllMenuOverview();
-    getTotalMenuPrice();
+    loadAllMenuOverview2();
+   // getTotalMenuPrice();
     getTotalGuests();
 
     this.update = (data) => {
         totalGuests = model.getNumberOfGuests();
-        totalPrice = model.getTotalMenuPrice();
+        totalPrice = model.getTotalMenuPrice2();
         allMenu = model.getFullMenu();
         getTotalGuests();
-        loadAllMenuOverview();
-        getTotalMenuPrice();
+        loadAllMenuOverview2();
+        //getTotalMenuPrice();
     };
 };

@@ -5,7 +5,8 @@ var SidebarView = function(container, model) {
 
     // Get from model
     var allMenu = model.getFullMenu();
-    var totalPrice = model.getTotalMenuPrice();
+    var totalPrice = model.getTotalMenuPrice2();
+    var totalPrice2 = model.getTotalMenuPrice2();
 
     //Initialize Component
     this.numberOfGuests = container.find(".guest");
@@ -28,6 +29,15 @@ var SidebarView = function(container, model) {
         if (allMenu.length > 0) {
             self.totalCost.html(`SEK ${Number(totalPrice).toFixed(2)}`);
             self.navPrice.html(`SEK ${Number(totalPrice).toFixed(2)}`);
+        };
+    };
+
+     // Total Cost
+    var calculateTotalCost2 = function() {
+        if (allMenu.length > 0) {
+            console.log(totalPrice2);
+            self.totalCost.html(`SEK ${Number(totalPrice2).toFixed(2)}`);
+            self.navPrice.html(`SEK ${Number(totalPrice2).toFixed(2)}`);
         };
     };
 
@@ -54,17 +64,32 @@ var SidebarView = function(container, model) {
         };
     };
 
+     // Table Sidebar
+    var showSidebar2 = function() {
+        self.menuTable.children().remove();
+        if (allMenu.length > 0) {
+            allMenu.forEach(dish => {
+                self.menuTable.append(`                         
+                <tr>
+                    <td>${dish.title}</td>
+                    <td>${model.dishPrice2(dish.id)}</td>
+                </tr>
+            `);
+            });
+        };
+    };
+
 
     initialize();
-    showSidebar();
-    calculateTotalCost();
+    showSidebar2();
+    calculateTotalCost2();
 
     this.update = function(data) {
-        totalPrice = model.getTotalMenuPrice();
+        totalPrice = model.getTotalMenuPrice2();
         allMenu = model.getFullMenu();
         setConfimButtonStatus();
-        showSidebar();
-        calculateTotalCost();
+        showSidebar2();
+        calculateTotalCost2();
     };
 
 };
