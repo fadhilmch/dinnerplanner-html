@@ -20,7 +20,7 @@ var SearchController = function(view, model, generalController) {
         }
     });
 
-    view.searchInput.on('change',(e) => {
+    view.searchInput.on('input',(e) => {
         searchQuery();
     });
 
