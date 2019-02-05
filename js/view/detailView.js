@@ -55,7 +55,7 @@ var DetailView = function(container, model) {
             dishItem.ingredients.forEach(dish => {
                 self.ingredientsDish.append(`
                 <tr>
-                    <th scope="row">${ numberPrint(dish.quantity*model.getNumberOfGuests()) + " "+ dish.unit}</th>
+                    <th scope="row">${numberPrint(dish.quantity*model.getNumberOfGuests()) + " "+ dish.unit}</th>
                     <td>${dish.name}</td>
                     <td>${ numberPrint(Number(dish.price)*model.getNumberOfGuests())}</td>
                     <td>SEK</td>

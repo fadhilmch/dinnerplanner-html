@@ -45,12 +45,13 @@ var SummaryView = function(container, model) {
         allMenu.forEach(dish => {
             console.log(allMenu);
             self.selectedMenu.append(`
-                    <div class="col-sm-6 col-md-3">             
-                    <div class="card" style="height: 100%" accessKey="${dish.id}">
-                      <img class="card-img-top" src="${dish.image}" accessKey="${dish.id}">
-                      <div class="card-title" style="align-text:bottom">
-                        <h6 accessKey ="${dish.id}">${dish.sourceName} </h6>
-                      </div>
+                    <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
+                        <div class="card" style="height: 100%" >
+                        <img class="card-img-top" src="${dish.image}">
+                        <div class="card-text" style="align-text:center">
+                            <h6>${dish.title} </h6>
+                        </  div>
+                        </div>
                     </div>
                         <div class="caption" style="padding-top: 5px">
                             <h6 class="text-danger" style="text-align: right;">${
@@ -100,7 +101,7 @@ var SummaryView = function(container, model) {
 
     this.update = (data) => {
         totalGuests = model.getNumberOfGuests();
-        totalPrice = model.getTotalMenuPrice2();
+        totalPrice2 = model.getTotalMenuPrice2();
         allMenu = model.getFullMenu();
         getTotalGuests();
         loadAllMenuOverview2();

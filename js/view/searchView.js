@@ -15,6 +15,7 @@ var SearchView = function (container, model, gc) {
     var arrDishes = model.getDishType();
     var arrDishes2 = model.getDishType2();
     arrDishes.splice(0, 0, 'all');
+    arrDishes2.splice(0,0,'all');
 
     // Dropdown Select for Dishes Type
     var renderDropdownType = () => {
@@ -36,7 +37,6 @@ var SearchView = function (container, model, gc) {
     var renderDropdownType2 = () => {
         self.dishType.children().remove();
         arrDishes2 = model.getDishType2();
-        console.log(arrDishes2);
         arrDishes2 = arrDishes2.map(dish => {
             return dish.replace(
                 /\w\S*/g,
@@ -74,7 +74,6 @@ var SearchView = function (container, model, gc) {
 
     var renderDishesChoice2 = (type = 'all', filter = '') => {
         let allDishes = model.getAllDishes2(type, filter);
-        console.log(allDishes);
         self.menuWrapper.children().remove();
         if(allDishes.length !=0 ){
             allDishes.forEach(dish => {
@@ -90,29 +89,7 @@ var SearchView = function (container, model, gc) {
                 `)
             })
         }
-        // model.fetchUrl()
-        //     .then(data => {
-        //         renderDropdownType2();
-        //         data.forEach(dish => {
-        //             self.menuWrapper.append(`   
-        //          <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
-        //             <div class="card" style="height: 100%" >
-        //               <img class="card-img-top" src="${dish.image}">
-        //               <div class="card-text" style="align-text:center">
-        //                 <h6>${dish.sourceName} </h6>
-        //               </div>
-        //             </div>
-        //         </div>
-        // `)
-
-
-
-            //     })
-            // })
-            // .catch(err => {
-            //     console.log('Error: ' + err);
-            // })
-
+       
     }
 
 
@@ -134,7 +111,7 @@ var SearchView = function (container, model, gc) {
     //update observer
     this.update = (data) => {
         let queryFilter = model.getSearchQuery();
-        renderDropdownType2();
+        //renderDropdownType();
         renderSearchTitle();
         renderDishesChoice2(queryFilter.type, queryFilter.query);
 

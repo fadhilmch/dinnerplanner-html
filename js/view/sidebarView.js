@@ -34,8 +34,6 @@ var SidebarView = function(container, model) {
 
      // Total Cost
     var calculateTotalCost2 = function() {
-        console.log(allMenu.length);
-        console.log(totalPrice2);
         if (allMenu.length > 0) {
             console.log(totalPrice2);
             self.totalCost.html(`SEK ${Number(totalPrice2).toFixed(2)}`);
@@ -73,7 +71,7 @@ var SidebarView = function(container, model) {
             allMenu.forEach(dish => {
                 self.menuTable.append(`                         
                 <tr>
-                    <td>${dish.title}</td>
+                    <td>${dish.sourceName}</td>
                     <td>${model.dishPrice2(dish.id)}</td>
                 </tr>
             `);
@@ -87,7 +85,7 @@ var SidebarView = function(container, model) {
     calculateTotalCost2();
 
     this.update = function(data) {
-        totalPrice = model.getTotalMenuPrice2();
+        totalPrice2 = model.getTotalMenuPrice2();
         allMenu = model.getFullMenu();
         setConfimButtonStatus();
         showSidebar2();

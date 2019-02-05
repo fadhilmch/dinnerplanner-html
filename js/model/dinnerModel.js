@@ -146,7 +146,7 @@ var DinnerModel = function() {
         if (selectedDish) {
             return this.getNumberOfGuests() * selectedDish.map(dish => {
                     return dish.pricePerServing;
-                       console.log(dish.pricePerServing);
+                      
                 })
 
                 .reduce((acc, cur) => {
@@ -171,7 +171,6 @@ var DinnerModel = function() {
 
     this.addDishToMenu2 = (id) => {
         let dishType = this.getDish2(id).dishTypes;
-        console.log(dishType);
 
         let dishTemp = this.selectedDish.getValue();
         dishTemp[dishType] = this.getDish2(id);
@@ -243,7 +242,7 @@ var DinnerModel = function() {
 
     this.getAllDishes2 = (type = 'all', filter = '') => {
         filter = filter.toLowerCase();
-        console.log(this.fetchedDishes);
+        console.log(this.getDishType2());
         return this.fetchedDishes.getValue().filter((dish) => {
             var found = true;
             if (filter == "" && type == "all") {
@@ -280,6 +279,7 @@ var DinnerModel = function() {
 
     this.getDishType2 = () => {
         let dishType = [];
+        console.log(this.fetchedDishes);
         this.fetchedDishes.getValue().forEach(dish => {
             dish.dishTypes.forEach(type => {
                 if (dishType.indexOf(type) === -1)
