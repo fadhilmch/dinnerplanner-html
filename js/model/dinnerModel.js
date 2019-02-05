@@ -46,11 +46,11 @@ var DinnerModel = function() {
             }).then(res => res.json())
             .then(data => {
                 this.fetchedDishes.notifyObserver([...data.recipes]);
-                console.log('Success: ', JSON.stringify(data.recipes[0].id));
+                // console.log('Success: ', JSON.stringify(data.recipes[0].id));
                 return data.recipes;
             })
             .catch(err => {
-                console.log('Error: ', err);
+                // console.log('Error: ', err);
                 return Promise.reject(Error(error.message))
             })
     }
@@ -146,7 +146,6 @@ var DinnerModel = function() {
         if (selectedDish) {
             return this.getNumberOfGuests() * selectedDish.map(dish => {
                     return dish.pricePerServing;
-                       console.log(dish.pricePerServing);
                 })
 
                 .reduce((acc, cur) => {
@@ -171,7 +170,7 @@ var DinnerModel = function() {
 
     this.addDishToMenu2 = (id) => {
         let dishType = this.getDish2(id).dishTypes;
-        console.log(dishType);
+        // console.log(dishType);
 
         let dishTemp = this.selectedDish.getValue();
         dishTemp[dishType] = this.getDish2(id);
@@ -243,7 +242,6 @@ var DinnerModel = function() {
 
     this.getAllDishes2 = (type = 'all', filter = '') => {
         filter = filter.toLowerCase();
-        console.log(this.fetchedDishes);
         return this.fetchedDishes.getValue().filter((dish) => {
             var found = true;
             if (filter == "" && type == "all") {
@@ -252,18 +250,19 @@ var DinnerModel = function() {
 
             if (filter != "") {
                 found = false;
-                dish.ingredients.forEach(function(ingredient) {
+                dish.extendedIngredients.forEach(function(ingredient) {
                     if (ingredient.name.toLowerCase().indexOf(filter) != -1) {
                         found = true;
                     };
                 });
 
-                if (dish.name.toLowerCase().indexOf(filter) != -1) {
+                if (dish.title.toLowerCase().indexOf(filter) != -1) {
                     found = true;
                 };
             };
+            // console.log(dish.dishType)
 
-            return type === 'all' ? found : dish.type == type && found;
+            return type === 'all' ? found : dish.dishTypes.indexOf(type) != -1 && found;
         });
     };
 
