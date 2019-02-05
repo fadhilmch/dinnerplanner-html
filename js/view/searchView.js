@@ -83,7 +83,7 @@ var SearchView = function (container, model, gc) {
                     <div class="card" style="height: 100%" >
                     <img class="card-img-top" src="${dish.image}">
                     <div class="card-text" style="align-text:center">
-                        <h6>${dish.sourceName} </h6>
+                        <h6>${dish.title} </h6>
                     </  div>
                     </div>
 
