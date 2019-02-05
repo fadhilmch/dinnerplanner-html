@@ -1,6 +1,6 @@
 'use strict';
 
-var SearchView = function(container, model, gc) {
+var SearchView = function (container, model, gc) {
     var self = this;
 
     // Initialize Component
@@ -33,7 +33,7 @@ var SearchView = function(container, model, gc) {
         }
     }
 
-     var renderDropdownType2 = () => {
+    var renderDropdownType2 = () => {
         self.dishType.children().remove();
         arrDishes2 = model.getDishType2();
         console.log(arrDishes2);
@@ -70,37 +70,49 @@ var SearchView = function(container, model, gc) {
         })
     }
 
-    
+
 
     var renderDishesChoice2 = (type = 'all', filter = '') => {
         let allDishes = model.getAllDishes2(type, filter);
         console.log(allDishes);
         self.menuWrapper.children().remove();
-        model.fetchUrl()
-        .then(data => {
-            renderDropdownType2();
-            data.forEach(dish =>{
-            self.menuWrapper.append(`   
-                 <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
-                    <div class="card" style="height: 100%" >
-                      <img class="card-img-top" src="${dish.image}">
-                      <div class="card-text" style="align-text:center">
-                        <h6>${dish.sourceName} </h6>
-                      </div>
+        if(allDishes.length !=0 ){
+            allDishes.forEach(dish => {
+                self.menuWrapper.append(`   
+                    <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
+                        <div class="card" style="height: 100%" >
+                        <img class="card-img-top" src="${dish.image}">
+                        <div class="card-text" style="align-text:center">
+                            <h6>${dish.sourceName} </h6>
+                        </  div>
+                        </div>
                     </div>
-                </div>
-                
-              
-        `)
+                `)
+            })
+        }
+        // model.fetchUrl()
+        //     .then(data => {
+        //         renderDropdownType2();
+        //         data.forEach(dish => {
+        //             self.menuWrapper.append(`   
+        //          <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
+        //             <div class="card" style="height: 100%" >
+        //               <img class="card-img-top" src="${dish.image}">
+        //               <div class="card-text" style="align-text:center">
+        //                 <h6>${dish.sourceName} </h6>
+        //               </div>
+        //             </div>
+        //         </div>
+        // `)
 
 
 
-        })
-        })
-        .catch(err => {
-            console.log('Error: ' + err);
-        })     
-            
+            //     })
+            // })
+            // .catch(err => {
+            //     console.log('Error: ' + err);
+            // })
+
     }
 
 
@@ -113,17 +125,18 @@ var SearchView = function(container, model, gc) {
 
     }
 
-   
+
     renderSearchTitle();
     renderDishesChoice2();
     renderDropdownType2();
-
-
+    
+    
     //update observer
     this.update = (data) => {
         let queryFilter = model.getSearchQuery();
+        renderDropdownType2();
         renderSearchTitle();
-        //renderDishesChoice2(queryFilter.type, queryFilter.query);
-        
+        renderDishesChoice2(queryFilter.type, queryFilter.query);
+
     }
 }

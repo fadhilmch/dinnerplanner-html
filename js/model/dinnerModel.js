@@ -32,7 +32,7 @@ var DinnerModel = function() {
     this.selectedDish = new Observable({});
     this.dishId = new Observable(0);
     this.searchQuery = new Observable({ 'type': 'all', 'query': '' });
-    this.fetchedDishes = [];
+    this.fetchedDishes = new Observable([]);
 
     var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=10&tags=';
     var header = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
@@ -45,7 +45,7 @@ var DinnerModel = function() {
                 }
             }).then(res => res.json())
             .then(data => {
-                this.fetchedDishes = data.recipes;
+                this.fetchedDishes.notifyObserver([...data.recipes]);
                 console.log('Success: ', JSON.stringify(data.recipes[0].id));
                 return data.recipes;
             })
@@ -202,9 +202,10 @@ var DinnerModel = function() {
     };
 
     this.getDish2 = (id) => {
-        for (let key in this.fetchedDishes) {
-            if (this.fetchedDishes[key].id == id) {
-                return this.fetchedDishes[key];
+        let temp = this.fetchedDishes.getValue();
+        for (let key in temp) {
+            if (temp[key].id == id) {
+                return temp[key];
             };
         };
     };
@@ -243,7 +244,7 @@ var DinnerModel = function() {
     this.getAllDishes2 = (type = 'all', filter = '') => {
         filter = filter.toLowerCase();
         console.log(this.fetchedDishes);
-        return this.fetchedDishes.filter((dish) => {
+        return this.fetchedDishes.getValue().filter((dish) => {
             var found = true;
             if (filter == "" && type == "all") {
                 return true;
@@ -279,7 +280,7 @@ var DinnerModel = function() {
 
     this.getDishType2 = () => {
         let dishType = [];
-        this.fetchedDishes.forEach(dish => {
+        this.fetchedDishes.getValue().forEach(dish => {
             dish.dishTypes.forEach(type => {
                 if (dishType.indexOf(type) === -1)
                     dishType.push(type);
