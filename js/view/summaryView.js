@@ -6,7 +6,8 @@ var SummaryView = function(container, model) {
     //Get data from Model
     var totalGuests = model.getNumberOfGuests();
     var allMenu = model.getFullMenu();
-    var totalPrice = model.getTotalMenuPrice2();
+    var totalPrice = model.getTotalMenuPrice();
+    var totalPrice2 = model.getTotalMenuPrice2();
 
     //Initialize Component
     this.selectedMenu = container.find("#selected-wrapper");
@@ -44,14 +45,13 @@ var SummaryView = function(container, model) {
         allMenu.forEach(dish => {
             console.log(allMenu);
             self.selectedMenu.append(`
-            <div class="col-sm-6 col-md-3">             
-                    <div class="menu">
-                        <img src="${dish.image}" alt="${dish.title}">
-                        <div class="caption">
-                            <h5>${dish.title}</h5>
-                        </div>
+                    <div class="col-sm-6 col-md-3">             
+                    <div class="card" style="height: 100%" accessKey="${dish.id}">
+                      <img class="card-img-top" src="${dish.image}" accessKey="${dish.id}">
+                      <div class="card-title" style="align-text:bottom">
+                        <h6 accessKey ="${dish.id}">${dish.sourceName} </h6>
+                      </div>
                     </div>
-                
                         <div class="caption" style="padding-top: 5px">
                             <h6 class="text-danger" style="text-align: right;">${
                        model.dishPrice2(dish.id)
@@ -82,8 +82,20 @@ var SummaryView = function(container, model) {
         `);
     };
 
+    //LOAD TOTAL PRICE OF SELECTED MENU ON OVERVIEW
+    var getTotalMenuPrice2 = () => {
+        self.priceAcc.children().remove();
+        self.priceAcc.append(`<div id ="totalPrice" class="col-md-4" style="text-align: left">
+                                    <div class="flex-container">
+                                        <h6>Total: </h6>
+                                        <h6 class="text-danger">${Number(totalPrice2).toFixed(2)}SEK </h6>
+                                    </div>
+                                </div>
+        `);
+    };
+
     loadAllMenuOverview2();
-   // getTotalMenuPrice();
+    getTotalMenuPrice2();
     getTotalGuests();
 
     this.update = (data) => {
@@ -92,6 +104,6 @@ var SummaryView = function(container, model) {
         allMenu = model.getFullMenu();
         getTotalGuests();
         loadAllMenuOverview2();
-        //getTotalMenuPrice();
+        getTotalMenuPrice2();
     };
 };

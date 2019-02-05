@@ -49,12 +49,46 @@ var PrintView = function(container, model) {
         })
     }
 
-    loadPrintMenu();
+     //LOAD DATA OF MENU ON PRINT OUT
+    var loadPrintMenu2 = function() {
+        printMenu.children().remove();
+        allMenu.forEach(dish => {
+            printMenu.append(`<br>
+            <div class="row">
+                <div class="col-md-6" style="padding-bottom: 10px">
+                    <div class="row">
+                        <div class="col-md-6 center" style="padding-bottom: 10px">
+                            <img class="fitImage" src="${dish.image}">
+                        </div>
+
+                        <div class="col-md-6" >
+                            <h5>${dish.title.toUpperCase()}</h5>
+                            <p>
+                            
+                            </p>
+                        </div>
+                    </div>
+                </div>  
+                <div class="col-md-6">
+                    <h5>PREPARATION</h5>
+                    <p>
+                    ${dish.instructions}
+                    </p>
+                
+                </div>
+                </div>
+            
+            <br>
+            <br>`)
+        })
+    }
+
+    loadPrintMenu2();
     getTotalGuests();
 
     this.update = function(data) {
         allMenu = model.getFullMenu();
         getTotalGuests();
-        loadPrintMenu();
+        loadPrintMenu2();
     }
 }

@@ -13,6 +13,7 @@ $(function() {
 	var detail = $('#detailView');
 	var summary = $('#summaryView');
 	var print = $('#printView');
+	var loading = $('#loading');
 
 	//instantiate all views
 	var dinnerPlannerView = function(){
@@ -23,6 +24,7 @@ $(function() {
 		dishView['detail'] = detail;
 		dishView['summary'] = summary;
 		dishView['print'] = print;
+		dishView['loading'] = loading;
 	}
 	
 	dinnerPlannerView();
@@ -35,11 +37,11 @@ $(function() {
 	var sidebarView = new SidebarView(sidebar, model);
 	var sidebarController = new SidebarController(sidebarView, model, generalController);
 	
-	var searchView = new SearchView(search, model);
-	var searchController = new SearchController(searchView, model, generalController);
-
 	var homeView = new HomeView(welcome,model);
 	var homeController = new HomeController(homeView, model, generalController);
+
+	var searchView = new SearchView(search, model);
+	var searchController = new SearchController(searchView, model, generalController);
 
 	var selectView = new SelectView(select, model);
 

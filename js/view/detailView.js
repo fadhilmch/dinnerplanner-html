@@ -33,12 +33,10 @@ var DetailView = function(container, model) {
     var loadSelectedDish2 = function() {
         var id = model.getCurrentDishId();
         var dish = model.getDish2(id);
-        console.log(dish);
         if(dish){
             self.detailDish.children().remove();
             self.detailDish.append(`<div>
                     <h4>${dish.sourceName.toUpperCase()}</h4>
-                    
                         <img class="fitImage" alt="Responsive image" src="${dish.image}">
                         <div>
                             <p>${dish.title} </p>  </div>
@@ -70,6 +68,7 @@ var DetailView = function(container, model) {
     var loadIngredients2 = () => {
         var id = model.getCurrentDishId();
         var dishItem = model.getDish2(id);
+        var price = 1;
         if(dishItem){
             self.ingredientsDish.children().remove();
             dishItem.extendedIngredients.forEach(dish => {
@@ -77,7 +76,7 @@ var DetailView = function(container, model) {
                 <tr>
                     <th scope="row">${ numberPrint(dish.amount*model.getNumberOfGuests()) + " "+ dish.unit}</th>
                     <td>${dish.name}</td>
-                    <td>100</td>
+                    <td>${price*model.getNumberOfGuests()}</td>
                     <td>SEK</td>
                 </tr>`
                 );

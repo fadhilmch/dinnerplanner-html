@@ -9,7 +9,8 @@ var GeneralController = function(arrViews) {
 
         switch (name) {
             case 'home':
-                arrViews['welcome'].show()
+                arrViews['welcome'].show();
+                
                 break
             case 'search':
                 // arrViews['select'].show();

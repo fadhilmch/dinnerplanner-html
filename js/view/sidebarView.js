@@ -5,7 +5,7 @@ var SidebarView = function(container, model) {
 
     // Get from model
     var allMenu = model.getFullMenu();
-    var totalPrice = model.getTotalMenuPrice2();
+    var totalPrice = model.getTotalMenuPrice();
     var totalPrice2 = model.getTotalMenuPrice2();
 
     //Initialize Component
@@ -34,6 +34,8 @@ var SidebarView = function(container, model) {
 
      // Total Cost
     var calculateTotalCost2 = function() {
+        console.log(allMenu.length);
+        console.log(totalPrice2);
         if (allMenu.length > 0) {
             console.log(totalPrice2);
             self.totalCost.html(`SEK ${Number(totalPrice2).toFixed(2)}`);

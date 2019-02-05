@@ -1,6 +1,6 @@
 'use strict';
 
-var SearchView = function(container, model) {
+var SearchView = function(container, model, gc) {
     var self = this;
 
     // Initialize Component
@@ -9,6 +9,7 @@ var SearchView = function(container, model) {
     this.searchButton = container.find('#search-btn');
     this.searchTitle = container.find('#search-title');
     this.searchInput = container.find('#search-input');
+    this.loading = container.find('#loading');
 
     // Get from model
     var arrDishes = model.getDishType();
@@ -34,6 +35,8 @@ var SearchView = function(container, model) {
 
      var renderDropdownType2 = () => {
         self.dishType.children().remove();
+        arrDishes2 = model.getDishType2();
+        console.log(arrDishes2);
         arrDishes2 = arrDishes2.map(dish => {
             return dish.replace(
                 /\w\S*/g,
@@ -47,7 +50,6 @@ var SearchView = function(container, model) {
             self.dishType.append(`<option ${(arrDishes2[i]===model.getSearchQuery().type)?'selected':''}>${arrDishes2[i]} </option>`);
         }
     }
-
 
 
     // Menu Wrapper
@@ -68,47 +70,36 @@ var SearchView = function(container, model) {
         })
     }
 
-    var renderDishesChoice2 = (type = 'all', filter = '') => {
-        let allDishes = model.getAllDishes(type, filter);
-        self.menuWrapper.children().remove();
-        allDishes.forEach(dish => {
-            self.menuWrapper.append(`
-                 <div class="col-sm-6 col-md-3 col-lg-2" accessKey="${dish.id}" >
-                    <div class="card" style="height: 100%" accessKey="${dish.id}">
-                      <img class="card-img-top" src="images/${dish.image}" accessKey="${dish.id}">
-                      <div class="card-title" style="align-text:bottom">
-                        <h6 accessKey ="${dish.id}">${dish.name} </h6>
-                        </div>
-                </div>
-                </div>
-        `)
-        })
-    }
+    
 
-    var renderRandomRecipe = (type = 'all', filter = '') => {
-        let allDishes = model.getAllDishes(type, filter);
+    var renderDishesChoice2 = (type = 'all', filter = '') => {
+        let allDishes = model.getAllDishes2(type, filter);
+        console.log(allDishes);
         self.menuWrapper.children().remove();
         model.fetchUrl()
         .then(data => {
-             console.log(data);
+            renderDropdownType2();
             data.forEach(dish =>{
-
-            self.menuWrapper.append(`
-                 <div class="col-sm-6 col-md-3 col-lg-2" accessKey="${dish.id}" >
-                    <div class="card" style="height: 100%" accessKey="${dish.id}">
-                      <img class="card-img-top" src="${dish.image}" accessKey="${dish.id}">
-                      <div class="card-title" style="align-text:bottom">
-                        <h6 accessKey ="${dish.id}">${dish.sourceName} </h6>
-                        </div>
+            self.menuWrapper.append(`   
+                 <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
+                    <div class="card" style="height: 100%" >
+                      <img class="card-img-top" src="${dish.image}">
+                      <div class="card-text" style="align-text:center">
+                        <h6>${dish.sourceName} </h6>
+                      </div>
+                    </div>
                 </div>
-                </div>
+                
+              
         `)
+
+
+
         })
         })
         .catch(err => {
             console.log('Error: ' + err);
-        })
-        
+        })     
             
     }
 
@@ -124,15 +115,15 @@ var SearchView = function(container, model) {
 
    
     renderSearchTitle();
-    //renderDishesChoice();
-    renderRandomRecipe();
-     renderDropdownType2();
+    renderDishesChoice2();
+    renderDropdownType2();
+
 
     //update observer
     this.update = (data) => {
         let queryFilter = model.getSearchQuery();
         renderSearchTitle();
         //renderDishesChoice2(queryFilter.type, queryFilter.query);
-        renderDropdownType2();
+        
     }
 }

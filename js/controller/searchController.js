@@ -7,6 +7,7 @@ var SearchController = function(view, model, generalController) {
         let query = view.searchInput.val().toLowerCase();
         let type = view.dishType.val().toLowerCase();
         model.setSearchQuery({query, type});
+        console.log(query + type);
     };
 
     view.searchButton.click(() => { searchQuery() });
@@ -19,16 +20,15 @@ var SearchController = function(view, model, generalController) {
         }
     });
 
-    view.menuWrapper.click((e) => {
-        var id = e.target.accessKey;
-        console.log(e.target.accessKey);
-        model.setCurrentDishId(id);
-        model.setSearchQuery();
-        if(id != ""){
-             generalController.goToPage('detail');
-        }
 
-    })
+    view.menuWrapper.on('click', '.dishItem', function(){
+        var id =$(this).attr('id');
+        console.log(id);
+        model.setCurrentDishId(id);
+        model.setSearchQuery()
+        generalController.goToPage('detail');
+        
+    });
 
 
 }
