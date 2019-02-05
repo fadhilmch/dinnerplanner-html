@@ -8,7 +8,6 @@ var SearchController = function(view, model, generalController) {
         let query = view.searchInput.val().toLowerCase();
         let type = view.dishType.val().toLowerCase();
         model.setSearchQuery({query, type});
-        console.log(query+type);
     };
 
     view.searchButton.click(() => { searchQuery() });

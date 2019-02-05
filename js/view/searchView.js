@@ -37,6 +37,8 @@ var SearchView = function (container, model, gc) {
     var renderDropdownType2 = () => {
         self.dishType.children().remove();
         arrDishes2 = model.getDishType2();
+        console.log(model.getSearchQuery().type)
+        arrDishes2.splice(0,0,'all');
         arrDishes2 = arrDishes2.map(dish => {
             return dish.replace(
                 /\w\S*/g,
@@ -47,7 +49,7 @@ var SearchView = function (container, model, gc) {
         });
 
         for (var i = 0; i < arrDishes2.length; i++) {
-            self.dishType.append(`<option ${(arrDishes2[i]===model.getSearchQuery().type)?'selected':''}>${arrDishes2[i]} </option>`);
+            self.dishType.append(`<option ${(arrDishes2[i].toLowerCase()===model.getSearchQuery().type)?'selected':''}>${arrDishes2[i]} </option>`);
         }
     }
 
@@ -75,24 +77,20 @@ var SearchView = function (container, model, gc) {
     var renderDishesChoice2 = (type = 'all', filter = '') => {
         let allDishes = model.getAllDishes2(type, filter);
         self.menuWrapper.children().remove();
-        if(allDishes.length !=0 ){
-            allDishes.forEach(dish => {
-                self.menuWrapper.append(`   
-                    <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
-                        <div class="card" style="height: 100%" >
-                        <img class="card-img-top" src="${dish.image}">
-                        <div class="card-text" style="align-text:center">
-                            <h6>${dish.sourceName} </h6>
-                        </  div>
-                        </div>
+        allDishes.forEach(dish => {
+            self.menuWrapper.append(`   
+                <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
+                    <div class="card" style="height: 100%" >
+                    <img class="card-img-top" src="${dish.image}">
+                    <div class="card-text" style="align-text:center">
+                        <h6>${dish.sourceName} </h6>
+                    </  div>
                     </div>
+
                 `)
             })
         }
        
-    }
-
-
     var renderSearchTitle = () => {
         self.searchTitle.children().remove();
         if (model.getFullMenu().length > 0)
@@ -111,9 +109,8 @@ var SearchView = function (container, model, gc) {
     //update observer
     this.update = (data) => {
         let queryFilter = model.getSearchQuery();
-        //renderDropdownType();
+        renderDropdownType2();
         renderSearchTitle();
         renderDishesChoice2(queryFilter.type, queryFilter.query);
-
     }
 }
