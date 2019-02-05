@@ -249,6 +249,8 @@ var DinnerModel = function() {
             };
 
             if (filter != "") {
+                console.log(dish)
+                console.log(dish.title)
                 found = false;
                 dish.extendedIngredients.forEach(function(ingredient) {
                     if (ingredient.name.toLowerCase().indexOf(filter) != -1) {
