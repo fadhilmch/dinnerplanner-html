@@ -22,7 +22,7 @@ var SummaryView = function(container, model) {
         allMenu.forEach(dish => {
             self.selectedMenu.append(`
             <div class="col-sm-6 col-md-3">             
-                    <div class="menu">
+                    <div class="dishItem" id ='${dish.id}'>
                         <img src="images/${dish.image}" alt="${dish.name}">
                         <div class="caption">
                             <h5>${dish.name}</h5>
@@ -49,7 +49,7 @@ var SummaryView = function(container, model) {
                         <div class="card" style="height: 100%" >
                         <img class="card-img-top" src="${dish.image}">
                         <div class="card-text" style="align-text:center">
-                            <h6>${dish.title} </h6>
+                            <h6>${dish.sourceName} </h6>
                         </  div>
                         </div>
                     </div>

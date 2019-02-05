@@ -35,7 +35,6 @@ var SidebarView = function(container, model) {
      // Total Cost
     var calculateTotalCost2 = function() {
         if (allMenu.length > 0) {
-            console.log(totalPrice2);
             self.totalCost.html(`SEK ${Number(totalPrice2).toFixed(2)}`);
             self.navPrice.html(`SEK ${Number(totalPrice2).toFixed(2)}`);
         };

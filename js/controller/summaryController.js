@@ -12,4 +12,14 @@ var SummaryController = function(view, model, generalController) {
         generalController.goToPage('search');
 
     })
+
+     view.selectedMenu.on('click', '.dishItem', function(){
+        var id =$(this).attr('id');
+        console.log(id);
+        model.setCurrentDishId(id);
+        model.setSearchQuery()
+        generalController.goToPage('detail');
+        
+    });
+
 }
