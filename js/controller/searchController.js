@@ -20,6 +20,10 @@ var SearchController = function(view, model, generalController) {
         }
     });
 
+    view.searchInput.on('change',(e) => {
+        searchQuery();
+    });
+
 
     view.menuWrapper.on('click', '.dishItem', function(){
         var id =$(this).attr('id');
