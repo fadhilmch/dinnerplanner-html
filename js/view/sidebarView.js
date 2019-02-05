@@ -69,8 +69,8 @@ var SidebarView = function(container, model) {
         if (allMenu.length > 0) {
             allMenu.forEach(dish => {
                 self.menuTable.append(`                         
-                <tr>
-                    <td>${dish.sourceName}</td>
+                <tr class ="dishItem" id ='${dish.id}'>
+                    <td>${dish.title}</td>
                     <td>${model.dishPrice2(dish.id)}</td>
                 </tr>
             `);

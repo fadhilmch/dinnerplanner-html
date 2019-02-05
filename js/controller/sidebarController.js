@@ -13,4 +13,13 @@ var SidebarController = function(view, model, generalController) {
         model.setSearchQuery();
     })
 
+     view.menuTable.on('click', '.dishItem', function(){
+        var id =$(this).attr('id');
+        model.setCurrentDishId(id);
+        model.setSearchQuery()
+        generalController.goToPage('detail');
+        
+    });
+
+
 }

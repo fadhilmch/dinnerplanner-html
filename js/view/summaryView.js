@@ -49,7 +49,7 @@ var SummaryView = function(container, model) {
                         <div class="card" style="height: 100%" >
                         <img class="card-img-top" src="${dish.image}">
                         <div class="card-text" style="align-text:center">
-                            <h6>${dish.sourceName} </h6>
+                            <p>${dish.title} </p>
                         </  div>
                         </div>
                     </div>

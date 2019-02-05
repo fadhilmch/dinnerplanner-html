@@ -13,6 +13,8 @@ var DetailController = function(view, model, generalController) {
         var cur = model.getCurrentDishId();
         console.log(cur);
         model.addDishToMenu2(Number(cur));
+        generalController.goToPage('search');
+        model.getFullMenu();
     })
 
 

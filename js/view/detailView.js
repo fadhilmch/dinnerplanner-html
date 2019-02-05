@@ -36,10 +36,10 @@ var DetailView = function(container, model) {
         if(dish){
             self.detailDish.children().remove();
             self.detailDish.append(`<div>
-                    <h4>${dish.sourceName.toUpperCase()}</h4>
+                    <h4>${dish.title.toUpperCase()}</h4>
                         <img class="fitImage" alt="Responsive image" src="${dish.image}">
                         <div>
-                            <p>${dish.title} </p>  </div>
+                            <p>${dish.sourceName} </p>  </div>
                             
                     </div>
                 </div>`);
