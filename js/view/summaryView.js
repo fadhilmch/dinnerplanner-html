@@ -43,11 +43,10 @@ var SummaryView = function(container, model) {
     var loadAllMenuOverview2 = () => {
         self.selectedMenu.children().remove();
         allMenu.forEach(dish => {
-            console.log(allMenu);
             self.selectedMenu.append(`
                     <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
                         <div class="card" style="height: 100%" >
-                        <img class="card-img-top" src="https://spoonacular.com/recipeImages/${dish.image}">
+                        <img class="card-img-top" src="${dish.image}">
                         <div class="card-text" style="align-text:center">
                             <p>${dish.title} </p>
                         </  div>

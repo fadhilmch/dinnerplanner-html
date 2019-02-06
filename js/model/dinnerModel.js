@@ -35,7 +35,7 @@ var DinnerModel = function() {
     this.infoRecipes = new Observable();
     this.recipeInfo = new Observable({});
     // this.searchQuery = new Observable({ 'type': 'all', 'query': '' });
-    
+
     var searchQuery = { 'type': 'all', 'query': '' };
 
 
@@ -43,11 +43,10 @@ var DinnerModel = function() {
     var header = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
     var infoUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
     var searchUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=20&offset=0&";
-    this.isLoading = false;
-
+    this._isLoading = new Observable(false);
 
     this.fetchUrl = () => {
-        this.isLoading = true;
+        this._isLoading.notifyObserver(true);
         return fetch(searchUrl, {
                 method: 'GET',
                 headers: {
@@ -55,25 +54,25 @@ var DinnerModel = function() {
                 }
             }).then(res => res.json())
             .then(data => {
-                this.isLoading = false;
+                this._isLoading.notifyObserver(false);
                 this.fetchedDishes.notifyObserver([...data.results]);
                 // console.log('Success: ', JSON.stringify(data.recipes[0].id));
                 return data.recipes;
             })
             .catch(err => {
                 // console.log('Error: ', err);
-                this.isLoading = false;
+                this._isLoading.notifyObserver(false);
                 return Promise.reject(Error(err.message))
             })
     }
 
     this.fetchSearch = (type, query) => {
         // let {type, query} = searchQuery;
-        query = query.toLowerCase().replace(/\s/g,'+');
-        type = type.toLowerCase().replace(/\s/g,'+');
-        query = query==='all'?'':query;
-        this.isLoading = true;
-        let tempUrl = query==""?`${searchUrl}type=${type}`:`${searchUrl}type=${type}&query=${query}`;
+        query = query.toLowerCase().replace(/\s/g, '+');
+        type = type.toLowerCase().replace(/\s/g, '+');
+        query = query === 'all' ? '' : query;
+        this._isLoading.notifyObserver(true);
+        let tempUrl = query == "" ? `${searchUrl}type=${type}` : `${searchUrl}type=${type}&query=${query}`;
         return fetch(tempUrl, {
                 method: 'GET',
                 headers: {
@@ -81,19 +80,24 @@ var DinnerModel = function() {
                 }
             }).then(res => res.json())
             .then(data => {
-                this.isLoading = false;
+                this._isLoading.notifyObserver(false);
                 this.fetchedDishes.notifyObserver([...data.results]);
                 // console.log('Success: ', JSON.stringify(data.results));
                 return data.recipes;
             })
             .catch(err => {
                 // console.log('Error: ', err);
-                this.isLoading = false;
+                this._isLoading.notifyObserver(false);
                 return Promise.reject(Error(err.message))
-            }) 
+            })
+    }
+
+    this.getLoading = () => {
+        return this._isLoading.getValue();
     }
 
     this.getRecipeInfo = (id) => {
+        this._isLoading.notifyObserver(true);
         return fetch(infoUrl + id + '/information?includeNutrition=false', {
                 method: 'GET',
                 headers: {
@@ -102,10 +106,12 @@ var DinnerModel = function() {
             })
             .then(res => res.json())
             .then(dish => {
+                this._isLoading.notifyObserver(false);
                 this.recipeInfo.notifyObserver(dish);
                 return dish;
             })
             .catch(err => {
+                this._isLoading.notifyObserver(false);
                 return Promise.reject(Error(err.message))
             })
 
@@ -182,7 +188,7 @@ var DinnerModel = function() {
     //Get dish total price per dish
     this.dishPrice2 = (id) => {
         let dishes = this.getFullMenu();
-        let price = dishes.filter(dish => {return dish.id === id})[0].pricePerServing;
+        let price = dishes.filter(dish => { return dish.id === id })[0].pricePerServing;
         return price * this.getNumberOfGuests();
     };
 
@@ -208,7 +214,6 @@ var DinnerModel = function() {
     // Get total price of the menu
     this.getTotalMenuPrice2 = () => {
         let selectedDish = this.getFullMenu();
-        console.log(selectedDish);
         if (selectedDish) {
             return this.getNumberOfGuests() * selectedDish.map(dish => {
                     return dish.pricePerServing;
@@ -234,7 +239,9 @@ var DinnerModel = function() {
 
     this.addDishToMenu2 = (id) => {
         let dishTemp = this.selectedDish.getValue();
-        dishTemp.push(this.getInfo());
+        let dish = this.getInfo();
+        if (dishTemp.map(value => (value.id)).indexOf(dish.id) === -1)
+            dishTemp.push(dish);
         this.selectedDish.notifyObserver(dishTemp);
     };
 

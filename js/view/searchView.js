@@ -10,6 +10,7 @@ var SearchView = function (container, model, gc) {
     this.searchTitle = container.find('#search-title');
     this.searchInput = container.find('#search-input');
 
+
     // Get from model
     var arrDishes = model.getDishType();
     var arrDishes2 = model.getDishType2();
@@ -99,24 +100,25 @@ var SearchView = function (container, model, gc) {
     }
 
     var renderLoading = () => {
+        //container.hide();
         container.append('<h4 id="loading">Loading...</h4>')
     }
 
-    if(model.isLoading){
+    if(model.getLoading()){
         renderLoading();
     } else {
+        //container.show();
         renderDropdownType2();
         renderSearchTitle();
         renderDishesChoice2();
     }
-    
     
     //update observer
     this.update = (data) => {
         this.loading = container.find('#loading');
 
         let queryFilter = model.getSearchQuery();
-        if(model.isLoading){
+        if(model.getLoading()){
             renderLoading();
         } else {
             this.loading.hide();

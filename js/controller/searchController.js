@@ -3,6 +3,8 @@
 var SearchController = function(view, model, generalController) {
     // model.searchQuery.addObserver(view);
     model.fetchedDishes.addObserver(view);
+    model.selectedDish.addObserver(view);
+    model._isLoading.addObserver(view);
 
 
     var searchQuery = () => {
@@ -31,8 +33,6 @@ var SearchController = function(view, model, generalController) {
         var id =$(this).attr('id');
         console.log(id);
         model.getRecipeInfo(id);
-       // model.getInfo();
-       // model.setCurrentDishId(id);
         model.setSearchQuery()
         generalController.goToPage('detail');
         
