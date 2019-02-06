@@ -97,7 +97,7 @@ var DinnerModel = function() {
             }
             })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => data)
         .then(console.log)
         .catch(err => {
                 return Promise.reject(Error(error.message))

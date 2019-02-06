@@ -13,8 +13,7 @@ var DetailView = function(container, model) {
     this.addToMenu = container.find('#addToMenu');
 
     console.log(model.getCurrentDishId());
-    model.getRecipeInfo(model.getCurrentDishId())
-    .then(data => {
+    model.getRecipeInfo(592479).then(data => {
         model.getCurrentDishId();
         console.log(data);
     })
@@ -43,6 +42,9 @@ var DetailView = function(container, model) {
     var loadSelectedDish2 = function() {
         var id = model.getCurrentDishId();
         console.log(id);
+        model.getRecipeInfo(592479).then(dish => {
+            console.log(dish.sourceName);
+        })
         var dish = model.getRecipeInfo(id)
         console.log(dish);
         //var dish = model.getDish2(id);
