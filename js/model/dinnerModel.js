@@ -33,11 +33,13 @@ var DinnerModel = function() {
     this.dishId = new Observable(0);
     this.searchQuery = new Observable({ 'type': 'all', 'query': '' });
     this.fetchedDishes = new Observable([]);
+    this.isLoading = false;
 
     var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=10&tags=';
     var header = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
 
     this.fetchUrl = () => {
+        this.isLoading = true;
         return fetch(url, {
                 method: 'GET',
                 headers: {
@@ -45,12 +47,14 @@ var DinnerModel = function() {
                 }
             }).then(res => res.json())
             .then(data => {
+                this.isLoading = false;
                 this.fetchedDishes.notifyObserver([...data.recipes]);
                 // console.log('Success: ', JSON.stringify(data.recipes[0].id));
                 return data.recipes;
             })
             .catch(err => {
                 // console.log('Error: ', err);
+                this.isLoading = false;
                 return Promise.reject(Error(error.message))
             })
     }

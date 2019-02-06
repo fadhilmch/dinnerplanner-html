@@ -9,7 +9,6 @@ var SearchView = function (container, model, gc) {
     this.searchButton = container.find('#search-btn');
     this.searchTitle = container.find('#search-title');
     this.searchInput = container.find('#search-input');
-    this.loading = container.find('#loading');
 
     // Get from model
     var arrDishes = model.getDishType();
@@ -86,10 +85,9 @@ var SearchView = function (container, model, gc) {
                         <p>${dish.title}</p>
                     </  div>
                     </div>
-
-                `)
-            })
-        }
+                `);
+            });
+        };
        
     var renderSearchTitle = () => {
         self.searchTitle.children().remove();
@@ -97,20 +95,34 @@ var SearchView = function (container, model, gc) {
             self.searchTitle.append(`<h4 class="left col-md-12">Add Another Dish</h4>`);
         else
             self.searchTitle.append(`<h4 class="left col-md-12">Find a Dish</h4>`);
-
     }
 
+    var renderLoading = () => {
+        container.append('<h4 id="loading">Loading...</h4>')
+    }
 
-    renderSearchTitle();
-    renderDishesChoice2();
-    renderDropdownType2();
+    if(model.isLoading){
+        renderLoading();
+    } else {
+        renderDropdownType2();
+        renderSearchTitle();
+        renderDishesChoice2();
+    }
     
     
     //update observer
     this.update = (data) => {
+        this.loading = container.find('#loading');
+
         let queryFilter = model.getSearchQuery();
-        renderDropdownType2();
-        renderSearchTitle();
-        renderDishesChoice2(queryFilter.type, queryFilter.query);
+        if(model.isLoading){
+            renderLoading();
+        } else {
+            this.loading.hide();
+            console.log(this.loading);
+            renderDropdownType2();
+            renderSearchTitle();
+            renderDishesChoice2(queryFilter.type, queryFilter.query);
+        }
     }
 }
