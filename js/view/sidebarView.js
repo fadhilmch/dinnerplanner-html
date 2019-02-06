@@ -71,7 +71,7 @@ var SidebarView = function(container, model) {
                 self.menuTable.append(`                         
                 <tr class ="dishItem" id ='${dish.id}'>
                     <td>${dish.title}</td>
-                    <td>${model.dishPrice2(dish.id)}</td>
+                    <td>${model.dishPrice2(dish.id).toFixed(2)}</td>
                 </tr>
             `);
             });

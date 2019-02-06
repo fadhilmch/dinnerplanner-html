@@ -13,4 +13,7 @@ var HomeView = function(container, model) {
 			console.log('Error: ' + err);
 		})
 
+	
+	
+
 }

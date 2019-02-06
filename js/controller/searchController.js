@@ -27,6 +27,7 @@ var SearchController = function(view, model, generalController) {
 
     view.menuWrapper.on('click', '.dishItem', function(){
         var id =$(this).attr('id');
+        console.log(id);
         model.setCurrentDishId(id);
         model.setSearchQuery()
         generalController.goToPage('detail');

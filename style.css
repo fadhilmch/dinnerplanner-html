@@ -195,5 +195,15 @@ tbody tr {
     h1 {
         font-size: 30px;
     }
+    h4 {
+        font-size: 18px;
+    }
+
+    h5{
+        font-size: 17px;
+    }
+    p{
+        font-size: 15px;
+    }
 
 }

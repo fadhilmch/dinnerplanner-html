@@ -12,6 +12,16 @@ var DetailView = function(container, model) {
     this.btnBack = container.find('#backtoSearch');
     this.addToMenu = container.find('#addToMenu');
 
+    console.log(model.getCurrentDishId());
+    model.getRecipeInfo(model.getCurrentDishId())
+    .then(data => {
+        model.getCurrentDishId();
+        console.log(data);
+    })
+    .catch(err => {
+            console.log('Error: ' + err);
+    })
+
     //LOAD DETAIL SELECTED MENU
     var loadSelectedDish = function() {
         var id = model.getCurrentDishId();
@@ -32,7 +42,10 @@ var DetailView = function(container, model) {
 
     var loadSelectedDish2 = function() {
         var id = model.getCurrentDishId();
-        var dish = model.getDish2(id);
+        console.log(id);
+        var dish = model.getRecipeInfo(id)
+        console.log(dish);
+        //var dish = model.getDish2(id);
         if(dish){
             self.detailDish.children().remove();
             self.detailDish.append(`<div>
@@ -122,6 +135,7 @@ var DetailView = function(container, model) {
         loadSelectedDish2();
         loadIngredients2();
         loadPreparation2();
+        model.getRecipeInfo(model.getCurrentDishId());
     }
 
 }

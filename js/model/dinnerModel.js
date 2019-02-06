@@ -33,15 +33,16 @@ var DinnerModel = function() {
     this.dishId = new Observable(0);
     this.searchQuery = new Observable({ 'type': 'all', 'query': '' });
     this.fetchedDishes = new Observable([]);
+    this.infoRecipes = new Observable();
 
     var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=10&tags=';
-    var header = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
-
+    var header ='3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
+    var infoUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
     this.fetchUrl = () => {
         return fetch(url, {
                 method: 'GET',
                 headers: {
-                    'X-Mashape-key': header
+                    'X-Mashape-key':header
                 }
             }).then(res => res.json())
             .then(data => {
@@ -54,6 +55,23 @@ var DinnerModel = function() {
                 return Promise.reject(Error(error.message))
             })
     }
+    
+    this.getRecipeInfo = (id) => {
+        return fetch(infoUrl +id+ '/information?includeNutrition=false', {
+            method: 'GET',
+            headers :{
+                 'X-Mashape-key':header,
+            }
+            })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .then(console.log)
+        .catch(err => {
+                // console.log('Error: ', err);
+                return Promise.reject(Error(error.message))
+        })
+    
+}
 
     /** @param {Object} query */
     this.setSearchQuery = (query) => {

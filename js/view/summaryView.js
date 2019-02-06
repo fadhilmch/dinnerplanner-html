@@ -55,7 +55,7 @@ var SummaryView = function(container, model) {
                     </div>
                         <div class="caption" style="padding-top: 5px">
                             <h6 class="text-danger" style="text-align: right;">${
-                       model.dishPrice2(dish.id)
+                       model.dishPrice2(dish.id).toFixed(2)
                     } SEK</h6>
                         </div>
                     </div>

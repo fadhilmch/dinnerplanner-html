@@ -17,6 +17,7 @@ var SearchView = function (container, model, gc) {
     arrDishes.splice(0, 0, 'all');
     arrDishes2.splice(0,0,'all');
 
+
     // Dropdown Select for Dishes Type
     var renderDropdownType = () => {
         self.dishType.children().remove();
@@ -37,7 +38,6 @@ var SearchView = function (container, model, gc) {
     var renderDropdownType2 = () => {
         self.dishType.children().remove();
         arrDishes2 = model.getDishType2();
-        console.log(model.getSearchQuery().type)
         arrDishes2.splice(0,0,'all');
         arrDishes2 = arrDishes2.map(dish => {
             return dish.replace(
