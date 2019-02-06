@@ -44,7 +44,7 @@ var DinnerModel = function() {
 
     this.fetchUrl = () => {
         this.isLoading = true;
-        return fetch(url, {
+        return fetch(searchUrl, {
                 method: 'GET',
                 headers: {
                     'X-Mashape-key':header
@@ -52,7 +52,7 @@ var DinnerModel = function() {
             }).then(res => res.json())
             .then(data => {
                 this.isLoading = false;
-                this.fetchedDishes.notifyObserver([...data.recipes]);
+                this.fetchedDishes.notifyObserver([...data.results]);
                 // console.log('Success: ', JSON.stringify(data.recipes[0].id));
                 return data.recipes;
             })
@@ -289,7 +289,8 @@ var DinnerModel = function() {
         });
     };
 
-    this.getAllDishes2 = (type = 'all', filter = '') => {
+    this.getAllDishes2 = () => {
+        return this.fetchedDishes.getValue();
         // filter = filter.toLowerCase();
         // if (filter == "" && type == "all") {
         //     console.log('fdkafja')
