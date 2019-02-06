@@ -1,19 +1,20 @@
 'use strict';
 
 var SearchController = function(view, model, generalController) {
-    model.searchQuery.addObserver(view);
+    // model.searchQuery.addObserver(view);
     model.fetchedDishes.addObserver(view);
     
 
     var searchQuery = () => {
         let query = view.searchInput.val().toLowerCase();
         let type = view.dishType.val().toLowerCase();
-        model.setSearchQuery({query, type});
+        model.setSearchQuery({type, query});
+        model.fetchSearch(type,query);
     };
 
     view.searchButton.click(() => { searchQuery() });
 
-    // view.dishType.on('change', () => { searchQuery() });
+    view.dishType.on('change', () => { searchQuery() });
 
     view.searchInput.on('keypress',(e) => {
         if(e.which == 13) {

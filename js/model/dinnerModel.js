@@ -31,11 +31,12 @@ var DinnerModel = function() {
     this.totalGuests = new Observable(1);
     this.selectedDish = new Observable({});
     this.dishId = new Observable(0);
-    this.searchQuery = new Observable({ 'type': 'all', 'query': '' });
     this.fetchedDishes = new Observable([]);
     this.infoRecipes = new Observable();
+    // this.searchQuery = new Observable({ 'type': 'all', 'query': '' });
+    
+    var searchQuery = { 'type': 'all', 'query': '' };
 
-    var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=10&tags=';
     var header ='3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
     var infoUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
     var searchUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=20&offset=0&";
@@ -57,20 +58,20 @@ var DinnerModel = function() {
                 return data.recipes;
             })
             .catch(err => {
-                console.log('Error: ', err);
+                // console.log('Error: ', err);
                 this.isLoading = false;
                 return Promise.reject(Error(err.message))
             })
     }
 
-    this.fetchSearch = (type,query) => {
-        query = query.toLowerCase().replace('/\s/g','+');
-        type = type.toLowerCase().replace('/\s/g','+');
+    this.fetchSearch = (type, query) => {
+        // let {type, query} = searchQuery;
+        query = query.toLowerCase().replace(/\s/g,'+');
+        type = type.toLowerCase().replace(/\s/g,'+');
         query = query==='all'?'':query;
         this.isLoading = true;
-        searchUrl += `type=${type}&query=${query}`;
-        console.log(searchUrl);
-        return fetch(searchUrl, {
+        let tempUrl = query==""?`${searchUrl}type=${type}`:`${searchUrl}type=${type}&query=${query}`;
+        return fetch(tempUrl, {
                 method: 'GET',
                 headers: {
                     'X-Mashape-key': header
@@ -78,14 +79,14 @@ var DinnerModel = function() {
             }).then(res => res.json())
             .then(data => {
                 this.isLoading = false;
-                this.fetchedDishes.notifyObserver([...data.recipes]);
-                // console.log('Success: ', JSON.stringify(data.recipes[0].id));
+                this.fetchedDishes.notifyObserver([...data.results]);
+                // console.log('Success: ', JSON.stringify(data.results));
                 return data.recipes;
             })
             .catch(err => {
                 // console.log('Error: ', err);
                 this.isLoading = false;
-                return Promise.reject(Error(error.message))
+                return Promise.reject(Error(err.message))
             }) 
     }
     
@@ -108,14 +109,17 @@ var DinnerModel = function() {
     /** @param {Object} query */
     this.setSearchQuery = (query) => {
         if (query) {
-            this.searchQuery.notifyObserver({ 'type': query.type, 'query': query.query });
+            searchQuery = { 'type': query.type, 'query': query.query };
+            // this.searchQuery.notifyObserver({ 'type': query.type, 'query': query.query });
         } else {
-            this.searchQuery.notifyObserver({ 'type': 'all', 'query': '' });
+            searchQuery = { 'type': 'all', 'query': '' };
+            // this.searchQuery.notifyObserver({ 'type': 'all', 'query': '' });
         };
     };
 
     this.getSearchQuery = () => {
-        return this.searchQuery.getValue();
+        return searchQuery;
+        // return this.searchQuery.getValue();
     };
 
     // Set current dish ID

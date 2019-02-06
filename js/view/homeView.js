@@ -5,12 +5,12 @@ var HomeView = function(container, model) {
     this.createDinner = container.find("#create-dinner");
 
 	model.fetchUrl()
-		.then(data => {
-      console.log(data)
-		})
-		.catch(err => {
-			console.log('Error: ' + err);
-		})
+		// .then(data => {
+    //   console.log(data)
+		// })
+		// .catch(err => {
+		// 	console.log('Error: ' + err);
+		// })
 
 	
 	
