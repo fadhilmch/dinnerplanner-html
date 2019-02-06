@@ -29,7 +29,7 @@ var DinnerModel = function() {
 
     // Initialize Variable
     this.totalGuests = new Observable(1);
-    this.selectedDish = new Observable({});
+    this.selectedDish = new Observable([]);
     this.dishId = new Observable(0);
     this.searchQuery = new Observable({ 'type': 'all', 'query': '' });
     this.fetchedDishes = new Observable([]);
@@ -151,7 +151,7 @@ var DinnerModel = function() {
 
     //Returns all the dishes on the menu.
     this.getFullMenu = () => {
-        return Object.values(this.selectedDish.getValue());
+        return this.selectedDish.getValue();
     };
 
     //Returns all ingredients for all the dishes on the menu.
@@ -174,10 +174,10 @@ var DinnerModel = function() {
     };
 
     //Get dish total price per dish
-    this.dishPrice2 = () => {
-        var dish = this.getInfo();
-        console.log(dish)
-        return dish.pricePerServing * this.getNumberOfGuests();
+    this.dishPrice2 = (id) => {
+        let dishes = this.getFullMenu();
+        let price = dishes.filter(dish => {return dish.id === id})[0].pricePerServing;
+        return price * this.getNumberOfGuests();
     };
 
     // Get total price of the menu
@@ -227,17 +227,8 @@ var DinnerModel = function() {
     };
 
     this.addDishToMenu2 = (id) => {
-        let types = ['main dish', 'side dish', 'drink', 'dessert'];
-        let dishType = this.getInfo().dishTypes;
         let dishTemp = this.selectedDish.getValue();
-        console.log(dishType)
-
-        types.forEach(type => {
-            if (dishType.indexOf(type) === 1)
-                dishTemp[type] = this.getInfo();
-        })
-        // let dishType = this.getDish2(id).dishTypes;
-        console.log(dishTemp);
+        dishTemp.push(this.getInfo());
         this.selectedDish.notifyObserver(dishTemp);
     };
 
