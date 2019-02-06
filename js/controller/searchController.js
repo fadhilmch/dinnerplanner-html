@@ -3,7 +3,7 @@
 var SearchController = function(view, model, generalController) {
     model.searchQuery.addObserver(view);
     model.fetchedDishes.addObserver(view);
-    model.fetchSearch.addObserver(view);
+    
 
     var searchQuery = () => {
         let query = view.searchInput.val().toLowerCase();
