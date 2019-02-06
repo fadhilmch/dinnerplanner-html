@@ -38,11 +38,9 @@ var DinnerModel = function() {
     var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=10&tags=';
     var header ='3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
     var infoUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
+    var searchUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=20&offset=0&";
     this.isLoading = false;
 
-    var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=15&tags=';
-    var searchUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=20&offset=0&";
-    var header = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
 
     this.fetchUrl = () => {
         this.isLoading = true;
