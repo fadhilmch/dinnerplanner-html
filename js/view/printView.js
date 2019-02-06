@@ -58,7 +58,7 @@ var PrintView = function(container, model) {
                 <div class="col-md-6" style="padding-bottom: 10px">
                     <div class="row">
                         <div class="col-md-6 center" style="padding-bottom: 10px">
-                            <img class="fitImage" src="${dish.image}">
+                            <img class="fitImage" src="https://spoonacular.com/recipeImages/${dish.image}">
                         </div>
 
                         <div class="col-md-6" >

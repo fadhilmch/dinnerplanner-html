@@ -29,15 +29,18 @@ var DinnerModel = function() {
 
     // Initialize Variable
     this.totalGuests = new Observable(1);
-    this.selectedDish = new Observable({});
+    this.selectedDish = new Observable([]);
     this.dishId = new Observable(0);
     this.fetchedDishes = new Observable([]);
     this.infoRecipes = new Observable();
+    this.recipeInfo = new Observable({});
     // this.searchQuery = new Observable({ 'type': 'all', 'query': '' });
     
     var searchQuery = { 'type': 'all', 'query': '' };
 
-    var header ='3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
+
+    var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=10&tags=';
+    var header = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
     var infoUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
     var searchUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=20&offset=0&";
     this.isLoading = false;
@@ -48,7 +51,7 @@ var DinnerModel = function() {
         return fetch(searchUrl, {
                 method: 'GET',
                 headers: {
-                    'X-Mashape-key':header
+                    'X-Mashape-key': header
                 }
             }).then(res => res.json())
             .then(data => {
@@ -89,22 +92,29 @@ var DinnerModel = function() {
                 return Promise.reject(Error(err.message))
             }) 
     }
-    
+
     this.getRecipeInfo = (id) => {
-        return fetch(infoUrl +id+ '/information?includeNutrition=false', {
-            method: 'GET',
-            headers :{
-                 'X-Mashape-key':header,
-            }
+        return fetch(infoUrl + id + '/information?includeNutrition=false', {
+                method: 'GET',
+                headers: {
+                    'X-Mashape-key': header,
+                }
             })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .then(console.log)
-        .catch(err => {
-                return Promise.reject(Error(error.message))
-        })
-    
-}
+            .then(res => res.json())
+            .then(dish => {
+                this.recipeInfo.notifyObserver(dish);
+                return dish;
+            })
+            .catch(err => {
+                return Promise.reject(Error(err.message))
+            })
+
+    }
+
+    this.getInfo = () => {
+        return this.recipeInfo.getValue();
+
+    }
 
     /** @param {Object} query */
     this.setSearchQuery = (query) => {
@@ -147,7 +157,7 @@ var DinnerModel = function() {
 
     //Returns all the dishes on the menu.
     this.getFullMenu = () => {
-        return Object.values(this.selectedDish.getValue());
+        return this.selectedDish.getValue();
     };
 
     //Returns all ingredients for all the dishes on the menu.
@@ -171,8 +181,9 @@ var DinnerModel = function() {
 
     //Get dish total price per dish
     this.dishPrice2 = (id) => {
-        var dish = this.getDish2(id);
-        return dish.pricePerServing * this.getNumberOfGuests();
+        let dishes = this.getFullMenu();
+        let price = dishes.filter(dish => {return dish.id === id})[0].pricePerServing;
+        return price * this.getNumberOfGuests();
     };
 
     // Get total price of the menu
@@ -197,6 +208,7 @@ var DinnerModel = function() {
     // Get total price of the menu
     this.getTotalMenuPrice2 = () => {
         let selectedDish = this.getFullMenu();
+        console.log(selectedDish);
         if (selectedDish) {
             return this.getNumberOfGuests() * selectedDish.map(dish => {
                     return dish.pricePerServing;
@@ -207,8 +219,6 @@ var DinnerModel = function() {
                 }, 0);
         };
     };
-
-   
 
 
     // Add dish to menu
@@ -223,11 +233,8 @@ var DinnerModel = function() {
     };
 
     this.addDishToMenu2 = (id) => {
-        let dishType = this.getDish2(id).dishTypes;
-
         let dishTemp = this.selectedDish.getValue();
-        dishTemp[dishType] = this.getDish2(id);
-
+        dishTemp.push(this.getInfo());
         this.selectedDish.notifyObserver(dishTemp);
     };
 

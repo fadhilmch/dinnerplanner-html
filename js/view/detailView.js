@@ -12,16 +12,7 @@ var DetailView = function(container, model) {
     this.btnBack = container.find('#backtoSearch');
     this.addToMenu = container.find('#addToMenu');
 
-    console.log(model.getCurrentDishId());
-    model.getRecipeInfo(model.getCurrentDishId())
-    .then(data => {
-        model.getCurrentDishId();
-        console.log(data);
-    })
-    .catch(err => {
-            console.log('Error: ' + err);
-    })
-
+  
     //LOAD DETAIL SELECTED MENU
     var loadSelectedDish = function() {
         var id = model.getCurrentDishId();
@@ -41,12 +32,9 @@ var DetailView = function(container, model) {
     };
 
     var loadSelectedDish2 = function() {
-        var id = model.getCurrentDishId();
-        console.log(id);
-        var dish = model.getRecipeInfo(id)
+        var dish = model.getInfo();
         console.log(dish);
-        //var dish = model.getDish2(id);
-        if(dish){
+        if(!(Object.keys(dish).length === 0 && dish.constructor === Object)){
             self.detailDish.children().remove();
             self.detailDish.append(`<div>
                     <h4>${dish.title.toUpperCase()}</h4>
@@ -79,16 +67,16 @@ var DetailView = function(container, model) {
     };
 
     var loadIngredients2 = () => {
-        var id = model.getCurrentDishId();
-        var dishItem = model.getDish2(id);
+        var dish = model.getInfo();
+        console.log(dish);
         var price = 1;
-        if(dishItem){
+        if(!(Object.keys(dish).length === 0 && dish.constructor === Object)){
             self.ingredientsDish.children().remove();
-            dishItem.extendedIngredients.forEach(dish => {
+            dish.extendedIngredients.forEach(ingredients => {
                 self.ingredientsDish.append(`
                 <tr>
-                    <th scope="row">${ numberPrint(dish.amount*model.getNumberOfGuests()) + " "+ dish.unit}</th>
-                    <td>${dish.name}</td>
+                    <th scope="row">${ numberPrint(ingredients.amount*model.getNumberOfGuests()) + " "+ ingredients.unit}</th>
+                    <td>${ingredients.name}</td>
                     <td>${price*model.getNumberOfGuests()}</td>
                     <td>SEK</td>
                 </tr>`
@@ -111,9 +99,8 @@ var DetailView = function(container, model) {
     }
 
      var loadPreparation2 = () => {
-        var id = model.getCurrentDishId();
-        var dish = model.getDish2(id);
-        if(dish){
+        var dish = model.getInfo();
+        if(!(Object.keys(dish).length === 0 && dish.constructor === Object)){
             self.preparationTip.children().remove();
             self.preparationTip.append(` <p>${dish.instructions} </p>`)
         }
@@ -135,7 +122,6 @@ var DetailView = function(container, model) {
         loadSelectedDish2();
         loadIngredients2();
         loadPreparation2();
-        model.getRecipeInfo(model.getCurrentDishId());
     }
 
 }
