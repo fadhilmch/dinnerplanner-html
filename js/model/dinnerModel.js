@@ -33,10 +33,10 @@ var DinnerModel = function() {
     this.dishId = new Observable(0);
     this.searchQuery = new Observable({ 'type': 'all', 'query': '' });
     this.fetchedDishes = new Observable([]);
-    this.infoRecipes = new Observable();
+    this.recipeInfo = new Observable({});
 
     var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=10&tags=';
-    var header ='3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
+    var header = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
     var infoUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
     var searchUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=20&offset=0&";
     this.isLoading = false;
@@ -47,7 +47,7 @@ var DinnerModel = function() {
         return fetch(searchUrl, {
                 method: 'GET',
                 headers: {
-                    'X-Mashape-key':header
+                    'X-Mashape-key': header
                 }
             }).then(res => res.json())
             .then(data => {
@@ -63,10 +63,10 @@ var DinnerModel = function() {
             })
     }
 
-    this.fetchSearch = (type,query) => {
-        query = query.toLowerCase().replace('/\s/g','+');
-        type = type.toLowerCase().replace('/\s/g','+');
-        query = query==='all'?'':query;
+    this.fetchSearch = (type, query) => {
+        query = query.toLowerCase().replace('/\s/g', '+');
+        type = type.toLowerCase().replace('/\s/g', '+');
+        query = query === 'all' ? '' : query;
         this.isLoading = true;
         searchUrl += `type=${type}&query=${query}`;
         console.log(searchUrl);
@@ -79,6 +79,7 @@ var DinnerModel = function() {
             .then(data => {
                 this.isLoading = false;
                 this.fetchedDishes.notifyObserver([...data.recipes]);
+                console.log(this.fetchedDishes);
                 // console.log('Success: ', JSON.stringify(data.recipes[0].id));
                 return data.recipes;
             })
@@ -86,24 +87,31 @@ var DinnerModel = function() {
                 // console.log('Error: ', err);
                 this.isLoading = false;
                 return Promise.reject(Error(error.message))
-            }) 
-    }
-    
-    this.getRecipeInfo = (id) => {
-        return fetch(infoUrl +id+ '/information?includeNutrition=false', {
-            method: 'GET',
-            headers :{
-                 'X-Mashape-key':header,
-            }
             })
-        .then(res => res.json())
-        .then(data => data)
-        .then(console.log)
-        .catch(err => {
-                return Promise.reject(Error(error.message))
-        })
-    
-}
+    }
+
+    this.getRecipeInfo = (id) => {
+        return fetch(infoUrl + id + '/information?includeNutrition=false', {
+                method: 'GET',
+                headers: {
+                    'X-Mashape-key': header,
+                }
+            })
+            .then(res => res.json())
+            .then(dish => {
+                this.recipeInfo.notifyObserver(dish);
+                return dish;
+            })
+            .catch(err => {
+                return Promise.reject(Error(err.message))
+            })
+
+    }
+
+    this.getInfo = () => {
+        return this.recipeInfo.getValue();
+
+    }
 
     /** @param {Object} query */
     this.setSearchQuery = (query) => {
@@ -166,8 +174,9 @@ var DinnerModel = function() {
     };
 
     //Get dish total price per dish
-    this.dishPrice2 = (id) => {
-        var dish = this.getDish2(id);
+    this.dishPrice2 = () => {
+        var dish = this.getInfo();
+        console.log(dish)
         return dish.pricePerServing * this.getNumberOfGuests();
     };
 
@@ -193,6 +202,7 @@ var DinnerModel = function() {
     // Get total price of the menu
     this.getTotalMenuPrice2 = () => {
         let selectedDish = this.getFullMenu();
+        console.log(selectedDish);
         if (selectedDish) {
             return this.getNumberOfGuests() * selectedDish.map(dish => {
                     return dish.pricePerServing;
@@ -203,8 +213,6 @@ var DinnerModel = function() {
                 }, 0);
         };
     };
-
-   
 
 
     // Add dish to menu
@@ -219,11 +227,17 @@ var DinnerModel = function() {
     };
 
     this.addDishToMenu2 = (id) => {
-        let dishType = this.getDish2(id).dishTypes;
-
+        let types = ['main dish', 'side dish', 'drink', 'dessert'];
+        let dishType = this.getInfo().dishTypes;
         let dishTemp = this.selectedDish.getValue();
-        dishTemp[dishType] = this.getDish2(id);
+        console.log(dishType)
 
+        types.forEach(type => {
+            if (dishType.indexOf(type) === 1)
+                dishTemp[type] = this.getInfo();
+        })
+        // let dishType = this.getDish2(id).dishTypes;
+        console.log(dishTemp);
         this.selectedDish.notifyObserver(dishTemp);
     };
 

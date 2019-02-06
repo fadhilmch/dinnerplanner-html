@@ -3,7 +3,7 @@
 var SearchController = function(view, model, generalController) {
     model.searchQuery.addObserver(view);
     model.fetchedDishes.addObserver(view);
-    
+
 
     var searchQuery = () => {
         let query = view.searchInput.val().toLowerCase();
@@ -29,7 +29,9 @@ var SearchController = function(view, model, generalController) {
     view.menuWrapper.on('click', '.dishItem', function(){
         var id =$(this).attr('id');
         console.log(id);
-        model.setCurrentDishId(id);
+        model.getRecipeInfo(id);
+       // model.getInfo();
+       // model.setCurrentDishId(id);
         model.setSearchQuery()
         generalController.goToPage('detail');
         

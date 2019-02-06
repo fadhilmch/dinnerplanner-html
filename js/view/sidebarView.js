@@ -51,12 +51,14 @@ var SidebarView = function(container, model) {
     // Table Sidebar
     var showSidebar = function() {
         self.menuTable.children().remove();
+        var cur = model.getInfo();
+        
         if (allMenu.length > 0) {
             allMenu.forEach(dish => {
                 self.menuTable.append(`                         
                 <tr>
                     <td>${dish.name}</td>
-                    <td>${model.dishPrice(dish.id)}</td>
+                    <td>${model.dishPrice()}</td>
                 </tr>
             `);
             });
