@@ -38,7 +38,14 @@ var DinnerModel = function() {
     var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=10&tags=';
     var header ='3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
     var infoUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
+    this.isLoading = false;
+
+    var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=15&tags=';
+    var searchUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=20&offset=0&";
+    var header = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
+
     this.fetchUrl = () => {
+        this.isLoading = true;
         return fetch(url, {
                 method: 'GET',
                 headers: {
@@ -46,14 +53,42 @@ var DinnerModel = function() {
                 }
             }).then(res => res.json())
             .then(data => {
+                this.isLoading = false;
+                this.fetchedDishes.notifyObserver([...data.recipes]);
+                // console.log('Success: ', JSON.stringify(data.recipes[0].id));
+                return data.recipes;
+            })
+            .catch(err => {
+                console.log('Error: ', err);
+                this.isLoading = false;
+                return Promise.reject(Error(err.message))
+            })
+    }
+
+    this.fetchSearch = (type,query) => {
+        query = query.toLowerCase().replace('/\s/g','+');
+        type = type.toLowerCase().replace('/\s/g','+');
+        query = query==='all'?'':query;
+        this.isLoading = true;
+        searchUrl += `type=${type}&query=${query}`;
+        console.log(searchUrl);
+        return fetch(searchUrl, {
+                method: 'GET',
+                headers: {
+                    'X-Mashape-key': header
+                }
+            }).then(res => res.json())
+            .then(data => {
+                this.isLoading = false;
                 this.fetchedDishes.notifyObserver([...data.recipes]);
                 // console.log('Success: ', JSON.stringify(data.recipes[0].id));
                 return data.recipes;
             })
             .catch(err => {
                 // console.log('Error: ', err);
+                this.isLoading = false;
                 return Promise.reject(Error(error.message))
-            })
+            }) 
     }
     
     this.getRecipeInfo = (id) => {
@@ -67,7 +102,6 @@ var DinnerModel = function() {
         .then(data => console.log(data))
         .then(console.log)
         .catch(err => {
-                // console.log('Error: ', err);
                 return Promise.reject(Error(error.message))
         })
     
@@ -166,7 +200,6 @@ var DinnerModel = function() {
                     return dish.pricePerServing;
 
                 })
-
                 .reduce((acc, cur) => {
                     return acc + cur;
                 }, 0);
@@ -259,31 +292,28 @@ var DinnerModel = function() {
     };
 
     this.getAllDishes2 = (type = 'all', filter = '') => {
-        filter = filter.toLowerCase();
-        return this.fetchedDishes.getValue().filter((dish) => {
-            var found = true;
-            if (filter == "" && type == "all") {
-                return true;
-            };
+        // filter = filter.toLowerCase();
+        // if (filter == "" && type == "all") {
+        //     console.log('fdkafja')
+        //     this.fetchUrl()
+        //     .then(data => {
+        //         console.log(data)
+        //         console.log('fdkfj')
+        //         console.log(this.fetchedDishes.getValue());
+        //         return this.fetchedDishes.getValue();
+        //     });
+        // };
 
-            if (filter != "") {
-                console.log(dish)
-                console.log(dish.title)
-                found = false;
-                dish.extendedIngredients.forEach(function(ingredient) {
-                    if (ingredient.name.toLowerCase().indexOf(filter) != -1) {
-                        found = true;
-                    };
-                });
-
-                if (dish.title.toLowerCase().indexOf(filter) != -1) {
-                    found = true;
-                };
-            };
-            // console.log(dish.dishType)
-
-            return type === 'all' ? found : dish.dishTypes.indexOf(type) != -1 && found;
-        });
+        // if(type === 'all')
+        //     this.fetchSearch('', filter)
+        //     .then(data => {
+        //         return this.fetchedDishes.getValue();
+        //     });
+        // else
+        //     this.fetchSearch(type, filter)
+        //     .then(data => {
+        //         return this.fetchedDishes.getValue();
+        //     })
     };
 
 
