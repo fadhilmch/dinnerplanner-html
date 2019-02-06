@@ -12,7 +12,7 @@ var SearchController = function(view, model, generalController) {
 
     view.searchButton.click(() => { searchQuery() });
 
-    view.dishType.on('change', () => { searchQuery() });
+    // view.dishType.on('change', () => { searchQuery() });
 
     view.searchInput.on('keypress',(e) => {
         if(e.which == 13) {
@@ -20,9 +20,9 @@ var SearchController = function(view, model, generalController) {
         }
     });
 
-    view.searchInput.on('input',(e) => {
-        searchQuery();
-    });
+    // view.searchInput.on('input',(e) => {
+    //     searchQuery();
+    // });
 
 
     view.menuWrapper.on('click', '.dishItem', function(){

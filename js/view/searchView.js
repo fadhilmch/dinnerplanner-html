@@ -35,7 +35,8 @@ var SearchView = function (container, model, gc) {
 
     var renderDropdownType2 = () => {
         self.dishType.children().remove();
-        arrDishes2 = model.getDishType2();
+        // arrDishes2 = model.getDishType2();
+        arrDishes2 = ['main dish', 'dessert', 'side dish', 'drink']
         console.log(model.getSearchQuery().type)
         arrDishes2.splice(0,0,'all');
         arrDishes2 = arrDishes2.map(dish => {

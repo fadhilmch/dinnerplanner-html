@@ -6,8 +6,7 @@ var HomeView = function(container, model) {
 
 	model.fetchUrl()
 		.then(data => {
-			model.getAllDishes2();
-			model.getDishType2();
+      console.log(data)
 		})
 		.catch(err => {
 			console.log('Error: ' + err);
