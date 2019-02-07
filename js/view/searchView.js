@@ -82,20 +82,12 @@ var SearchView = function (container, model, gc) {
         self.menuWrapper.children().remove();
         allDishes.forEach(dish => {
             self.menuWrapper.append(`   
-<<<<<<< HEAD
                 <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
                     <div class="card" style="height: 100%" >
                     <div class='card-img-top image-wrapper'>
                     <img src="https://spoonacular.com/recipeImages/${dish.image}" style={}>
                     </div>
                     <div class="card-text" style="align-text:center">
-=======
-                <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:5px">
-                <div class ="row">
-                    <div class="card" style="height: 100%">
-                    <img class="card-img-top" style='height:70%' src="https://spoonacular.com/recipeImages/${dish.imageUrls}">
-                    <div class="card-description" style="align-text:center" style="height:30%" >
->>>>>>> e929b38cb068eb13a83ce3c6dddee17caf93eb8a
                         <p>${dish.title}</p>
                     </div>
                     </div>

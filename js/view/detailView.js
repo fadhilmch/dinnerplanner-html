@@ -37,7 +37,7 @@ var DetailView = function(container, model) {
         var dish = model.getInfo();
         if (!(Object.keys(dish).length === 0 && dish.constructor === Object)) {
             self.detailDish.children().remove();
-            console.log(dish);
+            if(console.log(dish.status));
             self.detailDish.append(`<div>
                     <h4>${dish.title.toUpperCase()}</h4>
                         <img class="fitImage" alt="Responsive image" src="${dish.image}">
