@@ -81,7 +81,9 @@ var SearchView = function (container, model, gc) {
             self.menuWrapper.append(`   
                 <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
                     <div class="card" style="height: 100%" >
-                    <img class="card-img-top" src="https://spoonacular.com/recipeImages/${dish.image}">
+                    <div class='card-img-top image-wrapper'>
+                    <img src="https://spoonacular.com/recipeImages/${dish.image}" style={}>
+                    </div>
                     <div class="card-text" style="align-text:center">
                         <p>${dish.title}</p>
                     </div>
