@@ -5,6 +5,10 @@ $(function() {
 	var model = new DinnerModel();
 	var dishView = {}; 
 
+	var body = $('#body');
+
+	var homeView = new HomeView(body,model);
+	
 	//initialize component
 	var welcome = $('#welcomeView');
 	var sidebar = $('#sidebarView');
@@ -15,7 +19,8 @@ $(function() {
 	var print = $('#printView');
 	var loading = $('#loading');
 
-	//instantiate all views
+
+	//instantiate all viewsgt
 	var dinnerPlannerView = function(){
 		dishView['welcome'] = welcome;
 		dishView['sidebar'] = sidebar;
@@ -28,7 +33,7 @@ $(function() {
 	}
 	
 	dinnerPlannerView();
-
+	
 	//Initialize First Page
 	var generalController = new GeneralController(dishView);
 	generalController.goToPage('home');
@@ -37,7 +42,6 @@ $(function() {
 	var sidebarView = new SidebarView(sidebar, model);
 	var sidebarController = new SidebarController(sidebarView, model, generalController);
 	
-	var homeView = new HomeView(welcome,model);
 	var homeController = new HomeController(homeView, model, generalController);
 
 	var searchView = new SearchView(search, model);

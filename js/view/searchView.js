@@ -103,24 +103,24 @@ var SearchView = function (container, model, gc) {
         else
             self.searchTitle.append(`<h4 class="left col-md-12">Find a Dish</h4>`);
     }
-
+    
     var renderLoading = () => {
-        this.loading.show();
         self.searchComponent.hide();
-        console.log('render loading');
+        this.loading.show();
+        
     }
 
     var hideLoading = ()=>{
         this.loading.hide();
         self.searchComponent.show();
     }
+    // console.log('ini' + model.getLoading());
 
+    model.fetchUrl()
     if(model.getLoading()){
         renderLoading();
-        console.log(model.getLoading());
-
     } else {
-        hideLoading();
+        // hideLoading();
         renderDropdownType2();
         renderSearchTitle();
         renderDishesChoice2();
@@ -128,9 +128,10 @@ var SearchView = function (container, model, gc) {
     
     //update observer
     this.update = (data) => {
+        console.log('update')
         let queryFilter = model.getSearchQuery();
         if(model.getLoading()){
-           renderLoading();
+            renderLoading();
         } else {
             hideLoading();
             renderDropdownType2();
