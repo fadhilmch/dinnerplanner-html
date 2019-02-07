@@ -12,6 +12,7 @@ var DetailView = function(container, model) {
     this.btnBack = container.find('#backtoSearch');
     this.addToMenu = container.find('#addToMenu');
     this.component = container.find('#detailComponent');
+    this.loading = container.find('#loadingDetail');
 
 
     //LOAD DETAIL SELECTED MENU
@@ -36,13 +37,13 @@ var DetailView = function(container, model) {
         var dish = model.getInfo();
         if (!(Object.keys(dish).length === 0 && dish.constructor === Object)) {
             self.detailDish.children().remove();
+            console.log(dish);
             self.detailDish.append(`<div>
                     <h4>${dish.title.toUpperCase()}</h4>
                         <img class="fitImage" alt="Responsive image" src="${dish.image}">
-                        <div>
-                            <p>${dish.sourceName} </p>  </div>
-                            
-                    </div>
+                        <div padding -top: '5px'>
+                            <a href= "${dish.sourceUrl}">${dish.sourceUrl} </a>  </div>
+                         </div>
                 </div>`);
         };
     };
@@ -107,17 +108,21 @@ var DetailView = function(container, model) {
         self.people.children().remove();
         self.people.append(`<h5 class="left" style="padding-left: 10px"> INGREDIENTS FOR ${model.getNumberOfGuests()}  PEOPLE</h5></div>`);
     }
+
     var renderLoading = () => {
-        //$(this.container).hide();
+        self.loading.show();
         self.component.hide();
-        container.append('<h4 id="loading">Loading...</h4>');
     }
 
-    console.log(model.getLoading());
+    var hideLoading = () => {
+        self.loading.hide();
+        self.component.show();
+    }
+
     if (model.getLoading()) {
         renderLoading();
     } else {
-        self.component.show();
+        hideLoading()
         getGuest();
         loadSelectedDish2();
         loadIngredients2();
@@ -125,12 +130,10 @@ var DetailView = function(container, model) {
     }
     //update observer
     this.update = function(data) {
-        this.loading = container.find('#loading');
         if (model.getLoading()) {
             renderLoading();
         } else {
-            this.loading.hide();
-            self.component.show();
+            hideLoading();
             getGuest();
             loadSelectedDish2();
             loadIngredients2();

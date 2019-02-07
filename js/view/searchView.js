@@ -9,6 +9,8 @@ var SearchView = function (container, model, gc) {
     this.searchButton = container.find('#search-btn');
     this.searchTitle = container.find('#search-title');
     this.searchInput = container.find('#search-input');
+    this.searchComponent = container.find('#searchComponent');
+    this.loading = container.find('#loading');
 
 
     // Get from model
@@ -80,11 +82,13 @@ var SearchView = function (container, model, gc) {
         self.menuWrapper.children().remove();
         allDishes.forEach(dish => {
             self.menuWrapper.append(`   
-                <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
-                    <div class="card" style="height: 100%" >
-                    <img class="card-img-top" src="https://spoonacular.com/recipeImages/${dish.image}">
-                    <div class="card-text" style="align-text:center">
+                <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:5px">
+                <div class ="row">
+                    <div class="card" style="height: 100%">
+                    <img class="card-img-top" style='height:70%' src="https://spoonacular.com/recipeImages/${dish.imageUrls}">
+                    <div class="card-description" style="align-text:center" style="height:30%" >
                         <p>${dish.title}</p>
+                    </div>
                     </div>
                     </div>
                 `);
@@ -100,14 +104,22 @@ var SearchView = function (container, model, gc) {
     }
 
     var renderLoading = () => {
-        //container.hide();
-        container.append('<h4 id="loading">Loading...</h4>')
+        this.loading.show();
+        self.searchComponent.hide();
+        console.log('render loading');
+    }
+
+    var hideLoading = ()=>{
+        this.loading.hide();
+        self.searchComponent.show();
     }
 
     if(model.getLoading()){
         renderLoading();
+        console.log(model.getLoading());
+
     } else {
-        //container.show();
+        hideLoading();
         renderDropdownType2();
         renderSearchTitle();
         renderDishesChoice2();
@@ -115,13 +127,11 @@ var SearchView = function (container, model, gc) {
     
     //update observer
     this.update = (data) => {
-        this.loading = container.find('#loading');
-
         let queryFilter = model.getSearchQuery();
         if(model.getLoading()){
-            renderLoading();
+           renderLoading();
         } else {
-            this.loading.hide();
+            hideLoading();
             renderDropdownType2();
             renderSearchTitle();
             renderDishesChoice2(queryFilter.type, queryFilter.query);
