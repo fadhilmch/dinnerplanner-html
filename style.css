@@ -30,6 +30,9 @@
 .center {
     text-align: center;
 }
+.center-vertical {
+  margin: auto;
+}
 
 .border {
     border-color: #e9ecef;
