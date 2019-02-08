@@ -34,11 +34,9 @@ var SearchController = function(view, model, generalController) {
 
     view.menuWrapper.on('click', '.dishItem', function(){
         var id =$(this).attr('id');
-        console.log(id);
         model.getRecipeInfo(id).
         catch(err => {
-            console.log(err);
-            alert(err.code);
+            alert(err);
             })
         
         model.setSearchQuery()

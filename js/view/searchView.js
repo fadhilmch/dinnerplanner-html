@@ -40,7 +40,7 @@ var SearchView = function (container, model, gc) {
     var renderDropdownType2 = () => {
         self.dishType.children().remove();
         // arrDishes2 = model.getDishType2();
-        arrDishes2 = ['main dish', 'dessert', 'side dish', 'drink']
+        arrDishes2 = ['appetizer', 'breakfast', 'dessert','dinner', 'drink', 'lunch' , 'main course', 'main dish','sauce', 'side dish',  'snack']
         arrDishes2.splice(0,0,'all');
         arrDishes2 = arrDishes2.map(dish => {
             return dish.replace(
@@ -107,7 +107,6 @@ var SearchView = function (container, model, gc) {
     var renderLoading = () => {
         this.loading.show();
         self.searchComponent.hide();
-        console.log('render loading');
     }
 
     var hideLoading = ()=>{
@@ -117,7 +116,6 @@ var SearchView = function (container, model, gc) {
 
     if(model.getLoading()){
         renderLoading();
-        console.log(model.getLoading());
 
     } else {
         hideLoading();

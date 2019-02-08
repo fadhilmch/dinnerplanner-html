@@ -43,7 +43,6 @@ var SummaryView = function(container, model) {
     var loadAllMenuOverview2 = () => {
         self.selectedMenu.children().remove();
         allMenu.forEach(dish => {
-            console.log(allMenu);
             self.selectedMenu.append(`
                     <div id="${dish.id}" class="col-sm-6 col-md-3 col-lg-2 dishItem" style="padding-top:10px">
                         <div class ='card' style="height: 100%" >
