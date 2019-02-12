@@ -11,10 +11,18 @@ var SearchController = function(view, model, generalController) {
     var searchQuery = () => {
         let query = view.searchInput.val().toLowerCase();
         let type = view.dishType.val().toLowerCase();
-        model.setSearchQuery({type, query});
+        model.setSearchQuery({type, query});        
         model.fetchSearch(type,query)
+            .then(() => {
+                model.err.notifyObserver('');
+            })
             .catch(err => {
-                alert('No Internet: '+err)
+                if(err.message === 'No Data'){
+                    model.err.notifyObserver('Error! There is no detail for this dish on database!');
+                }  else {
+                    model.err.notifyObserver('Error! No Internet Connection!');
+                }
+                generalController.goToPage('search')
             })
     };
 
@@ -35,7 +43,6 @@ var SearchController = function(view, model, generalController) {
 
     view.menuWrapper.on('click', '.dishItem', function(){
         var id =$(this).attr('id');
-        console.log(`This is the ID: ${id}`)
         model.getRecipeInfo(id)
         .then(() => {
             model.setSearchQuery();
@@ -43,7 +50,6 @@ var SearchController = function(view, model, generalController) {
             generalController.goToPage('detail');
         })
         .catch(err => {
-            console.log(err);
             if(err.message === 'No Data'){
                 model.err.notifyObserver('Error! There is no detail for this dish on database!');
             }  else {
