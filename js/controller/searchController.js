@@ -5,6 +5,7 @@ var SearchController = function(view, model, generalController) {
     model.fetchedDishes.addObserver(view);
     model.selectedDish.addObserver(view);
     model._isLoading.addObserver(view);
+    model.err.addObserver(view);
 
 
     var searchQuery = () => {
@@ -34,13 +35,24 @@ var SearchController = function(view, model, generalController) {
 
     view.menuWrapper.on('click', '.dishItem', function(){
         var id =$(this).attr('id');
-        model.getRecipeInfo(id).
-        catch(err => {
-            alert(err);
-            })
+        console.log(`This is the ID: ${id}`)
+        model.getRecipeInfo(id)
+        .then(() => {
+            model.setSearchQuery();
+            model.err.notifyObserver('');
+            generalController.goToPage('detail');
+        })
+        .catch(err => {
+            console.log(err);
+            if(err.message === 'No Data'){
+                model.err.notifyObserver('Error! There is no detail for this dish on database!');
+            }  else {
+                model.err.notifyObserver('Error! No Internet Connection!');
+            }
+            generalController.goToPage('search')
+        })
         
-        model.setSearchQuery()
-        generalController.goToPage('detail');
+       
         
     });
 

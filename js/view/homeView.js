@@ -3,26 +3,20 @@
 var HomeView = function(container, model) {
     //initialize component
     this.createDinner = container.find("#create-dinner");
-    //console.log(model.searchQuery);
 
-	model.fetchUrl()
-		// .then(data => {
-    //   console.log(data)
-		// })
-		// .catch(err => {
-		// 	console.log('Error: ' + err);
-		// })
+		let renderError = (err='Error') => {
+			container.prepend(`
+				<div id='error-home' class="alert alert-danger" role="alert">
+					${err}
+				</div>
+			`)
+		};
 
-
-	// model.fetchSearch()
-	// .then(data => {
-	// 	console.log(data)
-
-	// })
-	// .catch(err => {
-	// 		console.log('Error: ' + err);
-	// 	})
-	
-	
-
+		this.update = () => {
+			let error = container.find("#error-home");
+			error.remove();
+			if (model.err.getValue() !== ""){
+				renderError(model.err.getValue());
+			} 
+		};
 }

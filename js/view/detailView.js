@@ -35,7 +35,7 @@ var DetailView = function(container, model) {
 
     var loadSelectedDish2 = function() {
         var dish = model.getInfo();
-        if (!(Object.keys(dish).length === 0 && dish.constructor === Object)) {
+        if (dish.id !== null && dish.id !== undefined) {
             self.detailDish.children().remove();
             self.detailDish.append(`<div>
                     <h4>${dish.title.toUpperCase()}</h4>
@@ -68,7 +68,7 @@ var DetailView = function(container, model) {
     var loadIngredients2 = () => {
         var dish = model.getInfo();
         var price = 1;
-        if (!(Object.keys(dish).length === 0 && dish.constructor === Object)) {
+        if (dish.id !== null && dish.id !== undefined) {
             self.ingredientsDish.children().remove();
             dish.extendedIngredients.forEach(ingredients => {
                 self.ingredientsDish.append(`

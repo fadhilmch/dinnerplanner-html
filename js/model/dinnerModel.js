@@ -34,6 +34,7 @@ var DinnerModel = function() {
     this.fetchedDishes = new Observable([]);
     this.infoRecipes = new Observable();
     this.recipeInfo = new Observable({});
+    this.err = new Observable("");
     // this.searchQuery = new Observable({ 'type': 'all', 'query': '' });
 
     var searchQuery = { 'type': 'all', 'query': '' };
@@ -82,11 +83,11 @@ var DinnerModel = function() {
             .then(data => {
                 this._isLoading.notifyObserver(false);
                 this.fetchedDishes.notifyObserver([...data.results]);
-                // console.log('Success: ', JSON.stringify(data.results));
+                console.log('Success: ', JSON.stringify(data.results));
                 return data.recipes;
             })
             .catch(err => {
-                // console.log('Error: ', err);
+                console.log('Error: ', err);
                 this._isLoading.notifyObserver(false);
                 return Promise.reject(Error(err.message))
             })
@@ -104,11 +105,16 @@ var DinnerModel = function() {
                     'X-Mashape-key': header,
                 }
             })
-            .then(res => res.json())
-            .then(dish => {
+            .then(res => {
                 this._isLoading.notifyObserver(false);
+                if (res.status !== 200) {
+                    return Promise.reject(Error("No Data"))
+                } else {
+                    return res.json();
+                }
+            })
+            .then(dish => {
                 this.recipeInfo.notifyObserver(dish);
-                return dish;
             })
             .catch(err => {
                 this._isLoading.notifyObserver(false);

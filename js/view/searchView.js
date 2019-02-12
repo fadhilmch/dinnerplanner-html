@@ -75,6 +75,14 @@ var SearchView = function (container, model, gc) {
         })
     }
 
+    var renderError = (err) => {
+        container.prepend(`
+            <div id='error-search' class="alert alert-danger" role="alert">
+                ${err}
+            </div>
+        `)
+    }
+
 
 
     var renderDishesChoice2 = (type = 'all', filter = '') => {
@@ -127,6 +135,12 @@ var SearchView = function (container, model, gc) {
     //update observer
     this.update = (data) => {
         let queryFilter = model.getSearchQuery();
+        let error = container.find("#error-search");
+        error.remove();
+        if (model.err.getValue() !== ""){
+            console.log('error '+model.err.getValue())
+            renderError(model.err.getValue());
+        } 
         if(model.getLoading()){
            renderLoading();
         } else {

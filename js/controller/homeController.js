@@ -1,9 +1,16 @@
 var HomeController = function (view, model, generalController){
-	
+	model.err.addObserver(view);	
 
 	view.createDinner.click(() => {
-		generalController.goToPage('search');
-
+		model.fetchUrl()
+			.then(() => {
+				model.err.notifyObserver("");
+				generalController.goToPage('search');
+			})
+			.catch(err => {
+				// alert('Error: ' + err);
+				model.err.notifyObserver('Error: No Internet Connection! Make sure you connect to internet, then refresh the page!');
+			})
 	})
 
 }
