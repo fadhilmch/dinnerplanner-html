@@ -9,7 +9,6 @@ $(function() {
 	var welcome = $('#welcomeView');
 	var sidebar = $('#sidebarView');
 	var search = $('#searchView');
-	var select = $('#selectView');
 	var detail = $('#detailView');
 	var summary = $('#summaryView');
 	var print = $('#printView');
@@ -20,7 +19,6 @@ $(function() {
 		dishView['welcome'] = welcome;
 		dishView['sidebar'] = sidebar;
 		dishView['search'] = search;
-		dishView['select'] = select;
 		dishView['detail'] = detail;
 		dishView['summary'] = summary;
 		dishView['print'] = print;
@@ -42,8 +40,6 @@ $(function() {
 
 	var searchView = new SearchView(search, model);
 	var searchController = new SearchController(searchView, model, generalController);
-
-	var selectView = new SelectView(select, model);
 
 	var detailView = new DetailView(detail, model);
 	var detailController = new DetailController(detailView, model, generalController);

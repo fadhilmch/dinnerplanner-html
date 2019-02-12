@@ -17,23 +17,6 @@ var DetailView = function(container, model) {
 
     //LOAD DETAIL SELECTED MENU
     var loadSelectedDish = function() {
-        var id = model.getCurrentDishId();
-        var dish = model.getDish(id);
-        if (dish) {
-            self.detailDish.children().remove();
-            self.detailDish.append(`<div>
-                    <h4>${dish.name.toUpperCase()}</h4>
-                    
-                        <img class="fitImage" alt="Responsive image" src="images/${dish.image}">
-                        <div>
-                            <p>${dish.description} </p>  </div>
-                            
-                    </div>
-                </div>`);
-        };
-    };
-
-    var loadSelectedDish2 = function() {
         var dish = model.getInfo();
         if (dish.id !== null && dish.id !== undefined) {
             self.detailDish.children().remove();
@@ -49,23 +32,6 @@ var DetailView = function(container, model) {
 
     //LOAD INGREDIENTS OF SELECTED MENU
     var loadIngredients = () => {
-        var id = model.getCurrentDishId();
-        var dishItem = model.getDish(id);
-        if (dishItem) {
-            self.ingredientsDish.children().remove();
-            dishItem.ingredients.forEach(dish => {
-                self.ingredientsDish.append(`
-                <tr>
-                    <th scope="row">${numberPrint(dish.quantity*model.getNumberOfGuests()) + " "+ dish.unit}</th>
-                    <td>${dish.name}</td>
-                    <td>${ numberPrint(Number(dish.price)*model.getNumberOfGuests())}</td>
-                    <td>SEK</td>
-                </tr>`);
-            });
-        };
-    };
-
-    var loadIngredients2 = () => {
         var dish = model.getInfo();
         var price = 1;
         if (dish.id !== null && dish.id !== undefined) {
@@ -87,17 +53,8 @@ var DetailView = function(container, model) {
     };
 
     var loadPreparation = () => {
-        var id = model.getCurrentDishId();
-        var dish = model.getDish(id);
-        if (dish) {
-            self.preparationTip.children().remove();
-            self.preparationTip.append(` <p>${dish.description} </p>`)
-        }
-    }
-
-    var loadPreparation2 = () => {
         var dish = model.getInfo();
-        if (!(Object.keys(dish).length === 0 && dish.constructor === Object)) {
+        if (dish.id !== null && dish.id !== undefined) {
             self.preparationTip.children().remove();
             self.preparationTip.append(` <p>${dish.instructions} </p>`)
         }
@@ -123,9 +80,9 @@ var DetailView = function(container, model) {
     } else {
         hideLoading()
         getGuest();
-        loadSelectedDish2();
-        loadIngredients2();
-        loadPreparation2();
+        loadSelectedDish();
+        loadIngredients();
+        loadPreparation();
     }
     //update observer
     this.update = function(data) {
@@ -134,9 +91,9 @@ var DetailView = function(container, model) {
         } else {
             hideLoading();
             getGuest();
-            loadSelectedDish2();
-            loadIngredients2();
-            loadPreparation2();
+            loadSelectedDish();
+            loadIngredients();
+            loadPreparation();
         }
     }
 

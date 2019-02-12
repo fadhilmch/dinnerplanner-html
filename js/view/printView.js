@@ -3,7 +3,7 @@
 var PrintView = function(container, model) {
     // Get from model
     var allMenu = model.getFullMenu();
-    
+
     //Initialize Component
     var totalGuestPrint = container.find("#guestPrint");
     var printMenu = container.find("#printOut");
@@ -16,7 +16,7 @@ var PrintView = function(container, model) {
     }
 
      //LOAD DATA OF MENU ON PRINT OUT
-    var loadPrintMenu2 = function() {
+    var loadPrintMenu = function() {
         printMenu.children().remove();
         allMenu.forEach(dish => {
             printMenu.append(`<br>
@@ -49,12 +49,12 @@ var PrintView = function(container, model) {
         })
     }
 
-    loadPrintMenu2();
+    loadPrintMenu();
     getTotalGuests();
 
     this.update = function(data) {
         allMenu = model.getFullMenu();
         getTotalGuests();
-        loadPrintMenu2();
+        loadPrintMenu();
     }
 }

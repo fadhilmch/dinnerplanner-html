@@ -23,16 +23,9 @@ var SidebarView = function(container, model) {
         setConfimButtonStatus();
     };
 
-    // Total Cost
-    var calculateTotalCost = function() {
-        if (allMenu.length > 0) {
-            self.totalCost.html(`SEK ${Number(totalPrice).toFixed(2)}`);
-            self.navPrice.html(`SEK ${Number(totalPrice).toFixed(2)}`);
-        };
-    };
 
      // Total Cost
-    var calculateTotalCost2 = function() {
+    var calculateTotalCost = function() {
         if (allMenu.length > 0) {
             self.totalCost.html(`SEK ${Number(totalPrice2).toFixed(2)}`);
             self.navPrice.html(`SEK ${Number(totalPrice2).toFixed(2)}`);
@@ -49,7 +42,7 @@ var SidebarView = function(container, model) {
 
 
      // Table Sidebar
-    var showSidebar2 = function() {
+    var showSidebar = function() {
         self.menuTable.children().remove();
         if (allMenu.length > 0) {
             allMenu.forEach(dish => {
@@ -65,15 +58,15 @@ var SidebarView = function(container, model) {
 
 
     initialize();
-    showSidebar2();
-    calculateTotalCost2();
+    showSidebar();
+    calculateTotalCost();
 
     this.update = function(data) {
         totalPrice2 = model.getTotalMenuPrice2();
         allMenu = model.getFullMenu();
         setConfimButtonStatus();
-        showSidebar2();
-        calculateTotalCost2();
+        showSidebar();
+        calculateTotalCost();
     };
 
 };

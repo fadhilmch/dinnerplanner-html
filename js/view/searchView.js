@@ -14,13 +14,13 @@ var SearchView = function (container, model, gc) {
 
 
     // Get from model
-    var arrDishes = model.getDishType();
     var arrDishes2 = model.getDishType2();
-    arrDishes.splice(0, 0, 'all');
     arrDishes2.splice(0,0,'all');
 
 
-    var renderDropdownType2 = () => {
+    // Dropdown Select for Dishes Type
+    var renderDropdownType = () => {
+
         self.dishType.children().remove();
         // arrDishes2 = model.getDishType2();
         arrDishes2 = ['appetizer', 'breakfast', 'dessert','dinner', 'drink', 'lunch' , 'main course', 'main dish','sauce', 'side dish',  'snack']
@@ -39,8 +39,6 @@ var SearchView = function (container, model, gc) {
         }
     }
 
-
-   
     var renderError = (err) => {
         container.prepend(`
             <div id='error-search' class="alert alert-danger" role="alert">
@@ -51,7 +49,7 @@ var SearchView = function (container, model, gc) {
 
 
 
-    var renderDishesChoice2 = (type = 'all', filter = '') => {
+    var renderDishesChoice = (type = 'all', filter = '') => {
         let allDishes = model.getAllDishes2(type, filter);
         self.menuWrapper.children().remove();
         allDishes.forEach(dish => {
@@ -93,9 +91,9 @@ var SearchView = function (container, model, gc) {
 
     } else {
         hideLoading();
-        renderDropdownType2();
+        renderDropdownType();
         renderSearchTitle();
-        renderDishesChoice2();
+        renderDishesChoice();
     }
     
     //update observer
@@ -111,9 +109,9 @@ var SearchView = function (container, model, gc) {
            renderLoading();
         } else {
             hideLoading();
-            renderDropdownType2();
+            renderDropdownType();
             renderSearchTitle();
-            renderDishesChoice2(queryFilter.type, queryFilter.query);
+            renderDishesChoice(queryFilter.type, queryFilter.query);
         }
     }
 }

@@ -13,7 +13,6 @@ var GeneralController = function(arrViews) {
                 
                 break
             case 'search':
-                // arrViews['select'].show();
                 arrViews['search'].show();
                 arrViews['sidebar'].show();
                 break;

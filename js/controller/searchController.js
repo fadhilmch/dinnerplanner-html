@@ -1,7 +1,6 @@
 'use strict';
 
 var SearchController = function(view, model, generalController) {
-    // model.searchQuery.addObserver(view);
     model.fetchedDishes.addObserver(view);
     model.selectedDish.addObserver(view);
     model._isLoading.addObserver(view);
@@ -36,11 +35,6 @@ var SearchController = function(view, model, generalController) {
         }
     });
 
-    // view.searchInput.on('input',(e) => {
-    //     searchQuery();
-    // });
-
-
     view.menuWrapper.on('click', '.dishItem', function(){
         var id =$(this).attr('id');
         model.getRecipeInfo(id)
@@ -57,9 +51,7 @@ var SearchController = function(view, model, generalController) {
             }
             generalController.goToPage('search')
         })
-        
-       
-        
+ 
     });
 
 

@@ -6,7 +6,6 @@ var SummaryView = function(container, model) {
     //Get data from Model
     var totalGuests = model.getNumberOfGuests();
     var allMenu = model.getFullMenu();
-    var totalPrice = model.getTotalMenuPrice();
     var totalPrice2 = model.getTotalMenuPrice2();
 
     //Initialize Component
@@ -18,7 +17,7 @@ var SummaryView = function(container, model) {
 
     
     //LOAD DATA MENU OVERVIEW
-    var loadAllMenuOverview2 = () => {
+    var loadAllMenuOverview = () => {
         self.selectedMenu.children().remove();
         allMenu.forEach(dish => {
             self.selectedMenu.append(`
@@ -49,7 +48,7 @@ var SummaryView = function(container, model) {
 
 
     //LOAD TOTAL PRICE OF SELECTED MENU ON OVERVIEW
-    var getTotalMenuPrice2 = () => {
+    var getTotalMenuPrice = () => {
         self.priceAcc.children().remove();
         self.priceAcc.append(`<div id ="totalPrice" class="col-md-4" style="text-align: left">
                                     <div class="flex-container">
@@ -60,8 +59,8 @@ var SummaryView = function(container, model) {
         `);
     };
 
-    loadAllMenuOverview2();
-    getTotalMenuPrice2();
+    loadAllMenuOverview();
+    getTotalMenuPrice();
     getTotalGuests();
 
     this.update = (data) => {
@@ -69,7 +68,7 @@ var SummaryView = function(container, model) {
         totalPrice2 = model.getTotalMenuPrice2();
         allMenu = model.getFullMenu();
         getTotalGuests();
-        loadAllMenuOverview2();
-        getTotalMenuPrice2();
+        loadAllMenuOverview();
+        getTotalMenuPrice();
     };
 };
