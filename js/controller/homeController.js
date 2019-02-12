@@ -8,7 +8,6 @@ var HomeController = function (view, model, generalController){
 				generalController.goToPage('search');
 			})
 			.catch(err => {
-				// alert('Error: ' + err);
 				model.err.notifyObserver('Error: No Internet Connection! Make sure you connect to internet, then refresh the page!');
 			})
 	})
