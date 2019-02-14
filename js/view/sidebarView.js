@@ -5,7 +5,7 @@ var SidebarView = function(container, model) {
 
     // Get from model
     var allMenu = model.getFullMenu();
-    var totalPrice2 = model.getTotalMenuPrice2();
+    var totalPrice = model.getTotalMenuPrice();
 
     //Initialize Component
     this.numberOfGuests = container.find(".guest");
@@ -27,8 +27,8 @@ var SidebarView = function(container, model) {
      // Total Cost
     var calculateTotalCost = function() {
         if (allMenu.length > 0) {
-            self.totalCost.html(`SEK ${Number(totalPrice2).toFixed(2)}`);
-            self.navPrice.html(`SEK ${Number(totalPrice2).toFixed(2)}`);
+            self.totalCost.html(`SEK ${Number(totalPrice).toFixed(2)}`);
+            self.navPrice.html(`SEK ${Number(totalPrice).toFixed(2)}`);
         };
     };
 
@@ -49,7 +49,7 @@ var SidebarView = function(container, model) {
                 self.menuTable.append(`                         
                 <tr class ="dishItem" id ='${dish.id}'>
                     <td>${dish.title}</td>
-                    <td>${model.dishPrice2(dish.id).toFixed(2)}</td>
+                    <td>${model.dishPrice(dish.id).toFixed(2)}</td>
                 </tr>
             `);
             });
@@ -62,7 +62,7 @@ var SidebarView = function(container, model) {
     calculateTotalCost();
 
     this.update = function(data) {
-        totalPrice2 = model.getTotalMenuPrice2();
+        totalPrice = model.getTotalMenuPrice();
         allMenu = model.getFullMenu();
         setConfimButtonStatus();
         showSidebar();

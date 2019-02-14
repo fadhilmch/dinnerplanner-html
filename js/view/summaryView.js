@@ -6,7 +6,7 @@ var SummaryView = function(container, model) {
     //Get data from Model
     var totalGuests = model.getNumberOfGuests();
     var allMenu = model.getFullMenu();
-    var totalPrice2 = model.getTotalMenuPrice2();
+    var totalPrice = model.getTotalMenuPrice();
 
     //Initialize Component
     this.selectedMenu = container.find("#selected-wrapper");
@@ -31,7 +31,7 @@ var SummaryView = function(container, model) {
                     </div>
                         <div class="caption" style="padding-top: 5px">
                             <h6 class="text-danger" style="text-align: right;">${
-                       model.dishPrice2(dish.id).toFixed(2)
+                       model.dishPrice(dish.id).toFixed(2)
                     } SEK</h6>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ var SummaryView = function(container, model) {
         self.priceAcc.append(`<div id ="totalPrice" class="col-md-4" style="text-align: left">
                                     <div class="flex-container">
                                         <h6>Total: </h6>
-                                        <h6 class="text-danger">${Number(totalPrice2).toFixed(2)}SEK </h6>
+                                        <h6 class="text-danger">${Number(totalPrice).toFixed(2)}SEK </h6>
                                     </div>
                                 </div>
         `);
@@ -65,7 +65,7 @@ var SummaryView = function(container, model) {
 
     this.update = (data) => {
         totalGuests = model.getNumberOfGuests();
-        totalPrice2 = model.getTotalMenuPrice2();
+        totalPrice = model.getTotalMenuPrice();
         allMenu = model.getFullMenu();
         getTotalGuests();
         loadAllMenuOverview();

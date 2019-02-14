@@ -14,7 +14,7 @@ var DetailController = function(view, model, generalController) {
 
     view.addToMenu.click(() => {
         var cur = model.getInfo();
-        model.addDishToMenu2(Number(cur.id));
+        model.addDishToMenu(Number(cur.id));
         generalController.goToPage('search');
         model.getFullMenu();
     })

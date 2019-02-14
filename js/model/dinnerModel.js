@@ -37,10 +37,10 @@ var DinnerModel = function() {
     this.err = new Observable("");
 
     var searchQuery = { 'type': 'all', 'query': '' };
-    var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=10&tags=';
+    var url = 'http://sunset.nada.kth.se:8080/iprog/group/29/recipes/random?limitLicense=false&number=10&tags=';
     var header = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
-    var infoUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
-    var searchUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=20&offset=0&";
+    var infoUrl = "http://sunset.nada.kth.se:8080/iprog/group/29/recipes/";
+    var searchUrl = "http://sunset.nada.kth.se:8080/iprog/group/29/recipes/search?number=20&offset=0&";
     this._isLoading = new Observable(false);
 
     this.fetchUrl = () => {
@@ -124,10 +124,8 @@ var DinnerModel = function() {
     this.setSearchQuery = (query) => {
         if (query) {
             searchQuery = { 'type': query.type, 'query': query.query };
-            // this.searchQuery.notifyObserver({ 'type': query.type, 'query': query.query });
         } else {
             searchQuery = { 'type': 'all', 'query': '' };
-            // this.searchQuery.notifyObserver({ 'type': 'all', 'query': '' });
         };
     };
 
@@ -173,7 +171,7 @@ var DinnerModel = function() {
 
 
     //Get dish total price per dish
-    this.dishPrice2 = (id) => {
+    this.dishPrice = (id) => {
         let dishes = this.getFullMenu();
         let price = dishes.filter(dish => { return dish.id === id })[0].pricePerServing;
         return price * this.getNumberOfGuests();
@@ -181,7 +179,7 @@ var DinnerModel = function() {
 
 
     // Get total price of the menu
-    this.getTotalMenuPrice2 = () => {
+    this.getTotalMenuPrice = () => {
         let selectedDish = this.getFullMenu();
         if (selectedDish) {
             return this.getNumberOfGuests() * selectedDish.map(dish => {
@@ -197,7 +195,7 @@ var DinnerModel = function() {
 
      // Add dish to menu
     /** @param {number} id */
-    this.addDishToMenu2 = (id) => {
+    this.addDishToMenu = (id) => {
         let dishTemp = this.selectedDish.getValue();
         let dish = this.getInfo();
         if (dishTemp.map(value => (value.id)).indexOf(dish.id) === -1)
@@ -219,7 +217,7 @@ var DinnerModel = function() {
 
      // Get all dish by id model
     /** @param {number} id */
-    this.getDish2 = (id) => {
+    this.getDish = (id) => {
         let temp = this.fetchedDishes.getValue();
         for (let key in temp) {
             if (temp[key].id == id) {
@@ -234,14 +232,14 @@ var DinnerModel = function() {
      * @param {string} filter
      */
 
-    this.getAllDishes2 = () => {
+    this.getAllDishes = () => {
         return this.fetchedDishes.getValue();
        
     };
 
 
     // Get all dishes type
-    this.getDishType2 = () => {
+    this.getDishType = () => {
         let dishType = [];
         this.fetchedDishes.getValue().forEach(dish => {
             dish.dishTypes.forEach(type => {

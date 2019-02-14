@@ -14,13 +14,12 @@ var SearchView = function (container, model, gc) {
 
 
     // Get from model
-    var arrDishes2 = model.getDishType2();
+    var arrDishes2 = model.getDishType();
     arrDishes2.splice(0,0,'all');
 
 
     // Dropdown Select for Dishes Type
     var renderDropdownType = () => {
-
         self.dishType.children().remove();
         // arrDishes2 = model.getDishType2();
         arrDishes2 = ['appetizer', 'breakfast', 'dessert','dinner', 'drink', 'lunch' , 'main course', 'main dish','sauce', 'side dish',  'snack']
@@ -50,7 +49,7 @@ var SearchView = function (container, model, gc) {
 
 
     var renderDishesChoice = (type = 'all', filter = '') => {
-        let allDishes = model.getAllDishes2(type, filter);
+        let allDishes = model.getAllDishes(type, filter);
         self.menuWrapper.children().remove();
         allDishes.forEach(dish => {
             self.menuWrapper.append(`   
